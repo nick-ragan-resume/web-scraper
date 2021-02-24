@@ -1,4 +1,4 @@
-# URL Screen-Scraper tool to check for a list of key words
+# URL Screen-Scraper tool to check for a list of key words on web pages
 
 installed pip3 requests
 
