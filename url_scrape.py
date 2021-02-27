@@ -38,65 +38,107 @@ class WindowSetup(object):
         self.quit_Button = ttk.Button(self.parent, text="Quit Program", command=parent.quit)
         # positioning and configuration for frame/window
         self.parent.eval('tk::PlaceWindow %s center' % parent.winfo_pathname(parent.winfo_id()))
-        self.parent.geometry("450x317")
+        self.parent.geometry("450x317") #450x317
         #self.parent.resizable(False, False)
         # title for frame/window
         self.parent.title("Website Parser Comparision Tool - (WPCT)")
 
-    def uploadAction(event=None):
-        filename = filedialog.askopenfilename()
-        print('Selected:', filename)
+        # grab logo image
+        self.image = Image.open('assets/ezgif-2-18770de0fea5.gif')
+        self.photo = ImageTk.PhotoImage(self.image)
+        # image
+        self.img_label = Label(self.parent, image=self.photo, width=70)
+        self.img_label.pack()
+        # image
+        self.img_label.grid(column=1, row=0, sticky=(N), pady=20, padx=(1,1))
+
+    def uploadAction(self,event=None):
+        self.filename = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
+        print('select:', self.filename)
+        return self.filename
 
     def interactions(self):
         self.url_Label_0 = ttk.Label(self.f1, text="              ")
         self.url_Label_1 = ttk.Label(self.f1, text="Enter URL To Parse ")
         self.url_Entry = ttk.Entry(self.f1)
-        self.parse_data_text = ttk.Label(self.f1, text="Data To Parse")
-        self.input_data_text = ttk.Label(self.f1, text="Upload Data File")
+        self.parse_data_Label = ttk.Label(self.f1, text="Data To Parse")
+        self.upload_File = ttk.Label(self.f1, text="Upload Data File")
         self.upload_Button = ttk.Button(self.f1, text="Upload", command=self.uploadAction)
-        self.start = ttk.Button(self.f1, text="Start", command=self.start)
-        
+        self.start = ttk.Button(self.f1, text="Begin Parser", command=self.get_entries)
 
-        self.onevar = BooleanVar()
-        self.twovar = BooleanVar()
-        self.threevar = BooleanVar()
- 
-        self.onevar.set(False)
-        self.twovar.set(False)
-        self.threevar.set(False)
 
-        self.one = ttk.Checkbutton(self.f1, text="Headers", variable=self.onevar, onvalue=True)
-        self.two = ttk.Checkbutton(self.f1, text="Paragraph", variable=self.twovar, onvalue=True)
-        self.three = ttk.Checkbutton(self.f1, text="Attributes", variable=self.threevar, onvalue=True)
 
+        # checkbox variables
+        self.header_Var = BooleanVar()
+        self.paragraph_Var = BooleanVar()
+        self.attributes_Var = BooleanVar()
+        # set checkbox values
+        self.header_Var.set(False)
+        self.paragraph_Var.set(False)
+        self.attributes_Var.set(False)
+        # add functionality to checkbox
+        self.h_tag = ttk.Checkbutton(self.f1, text="Headers", variable=self.header_Var, onvalue=True)
+        self.p_tag = ttk.Checkbutton(self.f1, text="Paragraph", variable=self.paragraph_Var, onvalue=True)
+        self.a_tag = ttk.Checkbutton(self.f1, text="Attributes", variable=self.attributes_Var, onvalue=True)
+
+    # layout for GUI
     def grid(self):
         self.f1.grid(column=0, row=0, sticky=(E, W, S, N))
-
         # blank line
         self.url_Label_0.grid(column=0, row=0, sticky=(N, E, S, W), padx=(10,10), pady=1)
-
         # url input and parse
         self.url_Label_1.grid(column=0, row=1, sticky=(N, E, S, W), padx=(10,1), pady=1)
         self.url_Entry.grid(column=0, row=2, sticky=(N, E, S, W), padx=(10,1), pady=1)
-
         # upload button
-        self.input_data_text.grid(column=0, row=5, sticky=(N, E, S, W), padx=(10,1), pady=(40,1))
+        self.upload_File.grid(column=0, row=5, sticky=(N, E, S, W), padx=(10,1), pady=(40,1))
         self.upload_Button.grid(column=0, row=6, sticky=(E, W), padx=(10,130), pady=(1,1))
-
         # check boxes
-        self.parse_data_text.grid(column=0, row=3, sticky=(N, E, S, W), padx=(10,1), pady=(40,1))
-        self.one.grid(column=0, row=4, padx=(10, 1), pady=(1,1), sticky=(W))
-        self.two.grid(column=0, row=4, padx=(86,1), pady=(1,1), sticky=(W))
-        self.three.grid(column=0, row=4, padx=(175,1), pady=(1,1), sticky=(W))
-
-        # start button
-        self.start.grid(column=0, row=7, sticky=(W, E), padx=(10,1), pady=(40,1))
+        self.parse_data_Label.grid(column=0, row=3, sticky=(N, E, S, W), padx=(10,1), pady=(40,1))
+        self.h_tag.grid(column=0, row=4, padx=(10, 1), pady=(1,1), sticky=(W))
+        self.p_tag.grid(column=0, row=4, padx=(86,1), pady=(1,1), sticky=(W))
+        self.a_tag.grid(column=0, row=4, padx=(175,1), pady=(1,1), sticky=(W))
         # quit button 
         self.quit_Button.grid(column=1, row=0, sticky=(S), pady=10, padx=10)
-
+        # start button... Need to Call Function to send back and grab data from [upload; one,two,three; url-entry]
+        self.start.grid(column=0, row=7, sticky=(W, E), padx=(10,1), pady=(40,1))
         # need to check what these do
         self.parent.columnconfigure(0, weight=1)# weight determines how much of the available space a row or column should occupy relative to the other rows or columns
         self.parent.rowconfigure(0, weight=1)
+
+
+    def get_entries(self):
+        # grab entry values
+        self.url_Entry_Val = self.url_Entry.get()
+        self.header_Entry_Val = self.header_Var.get()
+        self.paragraph_Entry_Val = self.paragraph_Var.get()
+        self.attribute_Entry_Val = self.attributes_Var.get()
+        print("\n\n")
+        print("Url... : ", self.url_Entry_Val)
+        print("Entry 1 = ", self.header_Entry_Val, "Entry 2 = ", self.paragraph_Entry_Val, "Entry 3 = ", self.attribute_Entry_Val)
+        # check for file upload
+        try:
+            if self.filename:
+                print("File that you uploaded", self.filename)
+        except:
+            self.filename = None
+        try:
+            if self.url_Entry_Val:
+                # start processing
+                self.parse_url()
+        except:
+            print('need url to parse')
+        
+    # parse website url
+    def parse_url(self):
+        url = self.url_Entry_Val
+        print('grabbed url: ', url)
+        url_page = requests.get(url)
+        soup = BeautifulSoup(url_page.content, 'html.parser')
+        pg = soup.find_all("p")
+        sys.stdout = open('scrape-me.txt', 'w')
+        for tag in pg:
+            print(tag.text)
+        sys.stdout.close()
 
     # second screen - load screen
     def load_screen(self):
@@ -133,18 +175,11 @@ class WindowSetup(object):
         else:
             engine.after(100,self.loading)
 
-    def load_logo(self):
-        # load image using pillow library
-        self.loaded_img = Image.open('assets/MoO_Logo_Blue.jpg')
-        if self.loaded_img:
-            self.render_img = ImageTk.PhotoImage(self.loaded_img)
-            print("Printing image \n",self.render_img, "\n\n\n")
 
-    def start(self):
-        pass
+        
 
 
-class triggers(object):
+class DataScanner(object):
     def __init__(self, parent):
         pass
 
@@ -152,7 +187,7 @@ class triggers(object):
 
 
 # # Get URL 
-page = requests.get(url)
+# page = requests.get(url)
 
 # # Parse HTML Page
 # soup = BeautifulSoup(page.content, 'html.parser')
@@ -336,27 +371,27 @@ if __name__ == '__main__':
 
 
 
-# # Supply URL 
-# url = 'https://www.mutualofomaha.com/medicare-solutions/medicare-basics'
-# # Get URL 
-page = requests.get(url)
+# # # Supply URL 
+# # url = 'https://www.mutualofomaha.com/medicare-solutions/medicare-basics'
+# # # Get URL 
+# page = requests.get(url)
 
-# Parse HTML Page
-soup = BeautifulSoup(page.content, 'html.parser')
+# # Parse HTML Page
+# soup = BeautifulSoup(page.content, 'html.parser')
 
-# Single out P Tag
-p = soup.find_all("p")
-
-
+# # Single out P Tag
+# p = soup.find_all("p")
 
 
-# Open file to write contents to
-sys.stdout = open('scrape-me.txt', 'w')
-# Extract text from <p> tags and Print contents to file
-for p in p:
-    print (p.get_text())
-# Close file 
-sys.stdout.close()
+
+
+# # Open file to write contents to
+# sys.stdout = open('scrape-me.txt', 'w')
+# # Extract text from <p> tags and Print contents to file
+# for p in p:
+#     print (p.get_text())
+# # Close file 
+# sys.stdout.close()
 
 
 # if __name__ == '__main__':
