@@ -66,8 +66,6 @@ class WindowSetup(object):
         self.upload_Button = ttk.Button(self.f1, text="Upload", command=self.uploadAction)
         self.start = ttk.Button(self.f1, text="Begin Parser", command=self.get_entries)
 
-
-
         # checkbox variables
         self.header_Var = BooleanVar()
         self.paragraph_Var = BooleanVar()
@@ -112,33 +110,45 @@ class WindowSetup(object):
         self.header_Entry_Val = self.header_Var.get()
         self.paragraph_Entry_Val = self.paragraph_Var.get()
         self.attribute_Entry_Val = self.attributes_Var.get()
+        # validate entries
         print("\n\n")
-        print("Url... : ", self.url_Entry_Val)
-        print("Entry 1 = ", self.header_Entry_Val, "Entry 2 = ", self.paragraph_Entry_Val, "Entry 3 = ", self.attribute_Entry_Val)
-        # check for file upload
+        print("Entry 1 = ", self.header_Entry_Val, ", ", "Entry 2 = ", self.paragraph_Entry_Val, ", ", "Entry 3 = ", self.attribute_Entry_Val)
+        # check for .txt file
         try:
             if self.filename:
                 print("File that you uploaded", self.filename)
         except:
+            print("There is no uploaded file... ")
             self.filename = None
+        # check for url
         try:
             if self.url_Entry_Val:
+                print('here is your url: ', self.url_Entry_Val)
                 # start processing
                 self.parse_url()
         except:
-            print('need url to parse')
+            print('Please try entering a new URL... ')
         
     # parse website url
     def parse_url(self):
         url = self.url_Entry_Val
-        print('grabbed url: ', url)
         url_page = requests.get(url)
         soup = BeautifulSoup(url_page.content, 'html.parser')
         pg = soup.find_all("p")
-        sys.stdout = open('scrape-me.txt', 'w')
-        for tag in pg:
-            print(tag.text)
-        sys.stdout.close()
+        writeable_file = open('scrape-me.txt', 'w')
+        for remove_tags in pg:
+            writeable_file.write(remove_tags.text + '\n')
+        writeable_file.close()
+
+        ###### need to allow for other parsing options such as iframe
+
+        # soup2 = BeautifulSoup(url_page.content, 'html.parser')
+        # tg = soup.find_all("p")
+        # append_writeable_file = open('scrape-me.txt', 'a')
+        # append_writeable_file.write('PG2 variable ' + ' \n')
+        # append_writeable_file.close()
+        
+        
 
     # second screen - load screen
     def load_screen(self):
@@ -177,36 +187,24 @@ class WindowSetup(object):
 
 
         
+### need to scan .txt file with the parsed data
+
+### do error handlings
+
+## connect Data to parse selections
+
+###### need to allow for other parsing options such as iframe
+
+## clear url input box
+
+## regex for uploaded file (no special symbols, cases)
+
 
 
 class DataScanner(object):
     def __init__(self, parent):
         pass
 
-
-
-
-# # Get URL 
-# page = requests.get(url)
-
-# # Parse HTML Page
-# soup = BeautifulSoup(page.content, 'html.parser')
-
-# # Single out P Tag
-# p = soup.find_all("p")
-
-# # # Get Entry Field Values
-# def show_entry_fields():
-#     print("First Name: %s\nLast Name: %s" % (e1.get(), e2.get()))
-#     x = e1.get()
-#     y = e2.get()
-#     z = x + ' ' + y
-#     # Open file to write contents to
-#     sys.stdout = open('scrape-me.txt', 'w')
-#     # Extract text from <p> tags and Printcontents to file
-#     print (z)
-#     # Close file 
-#     sys.stdout.close()
 
 # Start GUI Engine
 def main():
@@ -219,183 +217,3 @@ def main():
  
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
-# # Create tkinter Instance
-# parent = tk.Tk()
-# # Center Window on Screen
-# parent.eval('tk::PlaceWindow %s center' % parent.winfo_pathname(parent.winfo_id()))
-# # Change Window Size
-# parent.geometry("400x400")
-
-# # Create & Configure Frame
-# frame=Frame(parent)
-# frame.grid(row=0, column=0, sticky=N+S+E+W)
-
-# # Create two Labels
-# tk.Label(parent, text="URL").grid(row=0)
-# tk.Label(parent, text="Upload Text List").grid(row=1)
-
-# # Create Entry Fields
-# e1 = tk.Entry(parent)
-# e2 = tk.Entry(parent)
-
-# # Position Entry Fields
-# e1.grid(row=0, column=2)
-# e2.grid(row=1, column=2)
-
-# # Create Styles For Buttons
-# style = ttk.Style()
-# style.configure("TButton", foreground="blue", background="orange")
-
-# # Create Buttons & Apply Styles
-# ttk.Button(parent, text='Quit', style="TButton", command=parent.quit).grid(row=3, column=2, sticky=tk.W, pady=4)
-# ttk.Button(parent, text='Show', style="TButton", command=show_entry_fields).grid(row=3, column=3, sticky=tk.W, pady=4)
-# # Upload Text List
-# ttk.Button(parent, text='Open', style="TButton", command=UploadAction).grid(row=1, column=2, sticky=tk.W, pady=4)
-
-
-# # Loop program forever
-# tk.mainloop()
-
-
-# I/O Fileds and Files                                             
-    ## URL
-
-    ## Output file name
-
-    ## Input text list
-      ### Think on this maybe a simple .txt file... later parse .xml
-
-
-# Send Form Data Back and Process
-    ## Process URL data
-
-    ## Post Input Text File
-
-    ## Loop input text file over parsed .html data
-
-    ## Create Output File With Matched Words
-
-    ## Export Output File With Matched Words
-
-
-# Format / Style Tkinter GUI 
-    ## Background = lightgray
-
-    ## Buttons  
-      ### background = mutualblue
-
-      ### text-color = white 
-
-
-
-    ## Text
-      ### color = black
-
-      ### font = Calibri (Body)
-
-    ## Window Size = 600x400 
-
-    ## Account For Errors
-      ### Check for sites that can't screen scrape and return this site does not allow
-
-      ### Account for any other errors
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# from tkinter   import  module  as   name 
-
-
-
-# from tkinter import messagebox as mb
-
-# def answer():
-#     mb.showerror("Answer", "Sorry, no answer available")
-
-# def callback():
-#     if mb.askyesno('Verify', 'Really quit?'):
-#         mb.showwarning('Yes', 'Not yet implemented')
-#     else:
-#         mb.showinfo('No', 'Quit has been cancelled')
-
-# tk.Button(text='Quit', command=callback).pack(fill=tk.X)
-# tk.Button(text='Answer', command=answer).pack(fill=tk.X)
-# tk.mainloop()
-
-
-
-
-
-# import tkinter as tk
-# class Passwordchecker(tk.Frame):
-#    def __init__(self, parent):
-#        tk.Frame.__init__(self, parent)
-#        self.parent = parent
-#        self.initialize_user_interface()
-
-#    def initialize_user_interface(self):
-#        self.parent.geometry("800x800")
-#        self.parent.title("Password checker")
-#        self.parent.configure(bg="blue")
-#        self.entry=tk.Entry(self.parent)
-#        self.entry.pack()
-#        self.button=tk.Button(self.parent,text="Enter", command=self.PassCheck)
-#        self.button.pack()
-#        self.label=tk.Label(self.parent,text="Please a password", fg="purple")
-#        self.label.pack()
-
-#    def PassCheck(self):
-#        password = self.entry.get()
-#        if len(password)>=9 and len(password)<=12:
-#           self.label.config(text="Password is correct")
-#        else:
-#           self.label.config(text="Password is incorrect")
-
-
-
-
-# # # Supply URL 
-# # url = 'https://www.mutualofomaha.com/medicare-solutions/medicare-basics'
-# # # Get URL 
-# page = requests.get(url)
-
-# # Parse HTML Page
-# soup = BeautifulSoup(page.content, 'html.parser')
-
-# # Single out P Tag
-# p = soup.find_all("p")
-
-
-
-
-# # Open file to write contents to
-# sys.stdout = open('scrape-me.txt', 'w')
-# # Extract text from <p> tags and Print contents to file
-# for p in p:
-#     print (p.get_text())
-# # Close file 
-# sys.stdout.close()
-
-
-# if __name__ == '__main__':
-
-#    engine = tk.Tk()
-#    run = Passwordchecker(engine)
-#    engine.mainloop()
