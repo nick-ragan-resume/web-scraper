@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 import os
 import sys
-import requests
 from bs4 import BeautifulSoup
 from tkinter import *
+import tkinter.font as font
 from tkinter import filedialog
 import tkinter.ttk as ttk
 from PIL import Image, ImageTk
+import requests
+import urllib3
 
 """
 Screen Scrape Websites and Check For Keywords in Paragraph Text
@@ -26,6 +28,7 @@ class WindowSetup(object):
         # instantiate main instance
         self.parent = parent 
         self.parent.configure(background='#013A70')
+        self.myFont = font.Font(family='Helvetica', size=15)
         # init text widget
         self.text = Text(self.parent)
         # init styles widget
@@ -34,8 +37,9 @@ class WindowSetup(object):
         self.f1_style.configure('My.TFrame', background="black")
         self.f1 = ttk.Frame(self.parent, style='My.TFrame')
         # style for quit button
-        self.f1_style.configure('TButton', foreground='#013A70')
+        self.f1_style.configure('TButton', foreground='#013A70', font=('Helvetica', 15))
         self.quit_Button = ttk.Button(self.parent, text="Quit Program", command=parent.quit)
+        self.start_Button = ttk.Button(self.parent, text="Start Parsing", command=self.get_entries)
         # positioning and configuration for frame/window
         self.parent.eval('tk::PlaceWindow %s center' % parent.winfo_pathname(parent.winfo_id()))
         self.parent.geometry("450x317") #450x317
@@ -60,24 +64,26 @@ class WindowSetup(object):
     def interactions(self):
         self.url_Label_0 = ttk.Label(self.f1, text="              ")
         self.url_Label_1 = ttk.Label(self.f1, text="Enter URL To Parse ")
+        self.url_Label_1['font'] = self.myFont
         self.url_Entry = ttk.Entry(self.f1)
         self.parse_data_Label = ttk.Label(self.f1, text="Data To Parse")
+        self.parse_data_Label['font'] = self.myFont
         self.upload_File = ttk.Label(self.f1, text="Upload Data File")
+        self.upload_File['font'] = self.myFont
         self.upload_Button = ttk.Button(self.f1, text="Upload", command=self.uploadAction)
-        self.start = ttk.Button(self.f1, text="Begin Parser", command=self.get_entries)
 
         # checkbox variables
         self.header_Var = BooleanVar()
         self.paragraph_Var = BooleanVar()
-        self.attributes_Var = BooleanVar()
+        self.iframe_Var = BooleanVar()
         # set checkbox values
         self.header_Var.set(False)
         self.paragraph_Var.set(False)
-        self.attributes_Var.set(False)
+        self.iframe_Var.set(False)
         # add functionality to checkbox
         self.h_tag = ttk.Checkbutton(self.f1, text="Headers", variable=self.header_Var, onvalue=True)
         self.p_tag = ttk.Checkbutton(self.f1, text="Paragraph", variable=self.paragraph_Var, onvalue=True)
-        self.a_tag = ttk.Checkbutton(self.f1, text="Attributes", variable=self.attributes_Var, onvalue=True)
+        self.if_tag = ttk.Checkbutton(self.f1, text="iframe", variable=self.iframe_Var, onvalue=True)
 
     # layout for GUI
     def grid(self):
@@ -88,17 +94,16 @@ class WindowSetup(object):
         self.url_Label_1.grid(column=0, row=1, sticky=(N, E, S, W), padx=(10,1), pady=1)
         self.url_Entry.grid(column=0, row=2, sticky=(N, E, S, W), padx=(10,1), pady=1)
         # upload button
-        self.upload_File.grid(column=0, row=5, sticky=(N, E, S, W), padx=(10,1), pady=(40,1))
+        self.upload_File.grid(column=0, row=5, sticky=(N, E, S, W), padx=(10,1), pady=(60,1))
         self.upload_Button.grid(column=0, row=6, sticky=(E, W), padx=(10,130), pady=(1,1))
         # check boxes
-        self.parse_data_Label.grid(column=0, row=3, sticky=(N, E, S, W), padx=(10,1), pady=(40,1))
-        self.h_tag.grid(column=0, row=4, padx=(10, 1), pady=(1,1), sticky=(W))
-        self.p_tag.grid(column=0, row=4, padx=(86,1), pady=(1,1), sticky=(W))
-        self.a_tag.grid(column=0, row=4, padx=(175,1), pady=(1,1), sticky=(W))
+        self.parse_data_Label.grid(column=0, row=3, sticky=(N, E, S, W), padx=(10,1), pady=(60,1))
+        self.h_tag.grid(column=0, row=4, padx=(10, 1), pady=(5,1), sticky=(W))
+        self.p_tag.grid(column=0, row=4, padx=(86,1), pady=(5,1), sticky=(W))
+        self.if_tag.grid(column=0, row=4, padx=(175,1), pady=(5,1), sticky=(W))
         # quit button 
         self.quit_Button.grid(column=1, row=0, sticky=(S), pady=10, padx=10)
-        # start button... Need to Call Function to send back and grab data from [upload; one,two,three; url-entry]
-        self.start.grid(column=0, row=7, sticky=(W, E), padx=(10,1), pady=(40,1))
+        self.start_Button.grid(column=1, row=0, sticky=(S), pady=(1,80), padx=10)
         # need to check what these do
         self.parent.columnconfigure(0, weight=1)# weight determines how much of the available space a row or column should occupy relative to the other rows or columns
         self.parent.rowconfigure(0, weight=1)
@@ -109,10 +114,10 @@ class WindowSetup(object):
         self.url_Entry_Val = self.url_Entry.get()
         self.header_Entry_Val = self.header_Var.get()
         self.paragraph_Entry_Val = self.paragraph_Var.get()
-        self.attribute_Entry_Val = self.attributes_Var.get()
+        self.iframe_Entry_Val = self.iframe_Var.get()
         # validate entries
         print("\n\n")
-        print("Entry 1 = ", self.header_Entry_Val, ", ", "Entry 2 = ", self.paragraph_Entry_Val, ", ", "Entry 3 = ", self.attribute_Entry_Val)
+        print("Entry 1 = ", self.header_Entry_Val, ", ", "Entry 2 = ", self.paragraph_Entry_Val, ", ", "Entry 3 = ", self.iframe_Entry_Val)
         # check for .txt file
         try:
             if self.filename:
@@ -124,21 +129,60 @@ class WindowSetup(object):
         try:
             if self.url_Entry_Val:
                 print('here is your url: ', self.url_Entry_Val)
-                # start processing
-                self.parse_url()
+                #check for checkboxes
+                if self.header_Entry_Val:
+                    #do something
+                    print('just the header val')
+                    self.parse_url_headers()
+                if self.paragraph_Entry_Val:
+                    #do something
+                    print('just the paragraph val ')
+                    self.parse_url_paragraph()
+                if self.iframe_Entry_Val:
+                    #do something
+                    print('just the iframe val ')
+                    self.parse_url_iframe()
+            else:
+                print('No url entered or no parse data selected... ')
         except:
-            print('Please try entering a new URL... ')
+            print('An error has occured. Please try entering a new URL... ')
         
-    # parse website url
-    def parse_url(self):
+    # parse website headers
+    def parse_url_headers(self):
+        # this example pulls entire page
+        print(urllib3.__version__)
+        http = urllib3.PoolManager()
+        url = self.url_Entry_Val
+        url_page = http.request('GET', url)
+        soup = BeautifulSoup(url_page.data, 'html.parser')
+        print(soup.find_all())
+        write_file = open('scrape-header/scrape-header.txt', 'w')
+        write_file.write(soup.prettify())
+        write_file.close()
+
+    # parse website paragraphs
+    def parse_url_paragraph(self):
         url = self.url_Entry_Val
         url_page = requests.get(url)
         soup = BeautifulSoup(url_page.content, 'html.parser')
-        pg = soup.find_all("p")
-        writeable_file = open('scrape-me.txt', 'w')
+        pg = soup.find_all('p')
+        writeable_file = open('scrape-paragraph/scrape-paragraph.txt', 'w')
         for remove_tags in pg:
             writeable_file.write(remove_tags.text + '\n')
         writeable_file.close()
+        print('Done printing to file... ')
+
+    # parse website iframe
+    def parse_url_iframe(self):
+        # this example pulls entire page
+        url = self.url_Entry_Val
+        url_page = requests.get(url)
+        soup = BeautifulSoup(url_page.content, 'html.parser')
+        p = soup.find_all(text=True)
+        write_file = open('scrape-iframe/scrape-iframe.txt', 'w')
+        write_file.write(data + '\n')
+        write_file.close()
+
 
         ###### need to allow for other parsing options such as iframe
 
@@ -190,8 +234,6 @@ class WindowSetup(object):
 ### need to scan .txt file with the parsed data
 
 ### do error handlings
-
-## connect Data to parse selections
 
 ###### need to allow for other parsing options such as iframe
 

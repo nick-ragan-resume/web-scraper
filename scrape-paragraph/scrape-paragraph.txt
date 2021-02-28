@@ -1,0 +1,13 @@
+Join Stack Overflow to learn, share knowledge, and build your career.
+Teams
+Q&A for work
+Connect and share knowledge within a single location that is structured and easy to search.
+I am wanting to create a simple message box in Tkinter that appears and displays the exact error message.  Could anyone direct me to how this might be 
+ achieved in tkinter, I have not been able to find much on this topic.
+E.g: 
+I am wanting to add this with pyinstaller.  I suppose pyinstaller creates a text file and you can see in cmd before it closes, but it would be nice if a message box appear with exact traceerror.
+check here for more info
+This login system which will pop up messagebox when you provide wrong data for entry messagebox should be entered into the entry if not the messagebox will pop up prompting you an error as occured  
+
+site design / logo © 2021 Stack Exchange Inc; user contributions licensed under cc by-sa.                    rev 2021.2.26.38670
+
