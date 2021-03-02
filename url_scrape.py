@@ -34,7 +34,7 @@ class WindowSetup(object):
         # init styles widget
         self.f1_style = ttk.Style() 
         # styles for frame/window
-        self.f1_style.configure('My.TFrame', background="black")
+        self.f1_style.configure('My.TFrame')
         self.f1 = ttk.Frame(self.parent, style='My.TFrame')
         # style for quit button
         self.f1_style.configure('TButton', foreground='#013A70', font=('Helvetica', 15))
@@ -76,14 +76,24 @@ class WindowSetup(object):
         self.header_Var = BooleanVar()
         self.paragraph_Var = BooleanVar()
         self.iframe_Var = BooleanVar()
+        self.div_Var = BooleanVar()
+        self.attribute_Var = BooleanVar()
+        self.other_Var = BooleanVar()
         # set checkbox values
         self.header_Var.set(False)
         self.paragraph_Var.set(False)
         self.iframe_Var.set(False)
+        self.div_Var.set(False)
+        self.attribute_Var.set(False)
+        self.other_Var.set(False)
         # add functionality to checkbox
         self.h_tag = ttk.Checkbutton(self.f1, text="Headers", variable=self.header_Var, onvalue=True)
         self.p_tag = ttk.Checkbutton(self.f1, text="Paragraph", variable=self.paragraph_Var, onvalue=True)
-        self.if_tag = ttk.Checkbutton(self.f1, text="iframe", variable=self.iframe_Var, onvalue=True)
+        self.if_tag = ttk.Checkbutton(self.f1, text="Iframe", variable=self.iframe_Var, onvalue=True)
+        # add functionality to checkbox
+        self.d_tag = ttk.Checkbutton(self.f1, text="Div", variable=self.div_Var, onvalue=True)
+        self.a_tag = ttk.Checkbutton(self.f1, text="Attribute", variable=self.attribute_Var, onvalue=True)
+        self.o_tag = ttk.Checkbutton(self.f1, text="Other", variable=self.other_Var, onvalue=True)
 
     # layout for GUI
     def grid(self):
@@ -93,14 +103,17 @@ class WindowSetup(object):
         # url input and parse
         self.url_Label_1.grid(column=0, row=1, sticky=(N, E, S, W), padx=(10,1), pady=1)
         self.url_Entry.grid(column=0, row=2, sticky=(N, E, S, W), padx=(10,1), pady=1)
-        # upload button
-        self.upload_File.grid(column=0, row=5, sticky=(N, E, S, W), padx=(10,1), pady=(60,1))
-        self.upload_Button.grid(column=0, row=6, sticky=(E, W), padx=(10,130), pady=(1,1))
         # check boxes
-        self.parse_data_Label.grid(column=0, row=3, sticky=(N, E, S, W), padx=(10,1), pady=(60,1))
+        self.parse_data_Label.grid(column=0, row=3, sticky=(N, E, S, W), padx=(10,1), pady=(40,1))
         self.h_tag.grid(column=0, row=4, padx=(10, 1), pady=(5,1), sticky=(W))
         self.p_tag.grid(column=0, row=4, padx=(86,1), pady=(5,1), sticky=(W))
         self.if_tag.grid(column=0, row=4, padx=(175,1), pady=(5,1), sticky=(W))
+        self.d_tag.grid(column=0, row=5, padx=(10, 1), pady=(5,1), sticky=(W))
+        self.a_tag.grid(column=0, row=5, padx=(86,1), pady=(5,1), sticky=(W))
+        self.o_tag.grid(column=0, row=5, padx=(175,1), pady=(5,1), sticky=(W))
+        # upload button
+        self.upload_File.grid(column=0, row=6, sticky=(N, E, S, W), padx=(10,1), pady=(40,1))
+        self.upload_Button.grid(column=0, row=7, sticky=(E, W), padx=(10,130), pady=(1,1))
         # quit button 
         self.quit_Button.grid(column=1, row=0, sticky=(S), pady=10, padx=10)
         self.start_Button.grid(column=1, row=0, sticky=(S), pady=(1,80), padx=10)
@@ -115,9 +128,12 @@ class WindowSetup(object):
         self.header_Entry_Val = self.header_Var.get()
         self.paragraph_Entry_Val = self.paragraph_Var.get()
         self.iframe_Entry_Val = self.iframe_Var.get()
+        self.div_Entry_Val = self.div_Var.get()
+        self.attribute_Entry_Val = self.attribute_Var.get()
+        self.other_Entry_Val = self.other_Var.get()
         # validate entries
         print("\n\n")
-        print("Entry 1 = ", self.header_Entry_Val, ", ", "Entry 2 = ", self.paragraph_Entry_Val, ", ", "Entry 3 = ", self.iframe_Entry_Val)
+        print("Header Value 1 = ", self.header_Entry_Val, ", ", "Paragraph Value 2 = ", self.paragraph_Entry_Val, ", ", "Iframe Value 3 = ", self.iframe_Entry_Val)
         # check for .txt file
         try:
             if self.filename:
@@ -150,15 +166,16 @@ class WindowSetup(object):
     # parse website headers
     def parse_url_headers(self):
         # this example pulls entire page
-        print(urllib3.__version__)
-        http = urllib3.PoolManager()
         url = self.url_Entry_Val
-        url_page = http.request('GET', url)
-        soup = BeautifulSoup(url_page.data, 'html.parser')
-        print(soup.find_all())
-        write_file = open('scrape-header/scrape-header.txt', 'w')
-        write_file.write(soup.prettify())
-        write_file.close()
+        url_page = requests.get(url)
+        soup = BeautifulSoup(url_page.content, 'html.parser')
+        pg = soup.find_all('h1')
+        print(pg)
+        writeable_file = open('scrape-header/scrape-header.txt', 'w')
+        for remove_tags in pg:
+            writeable_file.write(remove_tags.text + '\n')
+        writeable_file.close()
+        print('Done printing header text to file... ')
 
     # parse website paragraphs
     def parse_url_paragraph(self):
@@ -170,7 +187,7 @@ class WindowSetup(object):
         for remove_tags in pg:
             writeable_file.write(remove_tags.text + '\n')
         writeable_file.close()
-        print('Done printing to file... ')
+        print('Done printing paragraph text to file... ')
 
     # parse website iframe
     def parse_url_iframe(self):
