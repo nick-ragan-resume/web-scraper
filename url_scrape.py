@@ -18,8 +18,8 @@ https://docs.python.org/3.7/library/tkinter.html
 https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 """
 
+# Start tkinter.Tk()
 engine = Tk()
-engine.withdraw()
 
 class WindowSetup(object):
     def __init__(self, parent):
@@ -135,7 +135,18 @@ class WindowSetup(object):
 
     # validate checkboxes
     def validate_checkboxes(self):
-        print("Header Value 1 = ", self.header_Entry_Val, ", ", "Paragraph Value 2 = ", self.paragraph_Entry_Val, ", ", "Iframe Value 3 = ", self.iframe_Entry_Val)
+        if self.header_Entry_Val:
+            print("Header Checkbox Value = ", self.header_Entry_Val)
+        else:
+            print('Header Checkbox Value = ', self.header_Entry_Val)
+        if self.paragraph_Entry_Val:
+            print("Paragraph Checkbox Value = ", self.paragraph_Entry_Val)
+        else:
+            print("Paragraph Checkbox Value = ", self.paragraph_Entry_Val)
+        if self.iframe_Entry_Val:
+            print("Iframe Checkbox Value = ", self.iframe_Entry_Val)
+        else:
+            print("Iframe Checkbox Value = ", self.iframe_Entry_Val)
 
     # validate .txt file upload
     def validate_txt_file(self):
@@ -250,7 +261,8 @@ class Parser(object):
         write_file.close()
 
 
-        
+class Comparison(object):
+    pass        
 ### need to scan .txt file with the parsed data
 
 ### do error handlings
