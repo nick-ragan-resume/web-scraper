@@ -2,13 +2,18 @@
 import os
 import sys
 from bs4 import BeautifulSoup
-from tkinter import *
+from tkinter import Tk, Text, Label, BooleanVar, E, W, S, N, Toplevel
 import tkinter.font as font
 from tkinter import filedialog
 import tkinter.ttk as ttk
 from PIL import Image, ImageTk
 import requests
 import urllib3
+import shutil
+import time
+from threading import Thread
+from queue import Queue
+from random import random
 
 """
 Screen Scrape Websites and Check For Keywords in Paragraph Text
@@ -27,7 +32,23 @@ class WindowSetup(object):
         self.parent = parent 
         self.parent.configure(background='#013A70')
         self.myFont = font.Font(family='Helvetica', size=15)
+        # window position
+        self.parent.eval('tk::PlaceWindow %s center' % self.parent.winfo_pathname(self.parent.winfo_id()))
+        self.parent.geometry("420x315") 
+        # window title
+        self.parent.title("Website Parser Comparision Tool - (WPCT)")
+        self.queue = Queue()
+        self.threads = 4
+        self.setup()
 
+    def setup(self):
+        # variables
+        self.urls = []
+        self.url_data = False
+        self.checkboxes = []
+        self.checkboxes_val = False
+        self.filename = None
+        self.upload_val = False
         # text widget
         self.text = Text(self.parent)
         # styles widget
@@ -37,14 +58,10 @@ class WindowSetup(object):
         self.f1 = ttk.Frame(self.parent, style='My.TFrame')
         # styles/config buttons
         self.f1_style.configure('TButton', foreground='#013A70', font=('Helvetica', 15))
-        self.quit_Button = ttk.Button(self.parent, text="Quit Program", command=parent.quit)
-        self.start_Button = ttk.Button(self.parent, text="Start Parsing", command=self.get_entries)
-        # window position
-        self.parent.eval('tk::PlaceWindow %s center' % parent.winfo_pathname(parent.winfo_id()))
-        self.parent.geometry("450x317") 
-        # window title
-        self.parent.title("Website Parser Comparision Tool - (WPCT)")
-
+        self.quit_Button = ttk.Button(self.parent, text="Quit Program", command=self.parent.quit)
+        self.start_Button = ttk.Button(self.parent, text="Start", command=self.get_entries)
+        self.clear_Button = ttk.Button(self.parent, text="Clear", command=self.destroy_f1_frame)
+        
         # logo image
         self.image = Image.open('assets/ezgif-2-18770de0fea5.gif')
         self.photo = ImageTk.PhotoImage(self.image)
@@ -61,29 +78,27 @@ class WindowSetup(object):
         self.upload_File = ttk.Label(self.f1, text="Upload Data File")
         self.upload_File['font'] = self.myFont
         self.upload_Button = ttk.Button(self.f1, text="Upload", command=self.uploadAction)
-        
+        self.error_message = ttk.Label(self.f1, foreground="red", text="Please complete all fields... ")
+        self.go_message = ttk.Label(self.f1, foreground="blue", text="Working on parsing... ")
+        self.done_message = ttk.Label(self.f1, foreground="#006400", text="Finished parsing this page... ")        
+        self.finished_message = ttk.Label(background="white", foreground="blue", text="Finished... ")
+                
         # checkbox variables
         self.header_Var = BooleanVar()
         self.paragraph_Var = BooleanVar()
         self.iframe_Var = BooleanVar()
         self.div_Var = BooleanVar()
-        self.attribute_Var = BooleanVar()
-        self.other_Var = BooleanVar()
         # set checkbox values
         self.header_Var.set(False)
         self.paragraph_Var.set(False)
         self.iframe_Var.set(False)
         self.div_Var.set(False)
-        self.attribute_Var.set(False)
-        self.other_Var.set(False)
         # add functionality to checkbox
         self.h_tag = ttk.Checkbutton(self.f1, text="Headers", variable=self.header_Var, onvalue=True)
         self.p_tag = ttk.Checkbutton(self.f1, text="Paragraph", variable=self.paragraph_Var, onvalue=True)
         self.if_tag = ttk.Checkbutton(self.f1, text="Iframe", variable=self.iframe_Var, onvalue=True)
         # add functionality to checkbox
         self.d_tag = ttk.Checkbutton(self.f1, text="Div", variable=self.div_Var, onvalue=True)
-        self.a_tag = ttk.Checkbutton(self.f1, text="Attribute", variable=self.attribute_Var, onvalue=True)
-        self.o_tag = ttk.Checkbutton(self.f1, text="Other", variable=self.other_Var, onvalue=True)
 
         # main style grid
         self.f1.grid(column=0, row=0, sticky=(E, W, S, N))
@@ -92,96 +107,234 @@ class WindowSetup(object):
         # url input and parse grid
         self.url_Label_1.grid(column=0, row=1, sticky=(N, E, S, W), padx=(10,1), pady=1)
         self.url_Entry.grid(column=0, row=2, sticky=(N, E, S, W), padx=(10,1), pady=1)
+        
         # check boxes grid
-        self.parse_data_Label.grid(column=0, row=3, sticky=(N, E, S, W), padx=(10,1), pady=(40,1))
-        self.h_tag.grid(column=0, row=4, padx=(10, 1), pady=(5,1), sticky=(W))
-        self.p_tag.grid(column=0, row=4, padx=(86,1), pady=(5,1), sticky=(W))
-        self.if_tag.grid(column=0, row=4, padx=(175,1), pady=(5,1), sticky=(W))
-        self.d_tag.grid(column=0, row=5, padx=(10, 1), pady=(5,1), sticky=(W))
-        self.a_tag.grid(column=0, row=5, padx=(86,1), pady=(5,1), sticky=(W))
-        self.o_tag.grid(column=0, row=5, padx=(175,1), pady=(5,1), sticky=(W))
+        self.parse_data_Label.grid(column=0, row=4, sticky=(N, E, S, W), padx=(10,1), pady=(10,1))
+        self.h_tag.grid(column=0, row=4, padx=(10, 1), pady=(55,1), sticky=(W))
+        self.p_tag.grid(column=0, row=4, padx=(86,1), pady=(55,1), sticky=(W))
+        self.if_tag.grid(column=0, row=4, padx=(175,1), pady=(55,1), sticky=(W))
+        self.d_tag.grid(column=0, row=6, padx=(10, 1), pady=(5,1), sticky=(W))
         # upload button grid
-        self.upload_File.grid(column=0, row=6, sticky=(N, E, S, W), padx=(10,1), pady=(40,1))
-        self.upload_Button.grid(column=0, row=7, sticky=(E, W), padx=(10,130), pady=(1,1))
+        self.upload_File.grid(column=0, row=7, sticky=(N, E, S, W), padx=(10,1), pady=(40,1))
+        self.upload_Button.grid(column=0, row=8, sticky=(E, W), padx=(10,130), pady=(1,1))
+        # error message and go message
+        self.done_message.grid(column=0, row=9, sticky=(N, S, E, W), pady=(20,1),padx=(10,1))
+        self.done_message.grid_remove()
+        self.error_message.grid(column=0, row=9, sticky=(N, S, E, W), pady=(20,1),padx=(10,1))
+        self.error_message.grid_remove()
+        self.go_message.grid(column=0, row=9, sticky=(N, S, E, W), pady=(20,1),padx=(10,1))
+        self.go_message.grid_remove()
         # image grid
         self.img_label.grid(column=1, row=0, sticky=(N), pady=20, padx=(1,1))
         # quit button grid
-        self.quit_Button.grid(column=1, row=0, sticky=(S), pady=10, padx=10)
-        self.start_Button.grid(column=1, row=0, sticky=(S), pady=(1,80), padx=10)
+        self.quit_Button.grid(column=1, row=0, sticky=(S), pady=(1,10), padx=(0,0))
+        self.start_Button.grid(column=1, row=0, sticky=(S), pady=(1,120), padx=(1,1))
+        self.clear_Button.grid(column=1, row=0, sticky=(S), pady=(1,90), padx=(1,1))
         # need to check what these do
         self.parent.columnconfigure(0, weight=1)# weight determines how much of the available space a row or column should occupy relative to the other rows or columns
         self.parent.rowconfigure(0, weight=1)
 
+    # clear url value
+    def destroy_f1_frame(self):
+        if self.url_Entry:
+            self.setup()
+
     def uploadAction(self,event=None):
+        # open a txt file
         self.filename = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
-        print('select:', self.filename)
+        print('\nselect:', self.filename)
+        # get current directory and name target directory
+        current_dir = os.path.abspath(os.getcwd())
+        target = current_dir + '/import-file'
+
+        # delete file contents
+        self.delete_last_upload(current_dir, target)
+        
+        # move uploaded file to target
+        dest = shutil.move(self.filename, target)
+        print('destination path... ', dest)
         return self.filename
+
+    def delete_last_upload(self, current, target):
+        current_dir = current
+        target = target
+        print('current... ', current_dir)
+        print('target... ', target)
+        # remove all files from target directory
+        for f in os.listdir(target):
+            if not f.endswith(".txt"):
+                continue
+            os.remove(os.path.join(target, f))
 
     def get_entries(self):
         # grab entry values
-        self.url_Entry_Val = self.url_Entry.get()
-        self.header_Entry_Val = self.header_Var.get()
-        self.paragraph_Entry_Val = self.paragraph_Var.get()
-        self.iframe_Entry_Val = self.iframe_Var.get()
-        self.div_Entry_Val = self.div_Var.get()
-        self.attribute_Entry_Val = self.attribute_Var.get()
-        self.other_Entry_Val = self.other_Var.get()
+        ## probably need to store data into two separte lists. One for URL and Entry File.... the other for checkboxes.
         try:
-            self.validate_checkboxes()
-            self.validate_txt_file()
-            self.validate_url()
+            self.url_Entry_Val = self.url_Entry.get()
+            self.header_Entry_Val = self.header_Var.get()
+            self.paragraph_Entry_Val = self.paragraph_Var.get()
+            self.iframe_Entry_Val = self.iframe_Var.get()
+            self.div_Entry_Val = self.div_Var.get()
+            self.input_entries()
         except:
-            print('Something went wrong at validation... ')
+            self.error_message.grid()
+
+    # organize entries
+    def input_entries(self):
+        self.urls.clear()
+        self.checkboxes.clear()
+        # [0]
+        if self.url_Entry_Val:
+            self.urls.append(self.url_Entry_Val)
+        else:
+            self.urls.append(False)
+        # [0]
+        if self.header_Entry_Val:
+            self.checkboxes.append(self.header_Entry_Val)
+        else:
+            self.checkboxes.append(False)
+        # [1]
+        if self.paragraph_Entry_Val:
+            self.checkboxes.append(self.paragraph_Entry_Val)
+        else:
+            self.checkboxes.append(False)
+        # [2]
+        if self.iframe_Entry_Val:
+            self.checkboxes.append(self.iframe_Entry_Val)
+        else:
+            self.checkboxes.append(False)
+        # [3]
+        if self.div_Entry_Val:
+            self.checkboxes.append(self.div_Entry_Val)
+        else:
+            self.checkboxes.append(False)
+        # print to terminal results
+        print('I am printing the urls... ', self.urls)
+        print('I am printing the checkboxes... ', self.checkboxes)
+        # call validation functions
+        self.validate_url_entry(self.urls), self.validate_checkboxes(self.checkboxes), self.validate_upload(self.filename)
+        self.validate_all()
+
+    # validate url entries
+    def validate_url_entry(self, urls):
+        for f in self.urls:
+            if f:
+                # do something
+                print('unpack urls and do stuff', urls)
+                self.url_data = True
+            else:
+                self.url_data = False
+            return self.url_data
 
     # validate checkboxes
-    def validate_checkboxes(self):
-        if self.header_Entry_Val:
-            print("Header Checkbox Value = ", self.header_Entry_Val)
-        else:
-            print('Header Checkbox Value = ', self.header_Entry_Val)
-        if self.paragraph_Entry_Val:
-            print("Paragraph Checkbox Value = ", self.paragraph_Entry_Val)
-        else:
-            print("Paragraph Checkbox Value = ", self.paragraph_Entry_Val)
-        if self.iframe_Entry_Val:
-            print("Iframe Checkbox Value = ", self.iframe_Entry_Val)
-        else:
-            print("Iframe Checkbox Value = ", self.iframe_Entry_Val)
-
-    # validate .txt file upload
-    def validate_txt_file(self):
-        try:
-            if self.filename:
-                print("File that you uploaded", self.filename)
-        except:
-            print("There is no uploaded file... ")
-            self.filename = None
-
-    # validate url
-    def validate_url(self):
-        try:
-            if self.url_Entry_Val:
-                print('here is your url: ', self.url_Entry_Val)
-                the_url = self.url_Entry_Val
-                if self.header_Entry_Val:
-                    #parse headers
-                    h = Parser(the_url)
-                    h.parse_url_headers()
-                if self.paragraph_Entry_Val:
-                    #parse paragraph
-                    p = Parser(the_url)
-                    p.parse_url_paragraph()
-                    print('just the paragraph val ')
-                if self.iframe_Entry_Val:
-                    #parse iframe
-                    i = Parser(the_url)
-                    i.parse_url_iframe()
-                    print('just the iframe val ')    
+    def validate_checkboxes(self, checkboxes):
+        for c in checkboxes:
+            if c == True:
+                print('we have a c... ', c)
+                self.checkboxes_val = True
+                break
             else:
-                print('No url entered or no parse data selected... ')
+                print('we are changing c for some reason')
+                self.checkboxes_val = False
+        return self.checkboxes_val
+
+    # validate uploads 
+    def validate_upload(self, upload_item):
+        if self.filename:
+            self.upload_val = True
+            print("File that you uploaded", upload_item)
+        else:
+            self.upload_val = False
+        return self.upload_val
+
+    # check to see if there is at least one entry per selection
+    def validate_all(self):
+        if self.url_data and self.checkboxes_val and self.upload_val:
+            self.job_list()
+        else:
+            print('We are missing some stuff!!!! ')
+            print('printing the val of the url... ', self.url_data)
+            print('printing the val of the checkbox... ',self.checkboxes_val)
+            print('printing the val of the upload... ',self.upload_val)
+            self.supply_err_message()
+
+    def processor(self):
+        if self.queue.empty() == True:
+            print("the Queue is empty!")
+            sys.exit(1)
+        try:
+            job = self.queue.get()
+            print("I'm operating on job item: %s" %(job))
+            self.queue.task_done()
+            self.supply_done_message()
         except:
-            print('An error has occured. Please try entering a new URL... ')
+            print("Failed to operate on job")
+
+    def job_list(self):
+        self.jobs = [self.supply_go_message(), self.run_parser()]
+        for job in self.jobs:
+            print('inserting jobs into queue: ')
+            self.queue.put(job)
+            self.start_job_processor()
+
+    def start_job_processor(self):
+        for num in range(self.threads):
+            th = Thread(target=self.processor)
+            th.setDaemon(True)
+            th.start()
+
+    def supply_go_message(self):
+        self.error_message.grid_remove()
+        self.go_message.grid()
+        self.f1.update()
+
+    def supply_done_message(self):
+        self.error_message.grid_remove()
+        self.go_message.grid_remove()
+        self.done_message.grid()
+        self.f1.update()
+        self.remove_message()
+
+    def supply_err_message(self):
+        self.go_message.grid_remove()
+        self.done_message.grid_remove()
+        self.error_message.grid()
+        self.f1.update()
+
+    def remove_message(self):
+        time.sleep(3)
+        self.go_message.grid_remove()
+        self.done_message.grid_remove()
+        self.error_message.grid_remove()
+        self.f1.update()        
+
+    def run_parser(self):
+        self.start_url_parsers()
         
+    def start_url_parsers(self):
+        if self.header_Entry_Val:
+            print('WE HAVE A HEADER')
+            #parse headers
+            h = Parser(self.urls[0])
+            h.parse_url_headers()
+        if self.paragraph_Entry_Val:
+            print('WE HAVE A PARAGRAPH')
+            #parse paragraph
+            p = Parser(self.urls[0])
+            p.parse_url_paragraph()
+            print('just the paragraph val ')
+        if self.iframe_Entry_Val:
+            print('WE HAVE A IFRAME')
+            #parse iframe
+            i = Parser(self.urls[0])
+            i.parse_url_iframe()
+            print('just the iframe val ') 
+        if self.div_Entry_Val:
+            print('WE HAVE A DIV')
+            #parse iframe
+            i = Parser(self.urls[0])
+            i.parse_url_div()
+            print('just the div val ') 
 
     # second screen - load screen
     def load_screen(self):
@@ -189,7 +342,7 @@ class WindowSetup(object):
         self.a = Toplevel(self.parent) 
         self.a.configure(background='#013A70')
         # frame/window size
-        self.a.geometry("450x317")
+        self.a.geometry("420x315")
         # get frame/window width/height
         windowWidth = self.a.winfo_reqwidth()
         windowHeight = self.a.winfo_reqheight()
@@ -224,54 +377,97 @@ class Parser(object):
         self.url = url
         print('In Parser class. Getting data for url... ', self.url)
 
+    ### need to clean these up ###
+
     # parse website headers
     def parse_url_headers(self):
-        # this example pulls entire page
         url_page = requests.get(self.url)
         print('Printing URL Page... ', url_page)
         soup = BeautifulSoup(url_page.content, 'html.parser')
         pg = soup.find_all('h1')
-        print(pg)
-        writeable_file = open('scrape-header/scrape-header.txt', 'w')
+        writeable_file = open('scrape-header/scrape-header.txt', 'w+')
+        # clear data
+        print('\n Clearing header file data... ')
+        writeable_file.seek(0)
+        writeable_file.truncate()
+        # add data
+        print('\n Writing header file data... ')
         for remove_tags in pg:
             writeable_file.write(remove_tags.text + '\n')
         writeable_file.close()
-        print('Done printing header text to file... ')
+        print('\n Done writing header file data... ')
+        ComparisonTool()
         
-
     # parse website paragraphs
     def parse_url_paragraph(self):
         url_page = requests.get(self.url)
         soup = BeautifulSoup(url_page.content, 'html.parser')
+        writeable_file = open('scrape-paragraph/scrape-paragraph.txt', 'w+')
         pg = soup.find_all('p')
-        writeable_file = open('scrape-paragraph/scrape-paragraph.txt', 'w')
+        # clear data
+        print('\n Clearing paragraph file data... ')
+        writeable_file.seek(0)
+        writeable_file.truncate()
+        # add data
+        print('\n Writing paragraph file data... ')
         for remove_tags in pg:
             writeable_file.write(remove_tags.text + '\n')
         writeable_file.close()
-        print('Done printing paragraph text to file... ')
+        print('\n Done writing paragraph file data... ')
+        ComparisonTool()
 
     # parse website iframe
     def parse_url_iframe(self):
-        # this example pulls entire page
-        url_page = requests.get(url)
+        pass
+
+    # parse website div
+    def parse_url_div(self):
+        url_page = requests.get(self.url)
         soup = BeautifulSoup(url_page.content, 'html.parser')
-        p = soup.find_all(text=True)
-        write_file = open('scrape-iframe/scrape-iframe.txt', 'w')
-        write_file.write(data + '\n')
-        write_file.close()
+        writeable_file = open('scrape-div/scrape-div.txt', 'w+')
+        pg = soup.find_all('div')
+        # clear data
+        print('\n Clearing div file data... ')
+        writeable_file.seek(0)
+        writeable_file.truncate()
+        # add data
+        print('\n Writing div file data... ')
+        for remove_tags in pg:
+            writeable_file.write(remove_tags.text + '\n')
+        writeable_file.close()
+        print('\n Done writing div file data... ')
+        ComparisonTool()
 
 
-class Comparison(object):
-    pass        
-### need to scan .txt file with the parsed data
 
-### do error handlings
+# Compare Upload File to Parsed URL
+class ComparisonTool(object):
+    
+    def __init__(self):
+        self.printstatement = 'Hi there!!'
+        # open files - uploaded .txt file & any parsed file - w+
+        self.header_file = open('scrape-header/scrape-header.txt', 'r+')
+        self.paragraph_file = open('scrape-paragraph/scrape-paragraph.txt', 'r+')
+        self.iframe_file = open('scrape-iframe/scrape-iframe.txt', 'r+')
+        # self.text_file = open('import-file/text_file.txt', 'r+')
+        
+        print(self.printstatement)
 
-###### need to allow for other parsing options such as iframe
+    # seek 0 - go to start of file ..... need to open and read file first
+    def set_files_start(self):
+        pass
 
-## clear url input box
+    def sort_data(self):
+        pass
 
-## regex for uploaded file (no special symbols, cases)
+    # read lines and compare each file- 
+    def filter_files(self, full, empty):
+        pass
+
+    # write to new file - write results of comparision between files to compared/compared.txt
+    def export_matches(self):
+        pass
+      
 
 
 # Start GUI Engine

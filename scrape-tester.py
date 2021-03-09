@@ -208,3 +208,69 @@ if __name__ == "__main__":
 # # Driver Code
 # app = tkinterApp()
 # app.mainloop()
+
+
+    def validate_data(self):
+        if self.url_Entry.get() and self.filename:
+            self.error_message.grid_remove()
+            self.get_entries()
+        else:
+            #need to add error message
+            print('Alert!!! You need to enter a url, make a selection and upload a file.')
+            self.error_message.grid()
+
+    # validate checkboxes
+    def validate_checkboxes(self):
+        h = self.header_Entry_Val
+        p = self.paragraph_Entry_Val
+        i = self.iframe_Entry_Val
+
+        if 1 in {h, p, i}:
+            if h:
+                print("Header Checkbox Value = ", h)
+            else:
+                print('Header Checkbox Value = ', h)
+            if p:
+                print("Paragraph Checkbox Value = ", p)
+            else:
+                print("Paragraph Checkbox Value = ", p)
+            if i:
+                print("Iframe Checkbox Value = ", i)
+            else:
+                print("Iframe Checkbox Value = ", i)
+        else:
+            self.error_message.grid()
+
+    # validate .txt file upload
+    def validate_txt_file(self):
+        try:
+            if self.filename:
+                print("File that you uploaded", self.filename)
+        except:
+            print("There is no uploaded file... ")
+            self.filename = None
+            self.error_message.grid()
+
+    # validate url
+    def validate_url(self):
+                if self.header_Entry_Val:
+                    print('WE HAVE A HEADER')
+                    #parse headers
+                    h = Parser(the_url)
+                    h.parse_url_headers()
+                if self.paragraph_Entry_Val:
+                    print('WE HAVE A PARAGRAPH')
+                    #parse paragraph
+                    p = Parser(the_url)
+                    p.parse_url_paragraph()
+                    print('just the paragraph val ')
+                if self.iframe_Entry_Val:
+                    print('WE HAVE A IFRAME')
+                    #parse iframe
+                    i = Parser(the_url)
+                    i.parse_url_iframe()
+                    print('just the iframe val ')    
+        except:
+            print('An error has occured validating the url. Please try entering a new URL... ')
+            self.error_message.grid()
+
