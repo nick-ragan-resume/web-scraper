@@ -58,7 +58,7 @@ class WindowSetup(object):
         self.f1 = ttk.Frame(self.parent, style='My.TFrame')
         # styles/config buttons
         self.f1_style.configure('TButton', foreground='#013A70', font=('Helvetica', 15))
-        self.quit_Button = ttk.Button(self.parent, text="Quit Program", command=self.parent.quit)
+        self.quit_Button = ttk.Button(self.parent, text="Quit ", command=self.parent.quit)
         self.start_Button = ttk.Button(self.parent, text="Start", command=self.get_entries)
         self.clear_Button = ttk.Button(self.parent, text="Clear", command=self.destroy_f1_frame)
         
@@ -66,7 +66,7 @@ class WindowSetup(object):
         self.image = Image.open('assets/ezgif-2-18770de0fea5.gif')
         self.photo = ImageTk.PhotoImage(self.image)
         self.img_label = Label(self.parent, image=self.photo, width=70)
-        self.img_label.pack()
+        #self.img_label.pack()
 
         # label stuff
         self.url_Label_0 = ttk.Label(self.f1, text="              ")
@@ -86,17 +86,17 @@ class WindowSetup(object):
         # checkbox variables
         self.header_Var = BooleanVar()
         self.paragraph_Var = BooleanVar()
-        self.iframe_Var = BooleanVar()
+        self.divMax_Var = BooleanVar()
         self.div_Var = BooleanVar()
         # set checkbox values
         self.header_Var.set(False)
         self.paragraph_Var.set(False)
-        self.iframe_Var.set(False)
+        self.divMax_Var.set(False)
         self.div_Var.set(False)
         # add functionality to checkbox
         self.h_tag = ttk.Checkbutton(self.f1, text="Headers", variable=self.header_Var, onvalue=True)
         self.p_tag = ttk.Checkbutton(self.f1, text="Paragraph", variable=self.paragraph_Var, onvalue=True)
-        self.if_tag = ttk.Checkbutton(self.f1, text="Iframe", variable=self.iframe_Var, onvalue=True)
+        self.if_tag = ttk.Checkbutton(self.f1, text="Iframe-Div", variable=self.divMax_Var, onvalue=True)
         # add functionality to checkbox
         self.d_tag = ttk.Checkbutton(self.f1, text="Div", variable=self.div_Var, onvalue=True)
 
@@ -127,8 +127,8 @@ class WindowSetup(object):
         # image grid
         self.img_label.grid(column=1, row=0, sticky=(N), pady=20, padx=(1,1))
         # quit button grid
-        self.quit_Button.grid(column=1, row=0, sticky=(S), pady=(1,10), padx=(0,0))
-        self.start_Button.grid(column=1, row=0, sticky=(S), pady=(1,120), padx=(1,1))
+        self.quit_Button.grid(column=1, row=0, sticky=(S), pady=(1,10), padx=(1,1))
+        self.start_Button.grid(column=1, row=0, sticky=(S), pady=(1,130), padx=(1,1))
         self.clear_Button.grid(column=1, row=0, sticky=(S), pady=(1,90), padx=(1,1))
         # need to check what these do
         self.parent.columnconfigure(0, weight=1)# weight determines how much of the available space a row or column should occupy relative to the other rows or columns
@@ -147,12 +147,15 @@ class WindowSetup(object):
         current_dir = os.path.abspath(os.getcwd())
         target = current_dir + '/import-file'
 
-        # delete file contents
-        self.delete_last_upload(current_dir, target)
+        if self.filename:
+            # delete file contents
+            self.delete_last_upload(current_dir, target)
         
-        # move uploaded file to target
-        dest = shutil.move(self.filename, target)
-        print('destination path... ', dest)
+            # move uploaded file to target
+            dest = shutil.move(self.filename, target)
+            print('destination path... ', dest)
+        else:
+            print('No file selected... ')
         return self.filename
 
     def delete_last_upload(self, current, target):
@@ -173,7 +176,7 @@ class WindowSetup(object):
             self.url_Entry_Val = self.url_Entry.get()
             self.header_Entry_Val = self.header_Var.get()
             self.paragraph_Entry_Val = self.paragraph_Var.get()
-            self.iframe_Entry_Val = self.iframe_Var.get()
+            self.divMax_Entry_Val = self.divMax_Var.get()
             self.div_Entry_Val = self.div_Var.get()
             self.input_entries()
         except:
@@ -199,8 +202,8 @@ class WindowSetup(object):
         else:
             self.checkboxes.append(False)
         # [2]
-        if self.iframe_Entry_Val:
-            self.checkboxes.append(self.iframe_Entry_Val)
+        if self.divMax_Entry_Val:
+            self.checkboxes.append(self.divMax_Entry_Val)
         else:
             self.checkboxes.append(False)
         # [3]
@@ -323,15 +326,15 @@ class WindowSetup(object):
             p = Parser(self.urls[0])
             p.parse_url_paragraph()
             print('just the paragraph val ')
-        if self.iframe_Entry_Val:
-            print('WE HAVE A IFRAME')
-            #parse iframe
+        if self.divMax_Entry_Val:
+            print('WE HAVE A divMax')
+            #parse divMax
             i = Parser(self.urls[0])
-            i.parse_url_iframe()
-            print('just the iframe val ') 
+            i.parse_url_divMax()
+            print('just the divMax val ') 
         if self.div_Entry_Val:
             print('WE HAVE A DIV')
-            #parse iframe
+            #parse divMax
             i = Parser(self.urls[0])
             i.parse_url_div()
             print('just the div val ') 
@@ -377,7 +380,13 @@ class Parser(object):
         self.url = url
         print('In Parser class. Getting data for url... ', self.url)
 
-    ### need to clean these up ###
+    # need to clean these up
+    def clean_file(self, file_name):
+        print('Scrubbing file... ')
+        file1 = open(file_name, 'w')
+        print('File sizes... \n File Stats - ', os.stat(file1))
+        file1.close()
+        print('Finish scrubbing file... ')
 
     # parse website headers
     def parse_url_headers(self):
@@ -387,9 +396,7 @@ class Parser(object):
         pg = soup.find_all('h1')
         writeable_file = open('scrape-header/scrape-header.txt', 'w+')
         # clear data
-        print('\n Clearing header file data... ')
-        writeable_file.seek(0)
-        writeable_file.truncate()
+        self.clean_file(writeable_file)
         # add data
         print('\n Writing header file data... ')
         for remove_tags in pg:
@@ -405,9 +412,7 @@ class Parser(object):
         writeable_file = open('scrape-paragraph/scrape-paragraph.txt', 'w+')
         pg = soup.find_all('p')
         # clear data
-        print('\n Clearing paragraph file data... ')
-        writeable_file.seek(0)
-        writeable_file.truncate()
+        self.clean_file(writeable_file)
         # add data
         print('\n Writing paragraph file data... ')
         for remove_tags in pg:
@@ -416,9 +421,21 @@ class Parser(object):
         print('\n Done writing paragraph file data... ')
         ComparisonTool()
 
-    # parse website iframe
-    def parse_url_iframe(self):
-        pass
+    # parse website divMax --- need to clean data file for this one
+    def parse_url_divMax(self):
+        url_page = requests.get(self.url)
+        soup = BeautifulSoup(url_page.content, 'html.parser')
+        pg = soup.find_all("div")
+        paragraph = []
+        for x in pg:
+            paragraph.append(str(x))
+        # clear data
+        self.clean_file(writeable_file)
+        writeable_file = open('scrape-iframe/scrape-iframe.txt', 'w+')
+        for p in paragraph:
+            writeable_file.write(p)
+        writeable_file.close()
+        ComparisonTool()
 
     # parse website div
     def parse_url_div(self):
@@ -427,9 +444,7 @@ class Parser(object):
         writeable_file = open('scrape-div/scrape-div.txt', 'w+')
         pg = soup.find_all('div')
         # clear data
-        print('\n Clearing div file data... ')
-        writeable_file.seek(0)
-        writeable_file.truncate()
+        self.clean_file(writeable_file)
         # add data
         print('\n Writing div file data... ')
         for remove_tags in pg:
@@ -448,25 +463,20 @@ class ComparisonTool(object):
         # open files - uploaded .txt file & any parsed file - w+
         self.header_file = open('scrape-header/scrape-header.txt', 'r+')
         self.paragraph_file = open('scrape-paragraph/scrape-paragraph.txt', 'r+')
-        self.iframe_file = open('scrape-iframe/scrape-iframe.txt', 'r+')
+        self.divMax_file = open('scrape-divMax/scrape-divMax.txt', 'r+')
         # self.text_file = open('import-file/text_file.txt', 'r+')
         
         print(self.printstatement)
 
-    # seek 0 - go to start of file ..... need to open and read file first
-    def set_files_start(self):
-        pass
+    # clean files
 
-    def sort_data(self):
-        pass
+    # combine all parsed files into one
 
-    # read lines and compare each file- 
-    def filter_files(self, full, empty):
-        pass
+    # erase prior data in files
 
-    # write to new file - write results of comparision between files to compared/compared.txt
-    def export_matches(self):
-        pass
+    # loop uploaded data file over combined file
+
+    # create new data file of matches
       
 
 
