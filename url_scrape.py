@@ -14,6 +14,7 @@ import time
 from threading import Thread
 from queue import Queue
 from random import random
+import re
 
 """
 Screen Scrape Websites and Check For Keywords in Paragraph Text
@@ -475,9 +476,9 @@ class Parser(object):
         if list_of_vals[1] == 'p':
             print('\n\n\n\n WE HAVE PARAGRAPHS')
             self.continue_parsing(paragraphs)
-        if list_of_vals[2] == 'div_max':
-            print('\n\n\n\n WE HAVE DIVID MAX ')
-            self.continue_parsing(div_max)
+        if list_of_vals[2] == 'div':
+            print('\n\n\n\n WE HAVE DIV MAX ')
+            self.div_max_data(div_max)
         if list_of_vals[3] == 'div':
             print('\n\n\n\n WE HAVE DIVS')
             self.continue_parsing(div)
@@ -494,6 +495,18 @@ class Parser(object):
             writeable_file.write(remove_tag.text + '\n')
         writeable_file.close()
 
+    def div_max_data(self, data):
+        writeable_file = open('scrape/scrape.txt', 'a+')
+
+        divider = []
+        for d in data:
+            divider.append(str(d))
+
+        for remove_tag in divider:
+            writeable_file.write(remove_tag)
+        writeable_file.close()
+        pass
+
     def compare_files(self):
         ComparisonTool()
 
@@ -505,9 +518,28 @@ class ComparisonTool(object):
     def __init__(self):
         self.printstatement = 'Hi there!!'
         print(self.printstatement)
-        pass
+        
 
-    # clean file
+        # clean file
+        string = open('scrape/scrape.txt').read()
+        new_str = re.sub('<.*?>|&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-f]{1,6});|\S', ' ', string)
+        open('cleaned-file/cleaned.txt', 'w').write(new_str)
+
+        # Read lines as a list
+        fh = open("cleaned-file/cleaned.txt", "r")
+        lines = fh.readlines()
+        fh.close()
+
+        # Weed out blank lines with filter
+        lines = filter(lambda x: not x.isspace(), lines)
+
+        # Write
+        fh = open("cleaned-file/cleaned.txt", "w")
+        fh.write("".join(lines))
+        # should also work instead of joining the list:
+        # fh.writelines(lines)
+        fh.close()
+        pass
     ## clean scrape.txt
 
     ## grab uploaded data file and clean
