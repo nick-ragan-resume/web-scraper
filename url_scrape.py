@@ -28,6 +28,10 @@ engine = Tk()
 
 class WindowSetup(object):
     def __init__(self, parent):
+        """ 
+        Set up the main tkinter instance
+        Configure the main window, font, background color, size, title, threading and Queue instance
+        """
         # main instance
         self.parent = parent 
         self.parent.configure(background='#013A70')
@@ -42,6 +46,10 @@ class WindowSetup(object):
         self.setup()
 
     def setup(self):
+        """
+        Sets program variables that can be cleared upon "Clear" button function "destroy_f1_frame"
+        Setup styles for window, buttons, labels, and grids
+        """
         # variables
         self.urls = []
         self.url_data = False
@@ -61,13 +69,10 @@ class WindowSetup(object):
         self.quit_Button = ttk.Button(self.parent, text="Quit ", command=self.parent.quit)
         self.start_Button = ttk.Button(self.parent, text="Start", command=self.get_entries)
         self.clear_Button = ttk.Button(self.parent, text="Clear", command=self.destroy_f1_frame)
-        
         # logo image
         self.image = Image.open('assets/ezgif-2-18770de0fea5.gif')
         self.photo = ImageTk.PhotoImage(self.image)
         self.img_label = Label(self.parent, image=self.photo, width=70)
-        #self.img_label.pack()
-
         # label stuff
         self.url_Label_0 = ttk.Label(self.f1, text="              ")
         self.url_Label_1 = ttk.Label(self.f1, text="Enter URL To Parse ")
@@ -81,8 +86,7 @@ class WindowSetup(object):
         self.error_message = ttk.Label(self.f1, foreground="red", text="Please complete all fields... ")
         self.go_message = ttk.Label(self.f1, foreground="blue", text="Working on parsing... ")
         self.done_message = ttk.Label(self.f1, foreground="#006400", text="Finished parsing this page... ")        
-        self.finished_message = ttk.Label(background="white", foreground="blue", text="Finished... ")
-                
+        self.finished_message = ttk.Label(background="white", foreground="blue", text="Finished... ")  
         # checkbox variables
         self.header_Var = BooleanVar()
         self.paragraph_Var = BooleanVar()
@@ -99,7 +103,6 @@ class WindowSetup(object):
         self.if_tag = ttk.Checkbutton(self.f1, text="Iframe-Div", variable=self.divMax_Var, onvalue=True)
         # add functionality to checkbox
         self.d_tag = ttk.Checkbutton(self.f1, text="Div", variable=self.div_Var, onvalue=True)
-
         # main style grid
         self.f1.grid(column=0, row=0, sticky=(E, W, S, N))
         # blank line grid
@@ -107,7 +110,6 @@ class WindowSetup(object):
         # url input and parse grid
         self.url_Label_1.grid(column=0, row=1, sticky=(N, E, S, W), padx=(10,1), pady=1)
         self.url_Entry.grid(column=0, row=2, sticky=(N, E, S, W), padx=(10,1), pady=1)
-        
         # check boxes grid
         self.parse_data_Label.grid(column=0, row=4, sticky=(N, E, S, W), padx=(10,1), pady=(10,1))
         self.h_tag.grid(column=0, row=4, padx=(10, 1), pady=(55,1), sticky=(W))
@@ -128,18 +130,64 @@ class WindowSetup(object):
         self.img_label.grid(column=1, row=0, sticky=(N), pady=20, padx=(1,1))
         # quit button grid
         self.quit_Button.grid(column=1, row=0, sticky=(S), pady=(1,10), padx=(1,1))
-        self.start_Button.grid(column=1, row=0, sticky=(S), pady=(1,130), padx=(1,1))
+        self.start_Button.grid(column=1, row=0, sticky=(S), pady=(1,120), padx=(1,1))
         self.clear_Button.grid(column=1, row=0, sticky=(S), pady=(1,90), padx=(1,1))
         # need to check what these do
         self.parent.columnconfigure(0, weight=1)# weight determines how much of the available space a row or column should occupy relative to the other rows or columns
         self.parent.rowconfigure(0, weight=1)
 
+
+    # second screen - load screen
+    def load_screen(self):
+        # init top level frame/window
+        self.a = Toplevel(self.parent) 
+        self.a.configure(background='#013A70')
+        # frame/window size
+        self.a.geometry("420x315")
+        # get frame/window width/height
+        windowWidth = self.a.winfo_reqwidth()
+        windowHeight = self.a.winfo_reqheight()
+        # confirm frame/window width/height
+        print("Width",windowWidth,"Height",windowHeight)
+        # calculate center of frame/window width/height
+        positionRight = int(self.a.winfo_screenwidth()/2 - windowWidth/2)
+        positionDown = int(self.a.winfo_screenheight()/2 - windowHeight/2)
+        # positions frame/window
+        self.a.geometry("+{}+{}".format(positionRight, positionDown))
+        # init percentage of load value
+        self.percentage = 0
+        # load screen text
+        self.title = Label(self.a, text=f"Loading...{self.percentage}", background="#013A70", foreground="white", pady=200)
+        self.title.pack()
+        # call loading function
+        self.loading()
+
+    # loading calculator
+    def loading(self):
+        self.percentage += 10
+        self.title.config(text=f"Loading... ", background="#013A70")
+        if self.percentage == 100:
+            self.a.destroy()
+            engine.deiconify()
+            return
+        else:
+            engine.after(100,self.loading)  
+
+
     # clear url value
     def destroy_f1_frame(self):
+        """
+        resets setup to clear all values
+        """
+        print('CLEARED ALL VALUES!!!')
         if self.url_Entry:
             self.setup()
 
+    # handle any .txt upload file
     def uploadAction(self,event=None):
+        """
+        handles the uploaded data file
+        """
         # open a txt file
         self.filename = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
         print('\nselect:', self.filename)
@@ -159,6 +207,9 @@ class WindowSetup(object):
         return self.filename
 
     def delete_last_upload(self, current, target):
+        """
+        deletes the last known uploaded data file
+        """
         current_dir = current
         target = target
         print('current... ', current_dir)
@@ -170,60 +221,75 @@ class WindowSetup(object):
             os.remove(os.path.join(target, f))
 
     def get_entries(self):
+        """
+        This is the initial 'kick off' function when you click start
+        We start by grabbing all values to varify what they are
+        """
         # grab entry values
-        ## probably need to store data into two separte lists. One for URL and Entry File.... the other for checkboxes.
         try:
             self.url_Entry_Val = self.url_Entry.get()
             self.header_Entry_Val = self.header_Var.get()
             self.paragraph_Entry_Val = self.paragraph_Var.get()
             self.divMax_Entry_Val = self.divMax_Var.get()
             self.div_Entry_Val = self.div_Var.get()
+            self.clear_lists()
             self.input_entries()
         except:
             self.error_message.grid()
 
+    def clear_lists(self):
+        """
+        Clear prior lists of data bool vals
+        """
+        # clear url list
+        self.urls.clear()
+        # clear checkboxes list
+        self.checkboxes.clear()
+
     # organize entries
     def input_entries(self):
-        self.urls.clear()
-        self.checkboxes.clear()
-        # [0]
+        """
+        Create new lists of data bool vals
+        """
+        print('input_entries method... \n')
+        # [0] - array position
         if self.url_Entry_Val:
             self.urls.append(self.url_Entry_Val)
         else:
             self.urls.append(False)
-        # [0]
+        # [0] - array position
         if self.header_Entry_Val:
             self.checkboxes.append(self.header_Entry_Val)
         else:
             self.checkboxes.append(False)
-        # [1]
+        # [1] - array position
         if self.paragraph_Entry_Val:
             self.checkboxes.append(self.paragraph_Entry_Val)
         else:
             self.checkboxes.append(False)
-        # [2]
+        # [2] - array position
         if self.divMax_Entry_Val:
             self.checkboxes.append(self.divMax_Entry_Val)
         else:
             self.checkboxes.append(False)
-        # [3]
+        # [3] - array position
         if self.div_Entry_Val:
             self.checkboxes.append(self.div_Entry_Val)
         else:
             self.checkboxes.append(False)
-        # print to terminal results
+        # print results to terminal
         print('I am printing the urls... ', self.urls)
         print('I am printing the checkboxes... ', self.checkboxes)
-        # call validation functions
+        # call validation methods - validate: url, checkboxes, upload
         self.validate_url_entry(self.urls), self.validate_checkboxes(self.checkboxes), self.validate_upload(self.filename)
         self.validate_all()
 
     # validate url entries
     def validate_url_entry(self, urls):
-        for f in self.urls:
-            if f:
-                # do something
-                print('unpack urls and do stuff', urls)
+        print('validate url entry method... \n')
+        for u in self.urls:
+            if u:
+                print('URL to parse... ', urls)
                 self.url_data = True
             else:
                 self.url_data = False
@@ -231,18 +297,20 @@ class WindowSetup(object):
 
     # validate checkboxes
     def validate_checkboxes(self, checkboxes):
+        print('validate checkboxes method... \n')
         for c in checkboxes:
             if c == True:
-                print('we have a c... ', c)
+                print('Checkbox value found...  ', c)
                 self.checkboxes_val = True
                 break
             else:
-                print('we are changing c for some reason')
+                print('No checkbox value... ', c)
                 self.checkboxes_val = False
         return self.checkboxes_val
 
     # validate uploads 
     def validate_upload(self, upload_item):
+        print('validate upload method... \n')
         if self.filename:
             self.upload_val = True
             print("File that you uploaded", upload_item)
@@ -252,7 +320,12 @@ class WindowSetup(object):
 
     # check to see if there is at least one entry per selection
     def validate_all(self):
+        """
+        This will confirm we have at least one value per entry item
+        """
+        print('validating all method... \n')
         if self.url_data and self.checkboxes_val and self.upload_val:
+            # queue messaging jobs
             self.job_list()
         else:
             print('We are missing some stuff!!!! ')
@@ -261,11 +334,18 @@ class WindowSetup(object):
             print('printing the val of the upload... ',self.upload_val)
             self.supply_err_message()
 
+
+    ###################################################################
+    ###### JOB THREAD AND QUEUE         #############################
+    ###############################################################
+
+    # process queues 
     def processor(self):
         if self.queue.empty() == True:
             print("the Queue is empty!")
             sys.exit(1)
         try:
+            # get all jobs that are in queues 
             job = self.queue.get()
             print("I'm operating on job item: %s" %(job))
             self.queue.task_done()
@@ -273,18 +353,32 @@ class WindowSetup(object):
         except:
             print("Failed to operate on job")
 
+    # queue threaded jobs
     def job_list(self):
+        # create array of [message method and run method] - make two different queues - one for messages and one for parsing
         self.jobs = [self.supply_go_message(), self.run_parser()]
         for job in self.jobs:
-            print('inserting jobs into queue: ')
+            print('inserting jobs into queue: ', job)
             self.queue.put(job)
+            # run threader
             self.start_job_processor()
 
+    # start jobs in order - this will create a thread per job
     def start_job_processor(self):
         for num in range(self.threads):
+            print('We are printing num', num)
+            # call the processor for threading
             th = Thread(target=self.processor)
             th.setDaemon(True)
             th.start()
+
+    #################################################
+    ###### END JOB QUEUE and THREADING      #############
+    ###########################################################
+
+    ###########################################################
+    # Messaging that is queued              #############
+    ##################################################
 
     def supply_go_message(self):
         self.error_message.grid_remove()
@@ -311,146 +405,96 @@ class WindowSetup(object):
         self.error_message.grid_remove()
         self.f1.update()        
 
+    #############################################################
+    # End Messages                   ################################
+    #####################################################################
+
+    ################### start parsing urls
     def run_parser(self):
         self.start_url_parsers()
         
     def start_url_parsers(self):
-        if self.header_Entry_Val:
-            print('WE HAVE A HEADER')
-            #parse headers
-            h = Parser(self.urls[0])
-            h.parse_url_headers()
-        if self.paragraph_Entry_Val:
-            print('WE HAVE A PARAGRAPH')
-            #parse paragraph
-            p = Parser(self.urls[0])
-            p.parse_url_paragraph()
-            print('just the paragraph val ')
-        if self.divMax_Entry_Val:
-            print('WE HAVE A divMax')
-            #parse divMax
-            i = Parser(self.urls[0])
-            i.parse_url_divMax()
-            print('just the divMax val ') 
-        if self.div_Entry_Val:
-            print('WE HAVE A DIV')
-            #parse divMax
-            i = Parser(self.urls[0])
-            i.parse_url_div()
-            print('just the div val ') 
-
-    # second screen - load screen
-    def load_screen(self):
-        # init top level frame/window
-        self.a = Toplevel(self.parent) 
-        self.a.configure(background='#013A70')
-        # frame/window size
-        self.a.geometry("420x315")
-        # get frame/window width/height
-        windowWidth = self.a.winfo_reqwidth()
-        windowHeight = self.a.winfo_reqheight()
-        # confirm frame/window width/height
-        print("Width",windowWidth,"Height",windowHeight)
-        # calculate center of frame/window width/height
-        positionRight = int(self.a.winfo_screenwidth()/2 - windowWidth/2)
-        positionDown = int(self.a.winfo_screenheight()/2 - windowHeight/2)
-        # positions frame/window
-        self.a.geometry("+{}+{}".format(positionRight, positionDown))
-        # init percentage of load value
-        self.percentage = 0
-        # load screen text
-        self.title = Label(self.a, text=f"Loading...{self.percentage}", background="#013A70", foreground="white", pady=200)
-        self.title.pack()
-        # call loading function
-        self.loading()
-        
-    def loading(self):
-        self.percentage += 10
-        self.title.config(text=f"Loading... ", background="#013A70")
-        if self.percentage == 100:
-            self.a.destroy()
-            engine.deiconify()
-            return
-        else:
-            engine.after(100,self.loading)        
+        print('ARRAY OF CHECKBOXES... ', self.checkboxes, '\n')
+        parse = Parser(self.urls[0], self.checkboxes)
+        return parse.parse_web()
+      
 
 # Passing something to class
 class Parser(object):
-    def __init__(self, url):
-        self.url = url
-        print('In Parser class. Getting data for url... ', self.url)
+    def __init__(self, urls, checkboxes):
+        self.urls = urls
+        self.checkboxes = checkboxes
+        self.parse_list = ['h1', 'p', 'div', 'div']
 
-    # need to clean these up
-    def clean_file(self, file_name):
-        print('Scrubbing file... ')
-        file1 = open(file_name, 'w')
-        print('File sizes... \n File Stats - ', os.stat(file1))
-        file1.close()
-        print('Finish scrubbing file... ')
+    def parse_web(self):
+        print('We are in, parse all.... ')
+        # get the url
+        url_page = requests.get(self.urls)
+        print('Printing the url we received... ', url_page)
+        # Get page content
+        soup = BeautifulSoup(url_page.content, 'html.parser')
+        self.assign_label(soup)
 
-    # parse website headers
-    def parse_url_headers(self):
-        url_page = requests.get(self.url)
-        print('Printing URL Page... ', url_page)
-        soup = BeautifulSoup(url_page.content, 'html.parser')
-        pg = soup.find_all('h1')
-        writeable_file = open('scrape-header/scrape-header.txt', 'w+')
-        # clear data
-        self.clean_file(writeable_file)
-        # add data
-        print('\n Writing header file data... ')
-        for remove_tags in pg:
-            writeable_file.write(remove_tags.text + '\n')
-        writeable_file.close()
-        print('\n Done writing header file data... ')
-        ComparisonTool()
-        
-    # parse website paragraphs
-    def parse_url_paragraph(self):
-        url_page = requests.get(self.url)
-        soup = BeautifulSoup(url_page.content, 'html.parser')
-        writeable_file = open('scrape-paragraph/scrape-paragraph.txt', 'w+')
-        pg = soup.find_all('p')
-        # clear data
-        self.clean_file(writeable_file)
-        # add data
-        print('\n Writing paragraph file data... ')
-        for remove_tags in pg:
-            writeable_file.write(remove_tags.text + '\n')
-        writeable_file.close()
-        print('\n Done writing paragraph file data... ')
-        ComparisonTool()
+    def assign_label(self, soup):
+        self.soup = soup
+        list_to_parse = []
+        if self.checkboxes[0]:
+            list_to_parse.append('h1')
+        else:
+            list_to_parse.append(None)
+        if self.checkboxes[1]:
+            list_to_parse.append('p')
+        else:
+            list_to_parse.append(None)
+        if self.checkboxes[2]:
+            list_to_parse.append('div')
+        else:
+            list_to_parse.append(None)
+        if self.checkboxes[3]:
+            list_to_parse.append('div')
+        else:
+            list_to_parse.append(None)
 
-    # parse website divMax --- need to clean data file for this one
-    def parse_url_divMax(self):
-        url_page = requests.get(self.url)
-        soup = BeautifulSoup(url_page.content, 'html.parser')
-        pg = soup.find_all("div")
-        paragraph = []
-        for x in pg:
-            paragraph.append(str(x))
-        # clear data
-        self.clean_file(writeable_file)
-        writeable_file = open('scrape-iframe/scrape-iframe.txt', 'w+')
-        for p in paragraph:
-            writeable_file.write(p)
-        writeable_file.close()
-        ComparisonTool()
+        self.parse_data(list_to_parse)
 
-    # parse website div
-    def parse_url_div(self):
-        url_page = requests.get(self.url)
-        soup = BeautifulSoup(url_page.content, 'html.parser')
-        writeable_file = open('scrape-div/scrape-div.txt', 'w+')
-        pg = soup.find_all('div')
-        # clear data
-        self.clean_file(writeable_file)
-        # add data
-        print('\n Writing div file data... ')
-        for remove_tags in pg:
-            writeable_file.write(remove_tags.text + '\n')
+    def parse_data(self, list_to_parse):
+        list_of_vals = list_to_parse
+        print('\n\n\n\n\nPrint list_of_vals', list_of_vals)
+        headers = self.soup.find_all(list_of_vals[0])
+        paragraphs = self.soup.find_all(list_of_vals[1])
+        div_max = self.soup.find_all(list_of_vals[2])
+        div = self.soup.find_all(list_of_vals[3])
+
+        # erase file data
+        self.erase_file()
+
+        # parse data
+        if list_of_vals[0] == 'h1':
+            print('\n\n\n\n WE HAVE HEADERS')
+            self.continue_parsing(headers)
+        if list_of_vals[1] == 'p':
+            print('\n\n\n\n WE HAVE PARAGRAPHS')
+            self.continue_parsing(paragraphs)
+        if list_of_vals[2] == 'div_max':
+            print('\n\n\n\n WE HAVE DIVID MAX ')
+            self.continue_parsing(div_max)
+        if list_of_vals[3] == 'div':
+            print('\n\n\n\n WE HAVE DIVS')
+            self.continue_parsing(div)
+
+        self.compare_files()
+
+    def erase_file(self):
+        writeable_file = open('scrape/scrape.txt', 'w')
         writeable_file.close()
-        print('\n Done writing div file data... ')
+
+    def continue_parsing(self, data):
+        writeable_file = open('scrape/scrape.txt', 'a+')
+        for remove_tag in data:
+            writeable_file.write(remove_tag.text + '\n')
+        writeable_file.close()
+
+    def compare_files(self):
         ComparisonTool()
 
 
@@ -460,15 +504,13 @@ class ComparisonTool(object):
     
     def __init__(self):
         self.printstatement = 'Hi there!!'
-        # open files - uploaded .txt file & any parsed file - w+
-        self.header_file = open('scrape-header/scrape-header.txt', 'r+')
-        self.paragraph_file = open('scrape-paragraph/scrape-paragraph.txt', 'r+')
-        self.divMax_file = open('scrape-divMax/scrape-divMax.txt', 'r+')
-        # self.text_file = open('import-file/text_file.txt', 'r+')
-        
         print(self.printstatement)
+        pass
 
-    # clean files
+    # clean file
+    ## clean scrape.txt
+
+    ## grab uploaded data file and clean
 
     # combine all parsed files into one
 

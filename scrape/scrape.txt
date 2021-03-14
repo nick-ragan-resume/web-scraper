@@ -1,0 +1,41 @@
+Unable to install tkinter with pyenv Pythons on MacOS
+
+                Subscribe to RSS
+            
+Join Stack Overflow to learn, share knowledge, and build your career.
+Teams
+Q&A for work
+Connect and share knowledge within a single location that is structured and easy to search.
+Versions of Python installed via pyenv fail to import tkinter:
+or you might get a message about the header version doesn't match the binary:
+TL;DR set the env. vars. mentioned in tcl-tk's caveats and this GitHub comment when installing new Pythons via pyenv to get tkinter.
+First, ensure you have the latest tcl-tk via homebrew and then pay attention to its caveats:
+You'll also need to know about pyenv's PYTHON_CONFIGURE_OPTS, --with-tcltk-includes, and --with-tcltk-libs, e.g. from this comment.
+Next, reinstall Python with the environment variables active:
+It should work now:
+If you get the following error, you might be missing the PYTHON_CONFIGURE_OPTS env. var. above.
+Here is step by step guide to make tkinter (and IDLE) work if you use pyenv for Python environments management on macOS:
+Test
+
+
+That's it!
+My environment:
+check this is something went wrong executing steps above:
+I had the same issue when I tried to install tkinter through pyenv. I was able to fix it using the following in case someone has the same problem and still want to stick with pyenv.
+The Fix
+I followed @nickolay instructions to install tkinter and set the path the proper way.
+Then, I installed anaconda3-2020.07 using the pyenv install anaconda3-2020.07 command.
+Because I am using pyenv python 3.8.6 globally: I navigated to the folder I want to use tkinter and used the anaconda3-2020.07 locally by utilizing the command pyenv local anaconda3-2020.07to use this version of pyenv in that specific folder. It ran without errors!
+Note: I am using the following script in the .bash_profile to trigger the virtualenv automatically when cd the desired directory
+Thanks for contributing an answer to Stack Overflow!
+But avoid …
+To learn more, see our tips on writing great answers.
+Required, but never shown
+Required, but never shown
+
+                                                By clicking “Post Your Answer”, you agree to our terms of service, privacy policy and cookie policy
+
+To subscribe to this RSS feed, copy and paste this URL into your RSS reader.
+
+site design / logo © 2021 Stack Exchange Inc; user contributions licensed under cc by-sa.                    rev 2021.3.12.38768
+
