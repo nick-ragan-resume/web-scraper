@@ -471,17 +471,17 @@ class Parser(object):
 
         # parse data
         if list_of_vals[0] == 'body':
-            print('\n\n\n\n WE HAVE BODY')
-            self.continue_parsing_html(body)
+            print('\n\n\n\n ............. WE HAVE BODY')
+            self.parse_html_body(body)
         if list_of_vals[1] == 'p':
-            print('\n\n\n\n WE HAVE PARAGRAPHS')
-            self.continue_parsing_html(paragraphs)
+            print('\n\n\n\n ............. WE HAVE PARAGRAPHS')
+            self.parse_html_body(paragraphs)
         if list_of_vals[2] == 'div':
-            print('\n\n\n\n WE HAVE DIV MAX ')
+            print('\n\n\n\n ............. WE HAVE DIV MAX ')
             self.div_max_data(div_max)
         if list_of_vals[3] == 'div':
-            print('\n\n\n\n WE HAVE DIVS')
-            self.continue_parsing_html(div)
+            print('\n\n\n\n ............. WE HAVE DIVS')
+            self.parse_html_body(div)
 
     def erase_files(self):
         writeable_file = open('scrape-html/scrape.txt', 'w')
@@ -489,7 +489,7 @@ class Parser(object):
         writeable_file.close()
         writeable_file2.close()
 
-    def continue_parsing_html(self, data):
+    def parse_html_body(self, data):
         writeable_file = open('scrape-html/scrape.txt', 'a+')
         for remove_tag in data:
             writeable_file.write(remove_tag.text + '\n')
@@ -507,12 +507,14 @@ class Parser(object):
         self.compare_files_html_json()
 
     def compare_files_html(self):
+        html_file = 'html_file'
         compare = ComparisonTool()
-        compare.clean_html()
+        compare.clean_upload(html_file)
 
     def compare_files_html_json(self):
+        html_file_json = 'html_file_json'
         compare = ComparisonTool()
-        compare.clean_html_json()
+        compare.clean_upload(html_file_json)
 
 
 # Compare Upload File to Parsed URL
@@ -524,32 +526,54 @@ class ComparisonTool(object):
     def __init__(self):
         self.printstatement = 'Starting data clean... '
         print(self.printstatement)
+
+    def clean_upload(self, file_val):
+        print('\n\n\n\n We are printing fileval...... ', file_val, '\n\n\n\n\n\n')
+        # open imported text file and split on new line
+        open_file = open('import-file/upload_list.txt').read().split('\n')
+        create_list = []
+        # create array of key terms
+        for o in open_file:
+            create_list.append(o)
+        # pass created list 
+        self.parsed_data(create_list, file_val)
+
+    def parsed_data(self, uploaded, file_value):
+        file_val = file_value
+        if file_val == 'html_file':
+            html_body = open('scrape-html/scrape.txt').read()
+            file_stats = self.check_filesize(file_val)
+            # start loop
+            print('Printing file_stats html body................................. \n\n...................... ', file_stats)
+            self.loop_files(html_body)
+
+        if file_val == 'html_file_json':
+            html_div = open('scrape-html-json/scrape.txt').read()
+            file_stats = self.check_filesize(file_val)
+            # start loop
+            print('Printing file_stats html div................................. \n\n...................... ', file_stats)
+            self.loop_files(html_div)
         
-    # this is strictly for the medicare questions page
-    def check_page_json(self):
-        pass 
-
-    def clean_upload(self):
-        pass 
-
-    def clean_html(self):
-        print('\n\n\n\n\n We are in the clean html method.... ')
-        # clean file
-        opened_file = open('scrape-html/scrape.txt').read()
-        new_str = re.sub('<.*?>|&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-f]{1,6});', ' ', opened_file)
-        open('scrape-html/scrape.txt', 'w').write(new_str)
- 
-    def clean_html_json(self):
-        print('\n\n\n\n\n We are in the clean html json method.... ')
-        # clean file
-        opened_file = open('scrape-html-json/scrape.txt').read()
-        new_str = re.compile(r"\s(\w+.)\s")
-        open('scrape-html-json/scrape.txt', 'w').write(new_str)
-
-    def remove_white_space(self):
+    #loop over parsed files
+    def loop_files(self, parsed_data):
         pass
 
-      
+
+    def write_final_report(self):
+        pass
+
+    def check_filesize(self, file_val): 
+        file_stats = None
+        try:  
+            if file_val == 'html_file':
+                file_size = os.stat('scrape-html/scrape.txt')
+                file_stats = file_size.st_size
+            if file_val == 'html_file_json':
+                file_size = os.stat('scrape-html-json/scrape.txt')
+                file_stats = file_size.st_size
+        except:
+            print('something went wrong.')
+        return file_stats
 
 
 # Start GUI Engine
