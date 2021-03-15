@@ -1,0 +1,1856 @@
+
+
+
+
+
+
+
+
+
+
+
+Stack Overflow
+
+
+
+
+About
+
+
+
+                        Products
+                    
+
+
+For Teams
+
+
+
+
+
+
+
+Stack Overflow
+Public questions & answers
+
+
+
+
+Stack Overflow for Teams
+Where developers & technologists share private knowledge with coworkers
+
+
+
+
+Jobs
+Programming & related technical career opportunities
+
+
+
+
+Talent
+Recruit tech talent & build your employer brand
+
+
+
+
+Advertising
+Reach developers & technologists worldwide
+
+
+
+About the company
+
+
+
+
+
+
+
+
+
+
+
+Loading…
+
+
+
+
+
+
+
+
+
+
+
+Log in
+Sign up
+
+
+
+
+
+current community
+
+
+
+
+
+
+
+
+
+            Stack Overflow
+        
+
+
+
+help
+chat
+
+
+
+
+
+
+
+
+
+            Meta Stack Overflow
+        
+
+
+
+
+
+
+your communities            
+
+
+
+Sign up or log in to customize your list.                
+
+
+more stack exchange communities
+
+company blog
+
+
+
+
+
+
+
+
+
+
+
+
+
+Join Stack Overflow to learn, share knowledge, and build your career.
+
+
+
+Sign up with email
+Sign up
+
+
+
+                    Sign up with Google
+                
+
+
+                    Sign up with GitHub
+                
+
+
+                    Sign up with Facebook
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            Home
+                        
+
+
+
+
+
+Public
+
+
+ Stack Overflow
+
+
+
+
+
+
+                            Tags
+                        
+
+
+
+
+
+
+
+                            Users
+                        
+
+
+
+Find a Job
+
+
+
+
+                            Jobs
+                        
+
+
+
+
+
+
+
+                            Companies
+                        
+
+
+
+
+
+
+
+
+Teams
+
+
+                                            What’s this?
+                                        
+
+
+
+
+
+
+
+
+
+
+
+
+                                                Create a Team
+                                            
+
+
+
+
+
+
+
+
+
+
+
+Teams
+Q&A for work
+Connect and share knowledge within a single location that is structured and easy to search.
+
+                    Learn more
+                
+
+
+
+
+
+
+
+
+
+
+
+Combine Regexp?
+
+
+        Ask Question
+    
+
+
+
+
+Asked
+11 years, 10 months ago
+
+
+Active
+9 months ago
+
+
+Viewed
+                        149k times
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+60
+
+
+
+39
+
+
+
+
+
+
+After collecting user input for various conditions like
+
+Starts with : /(^@)/
+Ends with : /(@$)/
+Contains : /@/
+Doesn't contains
+
+To make single regex if user enter multiple conditions,
+I combine them with "|" so if 1 and 2 given it become /(^@)|(@$)/
+This method works so far but,
+I'm not able to determine correctly, What should be regex for 4 the condition? And combining regex this way work?
+
+
+Update: @(user input) won't be same
+  for two conditions and not all four
+  conditions always present but they can
+  be and in future I might need more
+  conditions like "is exactly" and "is
+  exactly not" etc. so, I'm more curious
+  to know this approach will scale ?
+Also there may be issues of user input
+  cleanup so regex escaped properly, but
+  that is ignored right now.
+
+
+
+
+
+regex
+
+
+
+
+
+
+
+
+
+Share
+
+
+Improve this question
+
+
+
+                Follow
+            
+
+
+
+
+
+
+
+
+edited Jul 21 '18 at 17:46
+
+
+
+
+
+Cœur
+
+31.6k2121 gold badges171171 silver badges227227 bronze badges
+
+
+
+
+
+
+
+        asked May 15 '09 at 17:01
+
+
+
+
+
+nexneonexneo
+
+1,03922 gold badges1111 silver badges2020 bronze badges
+
+
+
+
+
+
+
+5
+
+
+
+
+
+
+
+
+
+
+Update: Purpose of combining regex is to reduce if conditions to single. Because this regex are going to match against large number of strings.
+                
+– nexneo
+May 15 '09 at 17:21
+
+
+
+
+
+
+1
+
+
+
+
+what do you mean by "doesn't contains"?
+                
+– sarsnake
+May 15 '09 at 17:27
+
+
+
+
+
+
+
+
+
+
+if users input is "cool" and string doesn't contain that word means it matched.
+                
+– nexneo
+May 15 '09 at 17:34
+
+
+
+
+
+
+
+
+
+
+Do you really need regular expression or will a simple string search suffice?
+                
+– Gumbo
+May 15 '09 at 19:55
+
+
+
+
+
+
+
+
+
+
+I couldn't think to compress above multiple search conditions into single condition w/o regex. any alternate way?
+                
+– nexneo
+May 15 '09 at 20:30
+
+
+
+
+
+
+Add a comment
+ | 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        6 Answers
+                                    6
+
+
+
+
+
+            Active
+
+            Oldest
+
+            Votes
+
+
+
+
+
+
+
+
+
+
+104
+
+
+
+
+
+
+
+
+
+
+
+Will the conditions be ORed or ANDed together?
+Starts with: abc
+Ends with: xyz
+Contains: 123
+Doesn't contain: 456
+The OR version is fairly simple; as you said, it's mostly a matter of inserting pipes between individual conditions.  The regex simply stops looking for a match as soon as one of the alternatives matches.
+/^abc|xyz$|123|^(?:(?!456).)*$/
+
+That fourth alternative may look bizarre, but that's how you express "doesn't contain" in a regex.  By the way, the order of the alternatives doesn't matter; this is effectively the same regex:
+/xyz$|^(?:(?!456).)*$|123|^abc/
+
+The AND version is more complicated.  After each individual regex matches, the match position has to be reset to zero so the next regex has access to the whole input. That means all of the conditions have to be expressed as lookaheads (technically, one of them doesn't have to be a lookahead, I think it expresses the intent more clearly this way).  A final .*$ consummates the match.
+/^(?=^abc)(?=.*xyz$)(?=.*123)(?=^(?:(?!456).)*$).*$/
+
+And then there's the possibility of combined AND and OR conditions--that's where the real fun starts. :D
+
+
+
+
+
+
+
+
+Share
+
+
+Improve this answer
+
+
+
+                Follow
+            
+
+
+
+
+
+
+
+
+edited Dec 2 '09 at 6:07
+
+
+
+
+
+
+
+
+
+
+
+
+        answered May 15 '09 at 19:46
+
+
+
+
+
+Alan MooreAlan Moore
+
+67.9k1111 gold badges8888 silver badges148148 bronze badges
+
+
+
+
+
+
+
+3
+
+
+
+
+
+
+4
+
+
+
+
+Yes, I'm fine with OR now. But thanks for putting AND version. Combining AND and OR is not for me. :)
+                
+– nexneo
+May 15 '09 at 20:34
+
+
+
+
+
+
+1
+
+
+
+
+I tried the last AND regex and I noticed it has a syntax error, an extra ")" at the end.  I removed this character but the regex didn't appear to work as intended, not sure what I did wrong? I'm using .Net to test.
+                
+– Ralph Willgoss
+Dec 2 '09 at 2:19
+
+
+
+
+
+
+1
+
+
+
+
+It's actually the second-to-last ) that doesn't belong there.  Once that's fixed, the reason it doesn't work is because there's nothing in it that consumes characters--it's all lookaheads. I could make the last part not a lookahead, but for clarity's sake I'd rather add a .* to the end.  I'm fixing it now; thanks for bringing it to my attention.
+                
+– Alan Moore
+Dec 2 '09 at 6:02
+
+
+
+
+
+
+Add a comment
+ | 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3
+
+
+
+
+
+
+
+
+
+
+
+Doesn't contain @: /(^[^@]*$)/
+Combining works if the intended result of combination is that any of them matching results in the whole regexp matching.
+
+
+
+
+
+
+
+
+Share
+
+
+Improve this answer
+
+
+
+                Follow
+            
+
+
+
+
+
+
+
+
+        answered May 15 '09 at 17:06
+
+
+
+
+
+Ants AasmaAnts Aasma
+
+47.3k1212 gold badges8383 silver badges8888 bronze badges
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Add a comment
+ | 
+
+
+
+
+
+
+
+
+
+
+
+3
+
+
+
+
+
+
+
+
+
+
+
+If a string must not contain @, every character must be another character than @:
+/^[^@]*$/
+
+This will match any string of any length that does not contain @.
+Another possible solution would be to invert the boolean result of /@/.
+
+
+
+
+
+
+
+
+Share
+
+
+Improve this answer
+
+
+
+                Follow
+            
+
+
+
+
+
+
+
+
+        answered May 15 '09 at 17:06
+
+
+
+
+
+GumboGumbo
+
+587k101101 gold badges735735 silver badges811811 bronze badges
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Add a comment
+ | 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+
+
+
+
+
+
+
+
+
+
+
+In my experience with regex you really need to focus on what EXACTLY you are trying to match, rather than what NOT to match.
+for example 
+\d{2}
+
+[1-9][0-9]
+
+The first expression will match any 2 digits....and the second will match 1 digit from 1 to 9 and 1 digit - any digit. So if you type 07 the first expression will validate it, but the second one will not.
+See this for advanced reference:
+http://www.regular-expressions.info/refadv.html
+EDITED:
+^((?!my string).)*$ Is the regular expression for does not contain "my string". 
+
+
+
+
+
+
+
+
+Share
+
+
+Improve this answer
+
+
+
+                Follow
+            
+
+
+
+
+
+
+
+
+edited May 22 '20 at 18:35
+
+
+
+
+
+Giacomo1968
+
+23.7k1010 gold badges5959 silver badges9191 bronze badges
+
+
+
+
+
+
+
+        answered May 15 '09 at 17:10
+
+
+
+
+
+sarsnakesarsnake
+
+22.8k5858 gold badges166166 silver badges281281 bronze badges
+
+
+
+
+
+
+
+2
+
+
+
+
+
+
+
+
+
+
+Can you give more detail on how "Doesn't contains" condition matched using above suggestion.
+                
+– nexneo
+May 15 '09 at 17:17
+
+
+
+
+
+
+1
+
+
+
+
+I assume you want an expression that "doesn't contain" something (it's not clear what you wish the expression not to contain). My suggestion show how you would do it if you don't want the expression to contain a digit 0 at the first position, in which which case you would limit the first position digit to 1-9.   It's not very clear what you mean by "doesn't contains". Doesn't contain what? Please clarify so we could help you. My answer was more of a general answer. Sorry if that didn't help you.
+                
+– sarsnake
+May 15 '09 at 17:26
+
+
+
+
+
+
+Add a comment
+ | 
+
+
+
+
+
+
+
+
+
+
+
+2
+
+
+
+
+
+
+
+
+
+
+
+1 + 2 + 4 conditions: starts|ends, but not in the middle
+/^@[^@]*@?$|^@?[^@]*@$/
+
+is almost the same that:
+/^@?[^@]*@?$/
+
+but this one matches any string without @, sample 'my name is hal9000'
+
+
+
+
+
+
+
+
+Share
+
+
+Improve this answer
+
+
+
+                Follow
+            
+
+
+
+
+
+
+
+
+edited May 22 '20 at 18:35
+
+
+
+
+
+Giacomo1968
+
+23.7k1010 gold badges5959 silver badges9191 bronze badges
+
+
+
+
+
+
+
+        answered Oct 23 '10 at 23:38
+
+
+
+
+
+javier fuentesjavier fuentes
+
+2111 bronze badge
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Add a comment
+ | 
+
+
+
+
+
+
+
+
+
+
+
+1
+
+
+
+
+
+
+
+
+
+
+
+Combining the regex for the fourth option with any of the others doesn't work within one regex.  4 + 1 would mean either the string starts with @ or doesn't contain @ at all.  You're going to need two separate comparisons to do that.
+
+
+
+
+
+
+
+
+Share
+
+
+Improve this answer
+
+
+
+                Follow
+            
+
+
+
+
+
+
+
+
+        answered May 15 '09 at 17:16
+
+
+
+
+
+Jeff SwensenJeff Swensen
+
+3,4432525 silver badges4949 bronze badges
+
+
+
+
+
+
+
+1
+
+
+
+
+
+
+
+
+
+
+@ won't be same for two conditions and not all four conditions always present but they can be and in future I might need more conditions like "is exactly" and "is exactly not" etc.   so, I'm more curious to know this approach will scale ?
+                
+– nexneo
+May 15 '09 at 17:25
+
+
+
+
+
+
+Add a comment
+ | 
+
+
+
+
+
+
+
+
+
+
+
+                                    Your Answer
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thanks for contributing an answer to Stack Overflow!Please be sure to answer the question. Provide details and share your research!But avoid …Asking for help, clarification, or responding to other answers.Making statements based on opinion; back them up with references or personal experience.To learn more, see our tips on writing great answers.
+
+
+
+
+
+
+Draft saved
+Draft discarded
+
+
+
+
+
+
+
+
+
+
+
+
+Sign up or log in
+
+
+ Sign up using Google
+                        
+
+ Sign up using Facebook
+                        
+
+ Sign up using Email and Password
+                        
+
+
+
+Submit
+
+Post as a guest
+
+
+Name
+
+
+
+
+
+
+
+
+
+Email
+Required, but never shown
+
+
+
+
+
+
+
+
+
+
+
+
+Post as a guest
+
+
+Name
+
+
+
+
+
+
+
+
+
+Email
+Required, but never shown
+
+
+
+
+
+
+
+
+
+
+
+Post Your Answer                                        
+
+                                            Discard
+                                        
+
+                                                By clicking “Post Your Answer”, you agree to our terms of service, privacy policy and cookie policy
+
+
+
+
+
+Not the answer you're looking for? Browse other questions tagged regex  or ask your own question.                            
+
+
+
+
+
+
+                        The Overflow Blog
+                    
+
+
+ 
+
+State of the Stack: a new quarterly update on community and product
+
+
+
+
+ 
+
+Podcast 320: Covid vaccine websites are frustrating. This developer built a…
+
+
+
+                        Featured on Meta
+                    
+
+
+ 
+
+State of the Stack Q1 2021 Blog Post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Visit chat
+
+
+
+
+
+Linked
+
+
+
+0
+
+How to put condition in Regex with multiple patterns?
+
+
+
+0
+
+How to dynamically combine two regex?
+
+
+
+70
+
+Combining regular expressions in Javascript
+
+
+
+4
+
+How to combine regular expressions in javascript?
+
+
+
+5
+
+Using regex, extract quoted strings that may contain nested quotes
+
+
+
+2
+
+Balanced string regular exression
+
+
+
+3
+
+How to write a regular expressions to populate a list with given file types & exclude certain folders
+
+
+
+2
+
+regex exclude hit if text contains a second string match
+
+
+
+1
+
+Validating a numeric, 12-digit String containing a dash using regular expressions
+
+
+
+-3
+
+Regex supporting alphaNumeric and punctuation characters only
+
+
+See more linked questions
+
+
+
+
+Related
+
+
+
+363
+
+Converting user input string to regular expression
+
+
+
+16
+
+How to properly escape characters in regexp
+
+
+
+0
+
+RegEx Help (13 length digit, ends in specific digits)
+
+
+
+120
+
+Use dynamic (variable) string as regex pattern in JavaScript
+
+
+
+5
+
+How do I combine these two regex patterns?
+
+
+
+1
+
+Complex regex in AngularJS controller
+
+
+
+1
+
+Combine similar regexp check to one JS
+
+
+
+
+
+
+            Hot Network Questions
+        
+
+
+
+
+                    Can someone explain me SN10 landing failure in layman's term?
+                
+
+
+
+                    Removing creases from an oil painting canvas
+                
+
+
+
+                    Why is my neutral wire connected to a breaker?
+                
+
+
+
+                    Which step response matches the system transfer function
+                
+
+
+
+                    Who started the "-oid" suffix fashion in math?
+                
+
+
+
+                    How does the strong force increase in attraction as particles move farther away?
+                
+
+
+
+                    Do I have to relinquish my sign on and passwords for websites pertaining to work (ie: access to insurance companies and medicare)?
+                
+
+
+
+                    Getting Prose to Flow
+                
+
+
+
+                    Could we carve a large radio dish in the Antarctic ice?
+                
+
+
+
+                    Retaining permissions when copying a folder
+                
+
+
+
+                    Is it a bad sign that a rejection email does not include an invitation to apply again in the future?
+                
+
+
+
+                    Who is the true villain of Peter Pan: Peter, or Hook?
+                
+
+
+
+                    Why do we need NMOS transistors for NAND gate?
+                
+
+
+
+                    How to get interval between hours and put into list from start into finish?
+                
+
+
+
+                    Is it feasible to circumnavigate the Earth in a sailplane?
+                
+
+
+
+                    Sci-fi film where an EMP device is used to disable an alien ship, and a huge robot rips through a gas station
+                
+
+
+
+                    Why does water weaken ion ion attractions?
+                
+
+
+
+                    What does "But... They went home" mean in Maya Angelou's "They Went Home"?
+                
+
+
+
+                    Former PI lists a non-contributor as first author on a manuscript for which I did all the work. Next steps?
+                
+
+
+
+                    How to code arrows that go from one line to another
+                
+
+
+
+                    Recommendations for OR video channels (YouTube etc)
+                
+
+
+
+                    How long would it take for inbreeding issues to arise for a family that practiced inbreeding?
+                
+
+
+
+                    Is a comment aligned with the element being commented a good practice?
+                
+
+
+
+                    Effects of time dilation on our observations of the Sun
+                
+
+
+
+            more hot questions
+        
+
+
+
+
+            Question feed
+        
+
+
+
+
+                Subscribe to RSS
+            
+
+
+
+                        Question feed
+                        To subscribe to this RSS feed, copy and paste this URL into your RSS reader.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+default
+
+
+
+
+
+
+
+
+
+
+Stack Overflow
+
+Questions
+Jobs
+Developer Jobs Directory
+Salary Calculator
+Help
+Mobile
+
+
+
+Products
+
+Teams
+Talent
+Advertising
+Enterprise
+
+
+
+Company
+
+About
+Press
+Work Here
+Legal
+Privacy Policy
+Terms of Service
+Contact Us
+Cookie Policy
+
+
+
+
+
+Stack Exchange Network
+
+Technology
+Life / Arts
+Culture / Recreation
+Science
+Other
+
+
+
+
+
+
+Stack Overflow
+Server Fault
+Super User
+Web Applications
+Ask Ubuntu
+Webmasters
+Game Development
+
+TeX - LaTeX
+Software Engineering
+Unix & Linux
+Ask Different (Apple)
+WordPress Development
+Geographic Information Systems
+Electrical Engineering
+
+Android Enthusiasts
+Information Security
+Database Administrators
+Drupal Answers
+SharePoint
+User Experience
+Mathematica
+
+Salesforce
+ExpressionEngine® Answers
+Stack Overflow em Português
+Blender
+Network Engineering
+Cryptography
+Code Review
+
+Magento
+Software Recommendations
+Signal Processing
+Emacs
+Raspberry Pi
+Stack Overflow на русском
+Code Golf
+
+Stack Overflow en español
+Ethereum
+Data Science
+Arduino
+Bitcoin
+Software Quality Assurance & Testing
+Sound Design
+
+Windows Phone
+
+
+
+                            more (28)
+                        
+
+
+
+
+
+
+Photography
+Science Fiction & Fantasy
+Graphic Design
+Movies & TV
+Music: Practice & Theory
+Worldbuilding
+Video Production
+
+Seasoned Advice (cooking)
+Home Improvement
+Personal Finance & Money
+Academia
+Law
+Physical Fitness
+Gardening & Landscaping
+
+Parenting
+
+
+
+                            more (10)
+                        
+
+
+
+
+
+
+English Language & Usage
+Skeptics
+Mi Yodeya (Judaism)
+Travel
+Christianity
+English Language Learners
+Japanese Language
+
+Chinese Language
+French Language
+German Language
+Biblical Hermeneutics
+History
+Spanish Language
+Islam
+
+Русский язык
+Russian Language
+Arqade (gaming)
+Bicycles
+Role-playing Games
+Anime & Manga
+Puzzling
+
+Motor Vehicle Maintenance & Repair
+Board & Card Games
+Bricks
+Homebrewing
+Martial Arts
+The Great Outdoors
+Poker
+
+Chess
+Sports
+
+
+
+                            more (16)
+                        
+
+
+
+
+
+
+MathOverflow
+Mathematics
+Cross Validated (stats)
+Theoretical Computer Science
+Physics
+Chemistry
+Biology
+
+Computer Science
+Philosophy
+Linguistics
+Psychology & Neuroscience
+Computational Science
+
+
+
+                            more (10)
+                        
+
+
+
+
+
+
+Meta Stack Exchange
+Stack Apps
+API
+Data
+
+
+
+
+
+
+Blog
+Facebook
+Twitter
+LinkedIn
+Instagram
+
+
+site design / logo © 2021 Stack Exchange Inc; user contributions licensed under cc by-sa.                    rev 2021.3.12.38768
+
+
+
+
+
+
+Stack Overflow works best with JavaScript enabled
+            
+
+
+
+
+

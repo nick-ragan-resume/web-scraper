@@ -89,21 +89,21 @@ class WindowSetup(object):
         self.done_message = ttk.Label(self.f1, foreground="#006400", text="Finished parsing this page... ")        
         self.finished_message = ttk.Label(background="white", foreground="blue", text="Finished... ")  
         # checkbox variables
-        self.header_Var = BooleanVar()
+        self.body_Var = BooleanVar()
         self.paragraph_Var = BooleanVar()
         self.divMax_Var = BooleanVar()
         self.div_Var = BooleanVar()
         # set checkbox values
-        self.header_Var.set(False)
+        self.body_Var.set(False)
         self.paragraph_Var.set(False)
         self.divMax_Var.set(False)
         self.div_Var.set(False)
         # add functionality to checkbox
-        self.h_tag = ttk.Checkbutton(self.f1, text="Headers", variable=self.header_Var, onvalue=True)
-        self.p_tag = ttk.Checkbutton(self.f1, text="Paragraph", variable=self.paragraph_Var, onvalue=True)
-        self.if_tag = ttk.Checkbutton(self.f1, text="Iframe-Div", variable=self.divMax_Var, onvalue=True)
+        self.h_tag = ttk.Checkbutton(self.f1, text="HTML", variable=self.body_Var, onvalue=True)
+        #self.p_tag = ttk.Checkbutton(self.f1, text="Paragraph", variable=self.paragraph_Var, onvalue=True)
+        self.if_tag = ttk.Checkbutton(self.f1, text="HTML-JSON", variable=self.divMax_Var, onvalue=True)
         # add functionality to checkbox
-        self.d_tag = ttk.Checkbutton(self.f1, text="Div", variable=self.div_Var, onvalue=True)
+        #self.d_tag = ttk.Checkbutton(self.f1, text="Div", variable=self.div_Var, onvalue=True)
         # main style grid
         self.f1.grid(column=0, row=0, sticky=(E, W, S, N))
         # blank line grid
@@ -114,9 +114,9 @@ class WindowSetup(object):
         # check boxes grid
         self.parse_data_Label.grid(column=0, row=4, sticky=(N, E, S, W), padx=(10,1), pady=(10,1))
         self.h_tag.grid(column=0, row=4, padx=(10, 1), pady=(55,1), sticky=(W))
-        self.p_tag.grid(column=0, row=4, padx=(86,1), pady=(55,1), sticky=(W))
-        self.if_tag.grid(column=0, row=4, padx=(175,1), pady=(55,1), sticky=(W))
-        self.d_tag.grid(column=0, row=6, padx=(10, 1), pady=(5,1), sticky=(W))
+        #self.p_tag.grid(column=0, row=4, padx=(86,1), pady=(55,1), sticky=(W))
+        self.if_tag.grid(column=0, row=4, padx=(100,1), pady=(55,1), sticky=(W))
+        #self.d_tag.grid(column=0, row=6, padx=(10, 1), pady=(5,1), sticky=(W))
         # upload button grid
         self.upload_File.grid(column=0, row=7, sticky=(N, E, S, W), padx=(10,1), pady=(40,1))
         self.upload_Button.grid(column=0, row=8, sticky=(E, W), padx=(10,130), pady=(1,1))
@@ -229,7 +229,7 @@ class WindowSetup(object):
         # grab entry values
         try:
             self.url_Entry_Val = self.url_Entry.get()
-            self.header_Entry_Val = self.header_Var.get()
+            self.body_Entry_Val = self.body_Var.get()
             self.paragraph_Entry_Val = self.paragraph_Var.get()
             self.divMax_Entry_Val = self.divMax_Var.get()
             self.div_Entry_Val = self.div_Var.get()
@@ -259,8 +259,8 @@ class WindowSetup(object):
         else:
             self.urls.append(False)
         # [0] - array position
-        if self.header_Entry_Val:
-            self.checkboxes.append(self.header_Entry_Val)
+        if self.body_Entry_Val:
+            self.checkboxes.append(self.body_Entry_Val)
         else:
             self.checkboxes.append(False)
         # [1] - array position
@@ -440,7 +440,7 @@ class Parser(object):
         self.soup = soup
         list_to_parse = []
         if self.checkboxes[0]:
-            list_to_parse.append('h1')
+            list_to_parse.append('body')
         else:
             list_to_parse.append(None)
         if self.checkboxes[1]:
@@ -461,96 +461,94 @@ class Parser(object):
     def parse_data(self, list_to_parse):
         list_of_vals = list_to_parse
         print('\n\n\n\n\nPrint list_of_vals', list_of_vals)
-        headers = self.soup.find_all(list_of_vals[0])
+        body = self.soup.find_all(list_of_vals[0])
         paragraphs = self.soup.find_all(list_of_vals[1])
         div_max = self.soup.find_all(list_of_vals[2])
         div = self.soup.find_all(list_of_vals[3])
 
         # erase file data
-        self.erase_file()
+        self.erase_files()
 
         # parse data
-        if list_of_vals[0] == 'h1':
-            print('\n\n\n\n WE HAVE HEADERS')
-            self.continue_parsing(headers)
+        if list_of_vals[0] == 'body':
+            print('\n\n\n\n WE HAVE BODY')
+            self.continue_parsing_html(body)
         if list_of_vals[1] == 'p':
             print('\n\n\n\n WE HAVE PARAGRAPHS')
-            self.continue_parsing(paragraphs)
+            self.continue_parsing_html(paragraphs)
         if list_of_vals[2] == 'div':
             print('\n\n\n\n WE HAVE DIV MAX ')
             self.div_max_data(div_max)
         if list_of_vals[3] == 'div':
             print('\n\n\n\n WE HAVE DIVS')
-            self.continue_parsing(div)
+            self.continue_parsing_html(div)
 
-        self.compare_files()
-
-    def erase_file(self):
-        writeable_file = open('scrape/scrape.txt', 'w')
+    def erase_files(self):
+        writeable_file = open('scrape-html/scrape.txt', 'w')
+        writeable_file2 = open('scrape-html-json/scrape.txt', 'w')
         writeable_file.close()
+        writeable_file2.close()
 
-    def continue_parsing(self, data):
-        writeable_file = open('scrape/scrape.txt', 'a+')
+    def continue_parsing_html(self, data):
+        writeable_file = open('scrape-html/scrape.txt', 'a+')
         for remove_tag in data:
             writeable_file.write(remove_tag.text + '\n')
         writeable_file.close()
+        self.compare_files_html()
 
     def div_max_data(self, data):
-        writeable_file = open('scrape/scrape.txt', 'a+')
-
+        writeable_file = open('scrape-html-json/scrape.txt', 'a+')
         divider = []
         for d in data:
             divider.append(str(d))
-
         for remove_tag in divider:
             writeable_file.write(remove_tag)
         writeable_file.close()
-        pass
+        self.compare_files_html_json()
 
-    def compare_files(self):
-        ComparisonTool()
+    def compare_files_html(self):
+        compare = ComparisonTool()
+        compare.clean_html()
 
+    def compare_files_html_json(self):
+        compare = ComparisonTool()
+        compare.clean_html_json()
 
 
 # Compare Upload File to Parsed URL
 class ComparisonTool(object):
+    """
+    This will clean parsed data and uploaded data
+    """
     
     def __init__(self):
-        self.printstatement = 'Hi there!!'
+        self.printstatement = 'Starting data clean... '
         print(self.printstatement)
         
+    # this is strictly for the medicare questions page
+    def check_page_json(self):
+        pass 
 
+    def clean_upload(self):
+        pass 
+
+    def clean_html(self):
+        print('\n\n\n\n\n We are in the clean html method.... ')
         # clean file
-        string = open('scrape/scrape.txt').read()
-        new_str = re.sub('<.*?>|&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-f]{1,6});|\S', ' ', string)
-        open('cleaned-file/cleaned.txt', 'w').write(new_str)
+        opened_file = open('scrape-html/scrape.txt').read()
+        new_str = re.sub('<.*?>|&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-f]{1,6});', ' ', opened_file)
+        open('scrape-html/scrape.txt', 'w').write(new_str)
+ 
+    def clean_html_json(self):
+        print('\n\n\n\n\n We are in the clean html json method.... ')
+        # clean file
+        opened_file = open('scrape-html-json/scrape.txt').read()
+        new_str = re.compile(r"\s(\w+.)\s")
+        open('scrape-html-json/scrape.txt', 'w').write(new_str)
 
-        # Read lines as a list
-        fh = open("cleaned-file/cleaned.txt", "r")
-        lines = fh.readlines()
-        fh.close()
-
-        # Weed out blank lines with filter
-        lines = filter(lambda x: not x.isspace(), lines)
-
-        # Write
-        fh = open("cleaned-file/cleaned.txt", "w")
-        fh.write("".join(lines))
-        # should also work instead of joining the list:
-        # fh.writelines(lines)
-        fh.close()
+    def remove_white_space(self):
         pass
-    ## clean scrape.txt
 
-    ## grab uploaded data file and clean
-
-    # combine all parsed files into one
-
-    # erase prior data in files
-
-    # loop uploaded data file over combined file
-
-    # create new data file of matches
       
 
 
