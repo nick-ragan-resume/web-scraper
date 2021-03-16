@@ -96,12 +96,12 @@ class WindowSetup(object):
         # set checkbox values
         self.body_Var.set(False)
         self.paragraph_Var.set(False)
-        self.divMax_Var.set(False)
+        self.divMax_Var.set(True)
         self.div_Var.set(False)
         # add functionality to checkbox
-        self.h_tag = ttk.Checkbutton(self.f1, text="HTML", variable=self.body_Var, onvalue=True)
+        #self.h_tag = ttk.Checkbutton(self.f1, text="HTML", variable=self.body_Var, onvalue=True)
         #self.p_tag = ttk.Checkbutton(self.f1, text="Paragraph", variable=self.paragraph_Var, onvalue=True)
-        self.if_tag = ttk.Checkbutton(self.f1, text="HTML-JSON", variable=self.divMax_Var, onvalue=True)
+        self.if_tag = ttk.Checkbutton(self.f1, text="Full HTML", variable=self.divMax_Var, onvalue=True)
         # add functionality to checkbox
         #self.d_tag = ttk.Checkbutton(self.f1, text="Div", variable=self.div_Var, onvalue=True)
         # main style grid
@@ -113,9 +113,9 @@ class WindowSetup(object):
         self.url_Entry.grid(column=0, row=2, sticky=(N, E, S, W), padx=(10,1), pady=1)
         # check boxes grid
         self.parse_data_Label.grid(column=0, row=4, sticky=(N, E, S, W), padx=(10,1), pady=(10,1))
-        self.h_tag.grid(column=0, row=4, padx=(10, 1), pady=(55,1), sticky=(W))
+        #self.h_tag.grid(column=0, row=4, padx=(10, 1), pady=(55,1), sticky=(W))
         #self.p_tag.grid(column=0, row=4, padx=(86,1), pady=(55,1), sticky=(W))
-        self.if_tag.grid(column=0, row=4, padx=(100,1), pady=(55,1), sticky=(W))
+        self.if_tag.grid(column=0, row=4, padx=(10,1), pady=(55,1), sticky=(W))
         #self.d_tag.grid(column=0, row=6, padx=(10, 1), pady=(5,1), sticky=(W))
         # upload button grid
         self.upload_File.grid(column=0, row=7, sticky=(N, E, S, W), padx=(10,1), pady=(40,1))
@@ -425,13 +425,13 @@ class Parser(object):
     def __init__(self, urls, checkboxes):
         self.urls = urls
         self.checkboxes = checkboxes
-        self.parse_list = ['h1', 'p', 'div', 'div']
+        self.parse_list = ['h1', 'p', 'body', 'div']
 
     def parse_web(self):
-        print('We are in, parse all.... ')
+        print('\n\nWe are in, parse all.... ')
         # get the url
         url_page = requests.get(self.urls)
-        print('Printing the url we received... ', url_page)
+        print('\n\nPrinting the url we received... ', url_page)
         # Get page content
         soup = BeautifulSoup(url_page.content, 'html.parser')
         self.assign_label(soup)
@@ -439,82 +439,59 @@ class Parser(object):
     def assign_label(self, soup):
         self.soup = soup
         list_to_parse = []
-        if self.checkboxes[0]:
+        if self.checkboxes[2]:
             list_to_parse.append('body')
         else:
             list_to_parse.append(None)
-        if self.checkboxes[1]:
-            list_to_parse.append('p')
-        else:
-            list_to_parse.append(None)
-        if self.checkboxes[2]:
-            list_to_parse.append('div')
-        else:
-            list_to_parse.append(None)
-        if self.checkboxes[3]:
-            list_to_parse.append('div')
-        else:
-            list_to_parse.append(None)
-
+        print('\n\n Printing list_to_parse..... ', list_to_parse)
         self.parse_data(list_to_parse)
 
     def parse_data(self, list_to_parse):
         list_of_vals = list_to_parse
         print('\n\n\n\n\nPrint list_of_vals', list_of_vals)
-        body = self.soup.find_all(list_of_vals[0])
-        paragraphs = self.soup.find_all(list_of_vals[1])
-        div_max = self.soup.find_all(list_of_vals[2])
-        div = self.soup.find_all(list_of_vals[3])
+        html_max = self.soup.find_all(list_of_vals[0])
+        print('Printing html_max.... [0].... ', html_max)
 
         # erase file data
         self.erase_files()
 
         # parse data
         if list_of_vals[0] == 'body':
-            print('\n\n\n\n ............. WE HAVE BODY')
-            self.parse_html_body(body)
-        if list_of_vals[1] == 'p':
-            print('\n\n\n\n ............. WE HAVE PARAGRAPHS')
-            self.parse_html_body(paragraphs)
-        if list_of_vals[2] == 'div':
-            print('\n\n\n\n ............. WE HAVE DIV MAX ')
-            self.div_max_data(div_max)
-        if list_of_vals[3] == 'div':
-            print('\n\n\n\n ............. WE HAVE DIVS')
-            self.parse_html_body(div)
+            print('\n\n\n\n ............. WE HAVE HTML MAX DATA')
+            self.html_max_data(html_max)
 
     def erase_files(self):
-        writeable_file = open('scrape-html/scrape.txt', 'w')
-        writeable_file2 = open('scrape-html-json/scrape.txt', 'w')
-        writeable_file.close()
-        writeable_file2.close()
+        try:
+            writeable_file = open('scrape-html-max/scrape.txt', 'w')
+            writeable_file.close()
+            print('\n\n opened file to erase and closed file.... ')
+        except:
+            print('\n\n Could not open file to erase')
 
-    def parse_html_body(self, data):
-        writeable_file = open('scrape-html/scrape.txt', 'a+')
-        for remove_tag in data:
-            writeable_file.write(remove_tag.text + '\n')
-        writeable_file.close()
-        self.compare_files_html()
-
-    def div_max_data(self, data):
-        writeable_file = open('scrape-html-json/scrape.txt', 'a+')
+    def html_max_data(self, data):
+        writeable_file = open('scrape-html-max/scrape.txt', 'a+')
         divider = []
         for d in data:
             divider.append(str(d))
         for remove_tag in divider:
             writeable_file.write(remove_tag)
         writeable_file.close()
-        self.compare_files_html_json()
+        # scrub file 
+        self.compare_files_html_max()
 
-    def compare_files_html(self):
-        html_file = 'html_file'
-        compare = ComparisonTool()
-        compare.clean_upload(html_file)
+    def scrub_html(self):
+# need to only allow for words that..... A.  either have a carrot or space (>) in front of them, 
+#                                        or 
+#                                        B. punctionation behind them (.!?)
+#                                         **** other symbols and characters before and after word would remove word from page
+# remove footer from page... no need to scrape footer
+        pass
 
-    def compare_files_html_json(self):
-        html_file_json = 'html_file_json'
+    def compare_files_html_max(self):
+        html_file_max = 'html_file_max'
         compare = ComparisonTool()
-        compare.clean_upload(html_file_json)
+        compare.clean_upload(html_file_max)
+
 
 
 # Compare Upload File to Parsed URL
@@ -524,11 +501,12 @@ class ComparisonTool(object):
     """
     
     def __init__(self):
+        self.open_html_max= False
         self.printstatement = 'Starting data clean... '
         print(self.printstatement)
 
-    def clean_upload(self, file_val):
-        print('\n\n\n\n We are printing fileval...... ', file_val, '\n\n\n\n\n\n')
+    def clean_upload(self, file_str):
+        print('\n\n\n\n We are printing fileval...... ', file_str, '\n\n\n\n\n\n')
         # open imported text file and split on new line
         open_file = open('import-file/upload_list.txt').read().split('\n')
         create_list = []
@@ -536,44 +514,54 @@ class ComparisonTool(object):
         for o in open_file:
             create_list.append(o)
         # pass created list 
-        self.parsed_data(create_list, file_val)
+        self.sort_file(create_list, file_str)
 
-    def parsed_data(self, uploaded, file_value):
-        file_val = file_value
-        if file_val == 'html_file':
-            html_body = open('scrape-html/scrape.txt').read()
-            file_stats = self.check_filesize(file_val)
-            # start loop
-            print('Printing file_stats html body................................. \n\n...................... ', file_stats)
-            self.loop_files(html_body)
-
-        if file_val == 'html_file_json':
-            html_div = open('scrape-html-json/scrape.txt').read()
+    def sort_file(self, uploaded_list, file_str):
+        # passing cleaned upload list
+        # passing string file name as file_value
+        file_val = file_str
+        if file_val == 'html_file_max':
+            self.open_html_max= True
             file_stats = self.check_filesize(file_val)
             # start loop
             print('Printing file_stats html div................................. \n\n...................... ', file_stats)
-            self.loop_files(html_div)
-        
-    #loop over parsed files
-    def loop_files(self, parsed_data):
-        pass
-
-
-    def write_final_report(self):
-        pass
+            self.open_files(uploaded_list, file_val)
 
     def check_filesize(self, file_val): 
         file_stats = None
         try:  
-            if file_val == 'html_file':
-                file_size = os.stat('scrape-html/scrape.txt')
-                file_stats = file_size.st_size
-            if file_val == 'html_file_json':
-                file_size = os.stat('scrape-html-json/scrape.txt')
+            if file_val == 'html_file_max':
+                file_size = os.stat('scrape-html-max/scrape.txt')
                 file_stats = file_size.st_size
         except:
             print('something went wrong.')
         return file_stats
+
+    # open files
+    def open_files(self, upload_list, file_val):
+        if file_val == 'html_file_max':
+            open_file = 'scrape-html-max/scrape.txt'
+            self.loop_files(open_file, upload_list)
+
+    # loop over files
+    def loop_files(self, opened_file, upload_list):
+        # passing through the opened file and uplaod list
+        # need to loop through the opened file with the upload list
+        print('\n\n\n\nWe are in the loop files method... Passing two things, opened_file and upload_list \n\n\n\n')
+        matched_words = []
+        with open(opened_file, 'r') as read_obj:
+            for line in read_obj:
+                for u in upload_list:
+                    if u in line:
+                        matched_words.append(u)
+
+        print('\n\n\nPrinting matched words.... ', matched_words, '\n\n\n')
+
+    def times_occured(self):
+        pass
+
+    def write_final_report(self):
+        pass
 
 
 # Start GUI Engine
