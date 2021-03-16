@@ -35,37 +35,55 @@ def reg_exp_func():
     # before we will allow for ----- (space >)
     # after we will allow for ----- (.?!< )
     word_1 = 'tags'
-    word_2 = 'Hello'
+    word_2 = 'score'
+    the_list = []
+    parsed_file = open('scrape-html-max/scrape.txt').read().split('\n')
     the_string = '<div class="theclass">Hello this is a random string inside some tags</div>'
     # this lookahead allows for any one of these symbols after each word
     reg_ex_1 = re.search(rf"{word_1}(?=[< .!?])", the_string)
     # this lookbehind allows checks for one of these symbols before each word
     reg_ex_2 = re.search(rf"(?<=[> ]){word_2}", the_string)
-    print(reg_ex_1)
-    print(reg_ex_2)
+    # combine look ahead and look behind
+    reg_ex_3 = re.search(rf"(?<=[>]){word_2}|{word_2}(?=[< .,!?])", the_string)
+    for p in parsed_file:
+        the_list.append(p)
+
+    ##### this will loop through file as a list and search regex 
+    for l in the_list:
+        if re.search(rf"(?<=[>]){word_2}|{word_2}(?=[< .,!?])", l):
+            print('YEEEEEESSSSS')
 
 def loop_over_files():
     # array of matched words
     matched_words = []
-    uploaded_file = open('import-file/uploaded_list.txt').read()
-    parsed_file = open('scrape-html-max/scrape.txt')
+    uploaded_file = open('import-file/upload_list.txt').read()
+    parsed_file = 'scrape-html-max/scrape.txt'
+    with open(parsed_file, 'r') as read_obj:
+        # loops through every line in parsed data file
+        for each_line in read_obj:
+            # loops through every word in uploaded list
+            for word_2 in uploaded_file:
+                if word_2 in each_line:
+                    pass
+                    
 
-    pass
+
+def loop_over_files_2():
+    # array of matched words
+    matched_words = []
+    # need to create a list of the uploaded_file
+    uploaded_file = open('import-file/upload_list.txt').read()
+    parsed_file = 'scrape-html-max/scrape.txt'
+    with open(parsed_file, 'r') as read_obj:
+        # loops through every word in uploaded list
+        for r in read_obj:
+            for word_2 in uploaded_file:
+                if word_2 in r:
+                    matched_words.append(word_2)
+    print(matched_words)
+         
 
 
-    # loop over files
-    def loop_files(self, opened_file, upload_list):
-        # passing through the opened file and uplaod list
-        # need to loop through the opened file with the upload list
-        print('\n\n\n\nWe are in the loop files method... Passing two things, opened_file and upload_list \n\n\n\n')
-        matched_words = []
-        with open(opened_file, 'r') as read_obj:
-            for line in read_obj:
-                for u in upload_list:
-                    if u in line:
-                        matched_words.append(u)
-
-        print('\n\n\nPrinting matched words.... ', matched_words, '\n\n\n')
 #file_handler()
 #uploaded_file_sort()
 reg_exp_func()
