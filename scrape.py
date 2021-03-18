@@ -2,13 +2,7 @@ import re
 import os
 import sys
 
-
-
-def file_handler():
-    data_file = open('scrape-html-max/scrape.txt', 'r')
-    scrubbed_file = open('scrubbed.txt', 'w')
-    remove_footer_from_data(data_file, scrubbed_file)
-
+### this will be useful to remove footers so we don't have to waste time scrubbing that data
 def remove_footer_from_data(data_file, scrubbed_file):
     ### this will remove footer
     for r in data_file:
@@ -17,17 +11,6 @@ def remove_footer_from_data(data_file, scrubbed_file):
     scrubbed_file.close()
     uploaded_file_sort()
 
-def uploaded_file_sort():
-    #loop through uploaded list 
-    uploaded_list = open('import-file/upload_list.txt').read()
-    new_list = []
-    for u in uploaded_list:
-        new_list.append(u)
-    scrubbed_file = open('scrubbed.txt', 'w')
-    for n in new_list:
-        scrubbed_file.write(n)
-    scrubbed_file.close()
-    return new_list
 
 def reg_exp_func():
     # while we loop through scrape.txt
@@ -49,62 +32,69 @@ def reg_exp_func():
         the_list.append(p)
 
     ##### this will loop through file as a list and search regex 
+    count = 0
     for l in the_list:
         if re.search(rf"(?<=[>]){word_2}|{word_2}(?=[< .,!?])", l):
-            print('YEEEEEESSSSS')
-
-def loop_over_files():
-    # array of matched words
-    matched_words = []
-    uploaded_file = open('import-file/upload_list.txt').read()
-    parsed_file = 'scrape-html-max/scrape.txt'
-    with open(parsed_file, 'r') as read_obj:
-        # loops through every line in parsed data file
-        for each_line in read_obj:
-            # loops through every word in uploaded list
-            for word_2 in uploaded_file:
-                if word_2 in each_line:
-                    pass
-                    
+            count += 1
+            print(count)
+    pass
 
 
-def loop_over_files_2():
-    # array of matched words
-    matched_words = []
-    # need to create a list of the uploaded_file
-    uploaded_file = open('import-file/upload_list.txt').read()
-    parsed_file = 'scrape-html-max/scrape.txt'
-    with open(parsed_file, 'r') as read_obj:
-        # loops through every word in uploaded list
-        for r in read_obj:
-            for word_2 in uploaded_file:
-                if word_2 in r:
-                    matched_words.append(word_2)
-    print(matched_words)
-         
 
 
-#file_handler()
-#uploaded_file_sort()
-reg_exp_func()
+def key_word_search():
+    # create empty list for keyword file
+    keywords = []
+
+    # create empty list for  scraped file
+    scraped_words = []
+
+    # open keyword file ... split on new line
+    keyword_file = open('import-file/upload_list.txt').read().split('\n')
+
+    # open scraped file ... split on new line
+    scraped_word_file = open('scrape-html-max/scrape.txt').read().split('\n')
+
+    # loop through keyword file and append to empty list
+    for k in keyword_file:
+        keywords.append(k)
+
+    # loop through scraped file and append to empty list
+    for s in scraped_word_file:
+        scraped_words.append(s)
+
+    #####################
+    # loop through scraped file array
+    for scrape_data in scraped_words:
+        for key_data in keywords:
+            if re.search(rf"(?<=[>]){key_data}|{key_data}(?=[< .,!?])", scrape_data):
+                print('yes')
+
+    # loop through keyword file array
+
+    # looop over scrapped file array with keyword array using our regex
 
 
-# (?ms)^[ \t]*whattomatch+.*
-# "
-# gm
-# (?ms) match the remainder of the pattern with the following effective flags: gms
-# m modifier: multi line. Causes ^ and $ to match the begin/end of each line (not only begin/end of string)
-# s modifier: single line. Dot matches newline characters
-# ^ asserts position at start of a line
-# Match a single character present in the list below [ \t]
-# * matches the previous token between zero and unlimited times, as many times as possible, giving back as needed (greedy)
-#   matches the character   literally (case sensitive)
-# \t matches a tab character (ASCII 9)
-# class matches the characters class literally (case sensitive)
-# = matches the character = literally (case sensitive)
-# + matches the previous token between one and unlimited times, as many times as possible, giving back as needed (greedy)
-# . matches any character 
-# * matches the previous token between zero and unlimited times, as many times as possible, giving back as needed (greedy)
-# Global pattern flags
-# g modifier: global. All matches (don't return after first match)
-# m modifier: multi line. Causes ^ and $ to match the begin/end of each line (not only begin/end of string)
+key_word_search()
+
+
+
+
+
+
+
+    #### STEPS
+    # open parsed file in read mode and split on \n line
+    # loop through file and append to a an empty list
+    # loop through the appended list and do regex there
+
+
+    ##### append results to a new results file
+
+    #### export file
+
+    #### have a new screen for help
+
+    ### create input entry for searching for something specific
+
+    ### make portable 

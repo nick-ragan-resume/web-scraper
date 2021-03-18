@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 import os
+import json
+from os.path import expanduser
+from collections import Counter
 import sys
 from bs4 import BeautifulSoup
 from tkinter import Tk, Text, Label, BooleanVar, E, W, S, N, Toplevel
@@ -137,7 +140,6 @@ class WindowSetup(object):
         self.parent.columnconfigure(0, weight=1)# weight determines how much of the available space a row or column should occupy relative to the other rows or columns
         self.parent.rowconfigure(0, weight=1)
 
-
     # second screen - load screen
     def load_screen(self):
         # init top level frame/window
@@ -174,7 +176,6 @@ class WindowSetup(object):
         else:
             engine.after(100,self.loading)  
 
-
     # clear url value
     def destroy_f1_frame(self):
         """
@@ -184,28 +185,50 @@ class WindowSetup(object):
         if self.url_Entry:
             self.setup()
 
+    def check_for_upload(self):
+        path = "import-file"
+        num_dirs = [] 
+        dir = os.listdir('import-file')
+        if len(dir) == 0:
+            print('we have nothing in directory')
+        else:
+            # do you want to use the prior upload
+            for files in os.walk(path):
+                for filename in files:
+                    if filename:
+                        print("Printing filename.... ",filename)
+                        num_dirs.append(filename)
+
+        # ask if they want to use prior upload and skip upload action
+    def rename_upload(self):
+        dir = os.listdir('import-file')
+        os.rename(rf'import-file/{dir[0]}', 'import-file/upload_list.txt')
+        print(dir[0])
+                    
     # handle any .txt upload file
     def uploadAction(self,event=None):
         """
         handles the uploaded data file
         """
+        self.check_for_upload()
         # open a txt file
         self.filename = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
         print('\nselect:', self.filename)
         # get current directory and name target directory
         current_dir = os.path.abspath(os.getcwd())
         target = current_dir + '/import-file'
-
+        
         if self.filename:
             # delete file contents
             self.delete_last_upload(current_dir, target)
-        
             # move uploaded file to target
-            dest = shutil.move(self.filename, target)
+            dest = shutil.copy(self.filename, target)
             print('destination path... ', dest)
+            self.rename_upload()
         else:
             print('No file selected... ')
         return self.filename
+
 
     def delete_last_upload(self, current, target):
         """
@@ -335,7 +358,6 @@ class WindowSetup(object):
             print('printing the val of the upload... ',self.upload_val)
             self.supply_err_message()
 
-
     ###################################################################
     ###### JOB THREAD AND QUEUE         #############################
     ###############################################################
@@ -419,7 +441,6 @@ class WindowSetup(object):
         parse = Parser(self.urls[0], self.checkboxes)
         return parse.parse_web()
       
-
 # Passing something to class
 class Parser(object):
     def __init__(self, urls, checkboxes):
@@ -479,19 +500,10 @@ class Parser(object):
         # scrub file 
         self.compare_files_html_max()
 
-    def scrub_html(self):
-# need to only allow for words that..... A.  either have a carrot or space (>) in front of them, 
-#                                        or 
-#                                        B. punctionation behind them (.!?)
-#                                         **** other symbols and characters before and after word would remove word from page
-# remove footer from page... no need to scrape footer
-        pass
-
     def compare_files_html_max(self):
         html_file_max = 'html_file_max'
         compare = ComparisonTool()
-        compare.clean_upload(html_file_max)
-
+        compare.key_word_search(html_file_max)
 
 
 # Compare Upload File to Parsed URL
@@ -499,33 +511,65 @@ class ComparisonTool(object):
     """
     This will clean parsed data and uploaded data
     """
-    
     def __init__(self):
         self.open_html_max= False
         self.printstatement = 'Starting data clean... '
         print(self.printstatement)
 
-    def clean_upload(self, file_str):
-        print('\n\n\n\n We are printing fileval...... ', file_str, '\n\n\n\n\n\n')
-        # open imported text file and split on new line
-        open_file = open('import-file/upload_list.txt').read().split('\n')
-        create_list = []
-        # create array of key terms
-        for o in open_file:
-            create_list.append(o)
-        # pass created list 
-        self.sort_file(create_list, file_str)
+    def key_word_search(self, html_file_max):
+        # create empty list for keyword file
+        keywords = []
 
-    def sort_file(self, uploaded_list, file_str):
-        # passing cleaned upload list
-        # passing string file name as file_value
-        file_val = file_str
-        if file_val == 'html_file_max':
-            self.open_html_max= True
-            file_stats = self.check_filesize(file_val)
-            # start loop
-            print('Printing file_stats html div................................. \n\n...................... ', file_stats)
-            self.open_files(uploaded_list, file_val)
+        # create empty list for  scraped file
+        scraped_words = []
+
+        # final results
+        matched_words = []
+
+        # open keyword file ... split on new line
+        keyword_file = open('import-file/upload_list.txt').read().split('\n')
+
+        # open scraped file ... split on new line
+        scraped_word_file = open('scrape-html-max/scrape.txt').read().split('\n')
+
+        # loop through keyword file and append to empty list
+        for k in keyword_file:
+            keywords.append(k)
+
+        # loop through scraped file and append to empty list
+        for s in scraped_word_file:
+            scraped_words.append(s)
+
+        # loop through scraped file array
+        for scrape_data in scraped_words:
+            for key_data in keywords:
+                if re.search(rf"(?<=[>]){key_data}|{key_data}(?=[< .,!?])", scrape_data, re.IGNORECASE):
+                    matched_words.append(key_data)
+
+        if not matched_words:
+            print('There were no matched words')
+        else:
+            self.matched_word_counter(matched_words)
+
+
+    def matched_word_counter(self, matched_words):
+        duplicate_dict={}
+        for i in matched_words:
+            duplicate_dict[i]=matched_words.count(i)
+        print(duplicate_dict)
+        self.create_final_report(duplicate_dict)
+
+    def create_final_report(self, duplicate_dict):
+        print('Creating final report!!! ')
+        # loop through matched words and write to report
+        with open('final-report/report.txt', 'w') as file:
+            file.write(json.dumps(duplicate_dict, indent=2))
+            file.write('\n')
+        
+        home = expanduser("~")
+        src = 'final-report/report.txt'
+        shutil.copy(src, home+'/Desktop')
+    
 
     def check_filesize(self, file_val): 
         file_stats = None
@@ -537,33 +581,13 @@ class ComparisonTool(object):
             print('something went wrong.')
         return file_stats
 
-    # open files
-    def open_files(self, upload_list, file_val):
-        if file_val == 'html_file_max':
-            open_file = 'scrape-html-max/scrape.txt'
-            self.loop_files(open_file, upload_list)
-
-    # loop over files
-    def loop_files(self, opened_file, upload_list):
-        # passing through the opened file and uplaod list
-        # need to loop through the opened file with the upload list
-        print('\n\n\n\nWe are in the loop files method... Passing two things, opened_file and upload_list \n\n\n\n')
-        matched_words = []
-        with open(opened_file, 'r') as read_obj:
-            for line in read_obj:
-                for u in upload_list:
-                    if u in line:
-                        matched_words.append(u)
-
-        print('\n\n\nPrinting matched words.... ', matched_words, '\n\n\n')
-
     def times_occured(self):
         pass
 
     def write_final_report(self):
         pass
 
-
+  
 # Start GUI Engine
 def main():
     eng = WindowSetup(engine)
