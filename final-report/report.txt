@@ -1,5 +1,10 @@
 {
-  "Medicare": 19,
+  "Medicare": 26,
   "Medicare Supplement Insurance": 4,
-  "Donut Hole": 1
+  "Donut Hole": 1,
+  "Benefit Period": 1,
+  "Medicaid": 1,
+  "Medicare-eligible expenses": 1,
+  "Policy Date": 1,
+  "Premium": 1
 }

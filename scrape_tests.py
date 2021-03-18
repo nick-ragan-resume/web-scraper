@@ -92,14 +92,22 @@ class WindowSetup(object):
         self.go_message = ttk.Label(self.f1, foreground="blue", text="Working on parsing... ")
         self.done_message = ttk.Label(self.f1, foreground="#006400", text="Finished parsing this page... ")        
         self.finished_message = ttk.Label(background="white", foreground="blue", text="Finished... ")  
-
         # checkbox variables
         self.body_Var = BooleanVar()
+        self.paragraph_Var = BooleanVar()
+        self.divMax_Var = BooleanVar()
+        self.div_Var = BooleanVar()
         # set checkbox values
-        self.body_Var.set(True)
+        self.body_Var.set(False)
+        self.paragraph_Var.set(False)
+        self.divMax_Var.set(True)
+        self.div_Var.set(False)
         # add functionality to checkbox
-        self.body_tag = ttk.Checkbutton(self.f1, text="Full HTML", variable=self.body_Var, onvalue=True)
-
+        #self.h_tag = ttk.Checkbutton(self.f1, text="HTML", variable=self.body_Var, onvalue=True)
+        #self.p_tag = ttk.Checkbutton(self.f1, text="Paragraph", variable=self.paragraph_Var, onvalue=True)
+        self.if_tag = ttk.Checkbutton(self.f1, text="Full HTML", variable=self.divMax_Var, onvalue=True)
+        # add functionality to checkbox
+        #self.d_tag = ttk.Checkbutton(self.f1, text="Div", variable=self.div_Var, onvalue=True)
         # main style grid
         self.f1.grid(column=0, row=0, sticky=(E, W, S, N))
         # blank line grid
@@ -109,9 +117,10 @@ class WindowSetup(object):
         self.url_Entry.grid(column=0, row=2, sticky=(N, E, S, W), padx=(10,1), pady=1)
         # check boxes grid
         self.parse_data_Label.grid(column=0, row=4, sticky=(N, E, S, W), padx=(10,1), pady=(10,1))
-
-        self.body_tag.grid(column=0, row=4, padx=(10,1), pady=(55,1), sticky=(W))
-
+        #self.h_tag.grid(column=0, row=4, padx=(10, 1), pady=(55,1), sticky=(W))
+        #self.p_tag.grid(column=0, row=4, padx=(86,1), pady=(55,1), sticky=(W))
+        self.if_tag.grid(column=0, row=4, padx=(10,1), pady=(55,1), sticky=(W))
+        #self.d_tag.grid(column=0, row=6, padx=(10, 1), pady=(5,1), sticky=(W))
         # upload button grid
         self.upload_File.grid(column=0, row=7, sticky=(N, E, S, W), padx=(10,1), pady=(40,1))
         self.upload_Button.grid(column=0, row=8, sticky=(E, W), padx=(10,130), pady=(1,1))
@@ -134,9 +143,6 @@ class WindowSetup(object):
 
     # second screen - load screen
     def load_screen(self):
-        """
-        This is the initial load window --- maybe separate this and put a load bar in the future
-        """
         # init top level frame/window
         self.a = Toplevel(self.parent) 
         self.a.configure(background='#013A70')
@@ -162,9 +168,6 @@ class WindowSetup(object):
 
     # loading calculator
     def loading(self):
-        """
-        Length of time load shall last
-        """
         self.percentage += 10
         self.title.config(text=f"Loading... ", background="#013A70")
         if self.percentage == 100:
@@ -184,9 +187,6 @@ class WindowSetup(object):
             self.setup()
 
     def check_for_upload(self):
-        """
-        Check to see if an upload currently exists in the import-file directory
-        """
         path = "import-file"
         num_dirs = [] 
         dir = os.listdir('import-file')
@@ -200,11 +200,8 @@ class WindowSetup(object):
                         print("Printing filename.... ",filename)
                         num_dirs.append(filename)
 
-    # ask if they want to use prior upload and skip upload action
+        # ask if they want to use prior upload and skip upload action
     def rename_upload(self):
-        """
-        Re-names any uploaded text file to "upload_list.txt"
-        """
         dir = os.listdir('import-file')
         os.rename(rf'import-file/{dir[0]}', 'import-file/upload_list.txt')
         print(dir[0])
@@ -212,8 +209,7 @@ class WindowSetup(object):
     # handle any .txt upload file
     def uploadAction(self,event=None):
         """
-        Opens the upload dialog box and allows for the selection of .txt files.
-        shuttle the file to the import-file directory
+        handles the uploaded data file
         """
         self.check_for_upload()
         # open a txt file
@@ -251,14 +247,16 @@ class WindowSetup(object):
 
     def get_entries(self):
         """
-        This is the initial 'kick off' function when you click start to run the program
-        We start by grabbing all
-        All values are required to continue
+        This is the initial 'kick off' function when you click start
+        We start by grabbing all values to varify what they are
         """
         # grab entry values
         try:
             self.url_Entry_Val = self.url_Entry.get()
             self.body_Entry_Val = self.body_Var.get()
+            self.paragraph_Entry_Val = self.paragraph_Var.get()
+            self.divMax_Entry_Val = self.divMax_Var.get()
+            self.div_Entry_Val = self.div_Var.get()
             self.clear_lists()
             self.input_entries()
         except:
@@ -268,9 +266,9 @@ class WindowSetup(object):
         """
         Clear prior lists of data bool vals
         """
-        # clear url list values
+        # clear url list
         self.urls.clear()
-        # clear checkboxes list values
+        # clear checkboxes list
         self.checkboxes.clear()
 
     # organize entries
@@ -289,6 +287,21 @@ class WindowSetup(object):
             self.checkboxes.append(self.body_Entry_Val)
         else:
             self.checkboxes.append(False)
+        # [1] - array position
+        if self.paragraph_Entry_Val:
+            self.checkboxes.append(self.paragraph_Entry_Val)
+        else:
+            self.checkboxes.append(False)
+        # [2] - array position
+        if self.divMax_Entry_Val:
+            self.checkboxes.append(self.divMax_Entry_Val)
+        else:
+            self.checkboxes.append(False)
+        # [3] - array position
+        if self.div_Entry_Val:
+            self.checkboxes.append(self.div_Entry_Val)
+        else:
+            self.checkboxes.append(False)
         # print results to terminal
         print('I am printing the urls... ', self.urls)
         print('I am printing the checkboxes... ', self.checkboxes)
@@ -298,9 +311,6 @@ class WindowSetup(object):
 
     # validate url entries
     def validate_url_entry(self, urls):
-        """
-        validate that a url was entered
-        """
         print('validate url entry method... \n')
         for u in self.urls:
             if u:
@@ -312,9 +322,6 @@ class WindowSetup(object):
 
     # validate checkboxes
     def validate_checkboxes(self, checkboxes):
-        """
-        validate that a checkbox was selected
-        """
         print('validate checkboxes method... \n')
         for c in checkboxes:
             if c == True:
@@ -328,9 +335,6 @@ class WindowSetup(object):
 
     # validate uploads 
     def validate_upload(self, upload_item):
-        """
-        validate that a file was uploaded
-        """
         print('validate upload method... \n')
         if self.filename:
             self.upload_val = True
@@ -443,13 +447,9 @@ class Parser(object):
     def __init__(self, urls, checkboxes):
         self.urls = urls
         self.checkboxes = checkboxes
-        self.parse_list = ['body']
+        self.parse_list = ['h1', 'p', 'body', 'div']
 
     def parse_web(self):
-        """
-        Grab url entered and request the url
-        Create a Beautiful soup object of the url
-        """
         print('\n\nWe are in, parse all.... ')
         # get the url
         url_page = requests.get(self.urls)
@@ -459,12 +459,9 @@ class Parser(object):
         self.assign_label(soup)
 
     def assign_label(self, soup):
-        """
-        Create a list with the checkbox
-        """
         self.soup = soup
         list_to_parse = []
-        if self.checkboxes[0]:
+        if self.checkboxes[2]:
             list_to_parse.append('body')
         else:
             list_to_parse.append(None)
@@ -472,11 +469,10 @@ class Parser(object):
         self.parse_data(list_to_parse)
 
     def parse_data(self, list_to_parse):
-        """
-        find the body tag and everthing contained within it from the Beautiful soup object
-        """
         list_of_vals = list_to_parse
-        data = self.soup.find_all(list_of_vals[0])
+        print('\n\n\n\n\nPrint list_of_vals', list_of_vals)
+        html_max = self.soup.find_all(list_of_vals[0])
+        print('Printing html_max.... [0].... ', html_max)
 
         # erase file data
         self.erase_files()
@@ -484,14 +480,9 @@ class Parser(object):
         # parse data
         if list_of_vals[0] == 'body':
             print('\n\n\n\n ............. WE HAVE HTML MAX DATA')
-            self.html_max_data(data)
-        else:
-            print("We do not have the html data")
+            self.html_max_data(html_max)
 
     def erase_files(self):
-        """
-        erase scrape data file
-        """
         try:
             writeable_file = open('scrape-html-max/scrape.txt', 'w')
             writeable_file.close()
@@ -500,9 +491,6 @@ class Parser(object):
             print('\n\n Could not open file to erase')
 
     def html_max_data(self, data):
-        """
-        write data found from webpage to the scrape data file
-        """
         writeable_file = open('scrape-html-max/scrape.txt', 'a+')
         divider = []
         for d in data:
@@ -514,7 +502,7 @@ class Parser(object):
         self.compare_files_html_max()
 
     def compare_files_html_max(self):
-        html_file_max = 'body'
+        html_file_max = 'html_file_max'
         compare = ComparisonTool()
         compare.key_word_search(html_file_max)
 
@@ -585,18 +573,20 @@ class ComparisonTool(object):
     
 
     def check_filesize(self, file_val): 
-        """
-        Check stats of the scrape data file
-        """
         file_stats = None
         try:  
-            if file_val == 'body':
+            if file_val == 'html_file_max':
                 file_size = os.stat('scrape-html-max/scrape.txt')
                 file_stats = file_size.st_size
-                print(file_stats)
         except:
             print('something went wrong.')
         return file_stats
+
+    def times_occured(self):
+        pass
+
+    def write_final_report(self):
+        pass
 
   
 # Start GUI Engine
