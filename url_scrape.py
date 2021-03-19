@@ -28,11 +28,13 @@ https://docs.python.org/3.7/library/tkinter.html
 https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 """
 
+
 # Start tkinter.Tk()
 engine = Tk()
 
 class WindowSetup(object):
     def __init__(self, parent):
+
         """ 
         Set up the main tkinter instance
         Configure the main window, font, background color, size, title, threading and Queue instance
@@ -41,9 +43,11 @@ class WindowSetup(object):
         self.parent = parent 
         self.parent.configure(background='#013A70')
         self.myFont = font.Font(family='Helvetica', size=15)
+
         # window position
         self.parent.eval('tk::PlaceWindow %s center' % self.parent.winfo_pathname(self.parent.winfo_id()))
         self.parent.geometry("420x315") 
+
         # window title
         self.parent.title("Website Parser Comparision Tool - (WPCT)")
         self.queue = Queue()
@@ -62,22 +66,28 @@ class WindowSetup(object):
         self.checkboxes_val = False
         self.filename = None
         self.upload_val = False
+
         # text widget
         self.text = Text(self.parent)
+
         # styles widget
         self.f1_style = ttk.Style() 
+
         # styles config
         self.f1_style.configure('My.TFrame')
         self.f1 = ttk.Frame(self.parent, style='My.TFrame')
+
         # styles/config buttons
         self.f1_style.configure('TButton', foreground='#013A70', font=('Helvetica', 15))
         self.quit_Button = ttk.Button(self.parent, text="Quit ", command=self.parent.quit)
-        self.start_Button = ttk.Button(self.parent, text="Start", command=self.get_entries)
+        self.start_Button = ttk.Button(self.f1, text="Start", command=self.get_entries)
         self.clear_Button = ttk.Button(self.parent, text="Clear", command=self.destroy_f1_frame)
+
         # logo image
         self.image = Image.open('assets/ezgif-2-18770de0fea5.gif')
         self.photo = ImageTk.PhotoImage(self.image)
         self.img_label = Label(self.parent, image=self.photo, width=70)
+
         # label stuff
         self.url_Label_0 = ttk.Label(self.f1, text="              ")
         self.url_Label_1 = ttk.Label(self.f1, text="Enter URL To Parse ")
@@ -92,45 +102,58 @@ class WindowSetup(object):
         self.go_message = ttk.Label(self.f1, foreground="blue", text="Working on parsing... ")
         self.done_message = ttk.Label(self.f1, foreground="#006400", text="Finished parsing this page... ")        
         self.finished_message = ttk.Label(background="white", foreground="blue", text="Finished... ")  
+        self.clear_values_message = ttk.Label(self.f1, foreground="blue", text="Cleared the URL and any attached file... ") 
 
         # checkbox variables
         self.body_Var = BooleanVar()
+
         # set checkbox values
         self.body_Var.set(True)
+
         # add functionality to checkbox
         self.body_tag = ttk.Checkbutton(self.f1, text="Full HTML", variable=self.body_Var, onvalue=True)
 
         # main style grid
         self.f1.grid(column=0, row=0, sticky=(E, W, S, N))
+
         # blank line grid
         self.url_Label_0.grid(column=0, row=0, sticky=(N, E, S, W), padx=(10,10), pady=1)
+
         # url input and parse grid
         self.url_Label_1.grid(column=0, row=1, sticky=(N, E, S, W), padx=(10,1), pady=1)
         self.url_Entry.grid(column=0, row=2, sticky=(N, E, S, W), padx=(10,1), pady=1)
+
         # check boxes grid
         self.parse_data_Label.grid(column=0, row=4, sticky=(N, E, S, W), padx=(10,1), pady=(10,1))
-
         self.body_tag.grid(column=0, row=4, padx=(10,1), pady=(55,1), sticky=(W))
 
         # upload button grid
         self.upload_File.grid(column=0, row=7, sticky=(N, E, S, W), padx=(10,1), pady=(40,1))
-        self.upload_Button.grid(column=0, row=8, sticky=(E, W), padx=(10,130), pady=(1,1))
+        self.upload_Button.grid(column=0, row=8, sticky=(E, W, N, S), padx=(10,110), pady=(1,1))
+
         # error message and go message
-        self.done_message.grid(column=0, row=9, sticky=(N, S, E, W), pady=(20,1),padx=(10,1))
+        self.done_message.grid(column=0, row=9, sticky=(E, W), pady=(2,1),padx=(10,1))
         self.done_message.grid_remove()
-        self.error_message.grid(column=0, row=9, sticky=(N, S, E, W), pady=(20,1),padx=(10,1))
+        self.error_message.grid(column=0, row=9, sticky=(E, W), pady=(2,1),padx=(10,1))
         self.error_message.grid_remove()
-        self.go_message.grid(column=0, row=9, sticky=(N, S, E, W), pady=(20,1),padx=(10,1))
+        self.go_message.grid(column=0, row=9, sticky=(N, S, E, W), pady=(2,1),padx=(10,1))
         self.go_message.grid_remove()
+        self.clear_values_message.grid(column=0, row=9, sticky=(N, S, E, W), pady=(2,1),padx=(10,1))
+        self.clear_values_message.grid_remove()
+        
         # image grid
-        self.img_label.grid(column=1, row=0, sticky=(N), pady=20, padx=(1,1))
+        self.img_label.grid(column=2, row=0, sticky=(N, W), pady=(4, 1), padx=(5,1))
+        self.start_Button.grid(column=1, row=10, sticky=(E, W), pady=(40,10), padx=(20,10))
+
         # quit button grid
-        self.quit_Button.grid(column=1, row=0, sticky=(S), pady=(1,10), padx=(1,1))
-        self.start_Button.grid(column=1, row=0, sticky=(S), pady=(1,120), padx=(1,1))
-        self.clear_Button.grid(column=1, row=0, sticky=(S), pady=(1,90), padx=(1,1))
+        self.quit_Button.grid(column=2, row=0, sticky=(S), pady=(1,10), padx=(1,1))
+        self.clear_Button.grid(column=2, row=0, sticky=(S), pady=(1,40), padx=(1,1))
+
         # need to check what these do
         self.parent.columnconfigure(0, weight=1)# weight determines how much of the available space a row or column should occupy relative to the other rows or columns
         self.parent.rowconfigure(0, weight=1)
+        self.f1.columnconfigure(0, weight=2)# weight determines how much of the available space a row or column should occupy relative to the other rows or columns
+        self.f1.rowconfigure(0, weight=2)
 
     # second screen - load screen
     def load_screen(self):
@@ -183,6 +206,7 @@ class WindowSetup(object):
         if self.url_Entry:
             self.setup()
 
+
     def check_for_upload(self):
         """
         Check to see if an upload currently exists in the import-file directory
@@ -234,7 +258,7 @@ class WindowSetup(object):
             print('No file selected... ')
         return self.filename
 
-
+    
     def delete_last_upload(self, current, target):
         """
         deletes the last known uploaded data file
@@ -450,7 +474,7 @@ class Parser(object):
         Grab url entered and request the url
         Create a Beautiful soup object of the url
         """
-        print('\n\nWe are in, parse all.... ')
+        print('\n\n We are in, parse all.... ')
         # get the url
         url_page = requests.get(self.urls)
         print('\n\nPrinting the url we received... ', url_page)
@@ -483,7 +507,7 @@ class Parser(object):
 
         # parse data
         if list_of_vals[0] == 'body':
-            print('\n\n\n\n ............. WE HAVE HTML MAX DATA')
+            print('\n\n\n\n ............. WE HAVE HTML MAX DATA...................... \n\n')
             self.html_max_data(data)
         else:
             print("We do not have the html data")
@@ -492,10 +516,13 @@ class Parser(object):
         """
         erase scrape data file
         """
+        print('\n\n\n We are erasing files!!! ')
         try:
             writeable_file = open('scrape-html-max/scrape.txt', 'w')
             writeable_file.close()
             print('\n\n opened file to erase and closed file.... ')
+            writeable_file_2 = open('final-report/report.txt', 'w')
+            writeable_file_2.close()
         except:
             print('\n\n Could not open file to erase')
 
@@ -504,10 +531,10 @@ class Parser(object):
         write data found from webpage to the scrape data file
         """
         writeable_file = open('scrape-html-max/scrape.txt', 'a+')
-        divider = []
+        body = []
         for d in data:
-            divider.append(str(d))
-        for remove_tag in divider:
+            body.append(str(d))
+        for remove_tag in body:
             writeable_file.write(remove_tag)
         writeable_file.close()
         # scrub file 
@@ -516,7 +543,8 @@ class Parser(object):
     def compare_files_html_max(self):
         html_file_max = 'body'
         compare = ComparisonTool()
-        compare.key_word_search(html_file_max)
+        print('We are printingn self.urls before comparision tools......', self.urls, '\n\n\n')
+        compare.key_word_search(html_file_max, self.urls)
 
 
 # Compare Upload File to Parsed URL
@@ -526,10 +554,13 @@ class ComparisonTool(object):
     """
     def __init__(self):
         self.open_html_max= False
-        self.printstatement = 'Starting data clean... '
+        self.printstatement = 'Starting data clean in comparisontool... \n'
         print(self.printstatement)
 
-    def key_word_search(self, html_file_max):
+    def key_word_search(self, html_file_max, urls):
+        # check file size 
+        self.check_filesize(html_file_max)
+
         # create empty list for keyword file
         keywords = []
 
@@ -544,7 +575,6 @@ class ComparisonTool(object):
 
         # open scraped file ... split on new line
         scraped_word_file = open('scrape-html-max/scrape.txt').read().split('\n')
-
         # loop through keyword file and append to empty list
         for k in keyword_file:
             keywords.append(k)
@@ -561,24 +591,40 @@ class ComparisonTool(object):
 
         if not matched_words:
             print('There were no matched words')
+            self.create_final_report(None, urls)
         else:
-            self.matched_word_counter(matched_words)
+            self.matched_word_counter(matched_words, urls)
 
-
-    def matched_word_counter(self, matched_words):
+    def matched_word_counter(self, matched_words, urls):
         duplicate_dict={}
         for i in matched_words:
             duplicate_dict[i]=matched_words.count(i)
-        print(duplicate_dict)
-        self.create_final_report(duplicate_dict)
+        print('Printing duplicate dictionary......', duplicate_dict, '\n\n\n')
+        self.create_final_report(duplicate_dict, urls)
 
-    def create_final_report(self, duplicate_dict):
+    def create_final_report(self, duplicate_dict, urls):
         print('Creating final report!!! ')
-        # loop through matched words and write to report
-        with open('final-report/report.txt', 'w') as file:
-            file.write(json.dumps(duplicate_dict, indent=2))
-            file.write('\n')
-        
+        if duplicate_dict:
+            # loop through matched words and write to report
+            with open('final-report/report.txt', 'w') as file:
+                file.write('\n\n........... Report Start  ...........\n\n\n\n')  
+                file.write('Page URL: ' + '\n' + '---------' + '\n' + urls)
+                file.write('                        \n\n\n\n')
+                file.write('Here are the matched words:       \n')
+                file.write('--------------------------- \n\n')
+                file.write(json.dumps(duplicate_dict, indent=2))
+                file.write('                        \n\n\n\n')
+                file.write('\n........... Report END ...........')   
+                file.close()
+        elif not duplicate_dict:
+            print('\n\n\n we found no matches!\n')
+            # loop through matched words and write to report
+            with open('final-report/report.txt', 'w') as file:
+                file.write('\n\n........... Report Start  ...........\n\n\n\n')  
+                file.write("We found nothing for URL: " + '\n\n' + urls)
+                file.write('                        \n\n\n\n')
+                file.write('\n........... Report END ...........')   
+                file.close()        
         home = expanduser("~")
         src = 'final-report/report.txt'
         shutil.copy(src, home+'/Desktop')
@@ -593,7 +639,7 @@ class ComparisonTool(object):
             if file_val == 'body':
                 file_size = os.stat('scrape-html-max/scrape.txt')
                 file_stats = file_size.st_size
-                print(file_stats)
+                print('Here are the file stats.... ',file_stats)
         except:
             print('something went wrong.')
         return file_stats
