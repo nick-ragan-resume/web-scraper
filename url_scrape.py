@@ -79,9 +79,9 @@ class WindowSetup(object):
 
         # styles/config buttons
         self.f1_style.configure('TButton', foreground='#013A70', font=('Helvetica', 15))
-        self.quit_Button = ttk.Button(self.parent, text="Quit ", command=self.parent.quit)
-        self.start_Button = ttk.Button(self.f1, text="Start", command=self.get_entries)
-        self.clear_Button = ttk.Button(self.parent, text="Clear", command=self.destroy_f1_frame)
+        self.quit_Button = ttk.Button(self.parent, width=5, text="Quit ", command=self.parent.quit)
+        self.start_Button = ttk.Button(self.f1, width=5, text="Start", command=self.get_entries)
+        self.clear_Button = ttk.Button(self.parent, width=5, text="Clear", command=self.destroy_f1_frame)
 
         # logo image
         self.image = Image.open('assets/ezgif-2-18770de0fea5.gif')
@@ -142,7 +142,7 @@ class WindowSetup(object):
         self.clear_values_message.grid_remove()
         
         # image grid
-        self.img_label.grid(column=2, row=0, sticky=(N, W), pady=(4, 1), padx=(5,1))
+        self.img_label.grid(column=2, row=0, sticky=(N, W), pady=(0,0), padx=(0,0))
         self.start_Button.grid(column=1, row=10, sticky=(E, W), pady=(40,10), padx=(20,10))
 
         # quit button grid
@@ -476,14 +476,20 @@ class Parser(object):
         """
         print('\n\n We are in, parse all.... ')
         # get the url
-        url_page = requests.get(self.urls)
-        print('\n\nPrinting the url we received... ', url_page)
-        # Get page content
-        soup = BeautifulSoup(url_page.content, 'html.parser')
-        print('\n\n Removing header tags from body of page') 
-        soup.header.decompose()
-        soup.footer.decompose()
-        self.assign_label(soup)
+        try:
+            url_page = requests.get(self.urls)
+            print('\n\nPrinting the url we received... ', url_page)
+            # Get page content
+            soup = BeautifulSoup(url_page.content, 'html.parser')
+            print('\n\n Removing header tags from body of page') 
+            soup.header.decompose()
+            soup.footer.decompose()
+            self.assign_label(soup)
+        except:
+            print('Error --- this is not a URL')
+            error = 'ERROR: - This is not a correct URL'
+            c = ComparisonTool()
+            c.create_final_report(None, error)
 
     def assign_label(self, soup):
         """
@@ -590,8 +596,10 @@ class ComparisonTool(object):
         # loop through scraped file array
         for scrape_data in scraped_words:
             for key_data in keywords:
-                results = re.finditer(rf"{key_data}(?=[ !?.,])", scrape_data, re.IGNORECASE)
+                #finditer will find every occurance of the word. The lookahead will require one of the set characters to be behind the word
+                results = re.finditer(rf"(?<=[ >]){key_data}(?=[ !?.,])", scrape_data, re.IGNORECASE)
                 for r in results:
+                    #This will grab all matches and capitalize them
                     matched_words.append(r[0].capitalize())
 
 
@@ -617,9 +625,12 @@ class ComparisonTool(object):
                 file.write('                        \n\n\n\n')
                 file.write('Matched Word        \n')
                 file.write('--------------------------------------------------  \n\n')
-                file.write('\n\n')
                 file.write(json.dumps(duplicate_dict, indent=2))
                 file.write('                        \n\n\n\n')
+                file.write('DISCLAIMER\n')
+                file.write('-------------')
+                file.write('\n***\nThese words are matches within the body copy of the web-page excluding \nanything in <header></header> and <footer></footer> tags.\n***')
+                file.write('\n\n')
                 file.close()
         elif not duplicate_dict:
             print('\n\n\n we found no matches!\n')

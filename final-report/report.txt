@@ -1,33 +1,6 @@
-Page URL: 
----------
-https://www.mutualofomaha.com/medicare-supplement-insurance/basics                        
+We found nothing for URL: 
 
-
-
-Matched Word        
---------------------------------------------------  
-
-Medicare
-Medicare supplement insurance
-Coinsurance
-Original medicare
-Premium
-Deductible
-Pre-existing condition
-Medicaid
-Medicare plan
-
-{
-  "Medicare": 43,
-  "Medicare supplement insurance": 15,
-  "Coinsurance": 3,
-  "Original medicare": 4,
-  "Premium": 2,
-  "Deductible": 1,
-  "Pre-existing condition": 1,
-  "Medicaid": 1,
-  "Medicare plan": 1
-}                        
+This is not a correct URL                        
 
 
 
