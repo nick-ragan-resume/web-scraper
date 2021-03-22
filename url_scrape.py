@@ -480,6 +480,9 @@ class Parser(object):
         print('\n\nPrinting the url we received... ', url_page)
         # Get page content
         soup = BeautifulSoup(url_page.content, 'html.parser')
+        print('\n\n Removing header tags from body of page') 
+        soup.header.decompose()
+        soup.footer.decompose()
         self.assign_label(soup)
 
     def assign_label(self, soup):
@@ -500,7 +503,8 @@ class Parser(object):
         find the body tag and everthing contained within it from the Beautiful soup object
         """
         list_of_vals = list_to_parse
-        data = self.soup.find_all(list_of_vals[0])
+        data = self.soup.find_all(list_of_vals[0])# finding all within body tag --- list_of_vals[0] is 'body'
+        
 
         # erase file data
         self.erase_files()
@@ -586,8 +590,10 @@ class ComparisonTool(object):
         # loop through scraped file array
         for scrape_data in scraped_words:
             for key_data in keywords:
-                if re.search(rf"(?<=[>]){key_data}|{key_data}(?=[< .,!?])", scrape_data, re.IGNORECASE):
-                    matched_words.append(key_data)
+                results = re.finditer(rf"{key_data}(?=[ !?.,])", scrape_data, re.IGNORECASE)
+                for r in results:
+                    matched_words.append(r[0].capitalize())
+
 
         if not matched_words:
             print('There were no matched words')
@@ -607,23 +613,20 @@ class ComparisonTool(object):
         if duplicate_dict:
             # loop through matched words and write to report
             with open('final-report/report.txt', 'w') as file:
-                file.write('\n\n........... Report Start  ...........\n\n\n\n')  
                 file.write('Page URL: ' + '\n' + '---------' + '\n' + urls)
                 file.write('                        \n\n\n\n')
-                file.write('Here are the matched words:       \n')
-                file.write('--------------------------- \n\n')
+                file.write('Matched Word        \n')
+                file.write('--------------------------------------------------  \n\n')
+                file.write('\n\n')
                 file.write(json.dumps(duplicate_dict, indent=2))
                 file.write('                        \n\n\n\n')
-                file.write('\n........... Report END ...........')   
                 file.close()
         elif not duplicate_dict:
             print('\n\n\n we found no matches!\n')
             # loop through matched words and write to report
             with open('final-report/report.txt', 'w') as file:
-                file.write('\n\n........... Report Start  ...........\n\n\n\n')  
                 file.write("We found nothing for URL: " + '\n\n' + urls)
                 file.write('                        \n\n\n\n')
-                file.write('\n........... Report END ...........')   
                 file.close()        
         home = expanduser("~")
         src = 'final-report/report.txt'
