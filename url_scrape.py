@@ -46,8 +46,13 @@ class WindowSetup(object):
 
         # window title
         self.parent.title("Website Parser Comparision Tool - (WPCT)")
-        self.queue = Queue()
-        self.threads = 4
+        SetUp(self.parent)
+
+class SetUp():
+    def __init__(self, parent):
+        self.parent = parent
+        print('We are in the SetUp class')
+        self.myFont = font.Font(family='Helvetica', size=15)
         self.setup()
 
     def setup(self):
@@ -414,58 +419,34 @@ class WindowSetup(object):
         """
         This will confirm we have at least one value per entry item
         """
+        message = Messaging(self.error_message, self.go_message, self.done_message, self.f1)
         print('validating all method... \n')
         if self.url_data and self.checkboxes_val and self.upload_val:
+            print('We have all data')
             # queue messaging jobs
-            self.job_list()
+            TaskProcessor(message, self.run_parser)
         else:
             print('We are missing some stuff!!!! ')
             print('printing the val of the url... ', self.url_data)
             print('printing the val of the checkbox... ',self.checkboxes_val)
             print('printing the val of the upload... ',self.upload_val)
-            self.supply_err_message()
+            message.supply_err_message()
 
-    ###################################################################
-    ###### JOB THREAD AND QUEUE         #############################
-    ###############################################################
+    ################### start parsing urls
+    def run_parser(self):
+        self.start_url_parsers()
+        
+    def start_url_parsers(self):
+        print('ARRAY OF CHECKBOXES... ', self.checkboxes, '\n')
+        parse = Parser(self.urls[0], self.checkboxes)
+        return parse.parse_web()
 
-    # process queues 
-    def processor(self):
-        if self.queue.empty() == True:
-            print("the Queue is empty!")
-            sys.exit(1)
-        try:
-            # get all jobs that are in queues 
-            job = self.queue.get()
-            print("I'm operating on job item: %s" %(job))
-            self.queue.task_done()
-            self.supply_done_message()
-        except:
-            print("Failed to operate on job")
-
-    # queue threaded jobs
-    def job_list(self):
-        # create array of [message method and run method] - make two different queues - one for messages and one for parsing
-        self.jobs = [self.supply_go_message(), self.run_parser()]
-        for job in self.jobs:
-            print('inserting jobs into queue: ', job)
-            self.queue.put(job)
-            # run threader
-            self.start_job_processor()
-
-    # start jobs in order - this will create a thread per job
-    def start_job_processor(self):
-        for num in range(self.threads):
-            print('We are printing num', num)
-            # call the processor for threading
-            th = Thread(target=self.processor)
-            th.setDaemon(True)
-            th.start()
-
-    #################################################
-    ###### END JOB QUEUE and THREADING      #############
-    ###########################################################
-
+class Messaging():
+    def __init__(self, err_msg, go_msg, done_msg, f1):
+        self.error_message = err_msg
+        self.go_message = go_msg
+        self.done_message = done_msg
+        self.f1 = f1
     ###########################################################
     # Messaging that is queued              #############
     ##################################################
@@ -498,16 +479,58 @@ class WindowSetup(object):
     #############################################################
     # End Messages                   ################################
     #####################################################################
+    ###################################################################
+    ###### JOB THREAD AND QUEUE         #############################
+    ###############################################################
 
-    ################### start parsing urls
-    def run_parser(self):
-        self.start_url_parsers()
-        
-    def start_url_parsers(self):
-        print('ARRAY OF CHECKBOXES... ', self.checkboxes, '\n')
-        parse = Parser(self.urls[0], self.checkboxes)
-        return parse.parse_web()
-      
+class TaskProcessor():
+    print('In the task processing class')
+    def __init__(self, msg, job):
+        self.messages = msg
+        self.jobs = job
+        self.queue = Queue()
+        self.threads = 4
+        self.job_list()
+
+    # process queues 
+    def processor(self):
+        if self.queue.empty() == True:
+            print("\nthe Queue is empty!")
+            sys.exit(1)
+        try:
+            # get all jobs that are in queues 
+            job = self.queue.get()
+            print("\nI'm operating on job item: %s" %(job))
+            self.queue.task_done()
+            self.messages.supply_done_message()
+        except:
+            print("Failed to operate on job")
+
+    # queue threaded jobs
+    def job_list(self):
+        run_jobs = [self.messages.supply_go_message(), self.jobs()]
+        for job in run_jobs:
+            # create array of [message method and run method] - make two different queues - one for messages and one for parsing
+            print('\nInserting messaging and jobs into queue ', job)
+            self.queue.put(job)
+            # run threader
+            self.start_job_processor()
+
+    # start jobs in order - this will create a thread per job
+    def start_job_processor(self):
+        for num in range(self.threads):
+            print('\nWe are printing num', num)
+            # call the processor for threading
+            th = Thread(target=self.processor)
+            th.setDaemon(True)
+            th.start()
+
+    #################################################
+    ###### END JOB QUEUE and THREADING      #############
+    ###########################################################
+
+
+
 # Passing something to class
 class Parser(object):
     def __init__(self, urls, checkboxes):
@@ -702,13 +725,28 @@ class ComparisonTool(object):
             print('something went wrong.')
         return file_stats
 
-  
-# Start GUI Engine
-def main():
-    eng = WindowSetup(engine)
-    eng.load_screen()
-    engine.mainloop()
- 
- 
+
+
+
+# Factory Function
+def Factory(show_window=None):
+    """Factory Method"""
+    display = {
+        # "HelpScreen": HelpFrame,
+        # "HomeScreen": HomeFrame,
+        # "LoadScreen": LoadScreen,
+        "WindowSetup": WindowSetup
+    }
+    print('returning factory selection')
+    return display[show_window]
+
+# Select classes to run
+def app_engine(class_selector):
+    # this will select windows from the factory class
+    pass
+
+
+# Loop the program
 if __name__ == '__main__':
-    main()
+    main_window = Factory("WindowSetup")(engine)
+    engine.mainloop()

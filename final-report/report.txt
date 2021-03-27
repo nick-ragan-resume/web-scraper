@@ -1,6 +1,6 @@
 Page URL: 
 ---------
-https://www.mutualofomaha.com/medicare-solutions/medicare-basics                        
+https://stackoverflow.com/questions/30005672/passing-a-class-to-another-class-python                        
 
 
 
@@ -8,13 +8,7 @@ Matched Word
 --------------------------------------------------  
 
 {
-  "Medicare": 75,
-  "Medicare supplement insurance": 13,
-  "Deductible": 3,
-  "Premium": 12,
-  "Original medicare": 4,
-  "Out-of-pocket costs": 1,
-  "Coinsurance": 3
+  "Developers": 1
 }                        
 
 
