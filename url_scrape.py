@@ -46,7 +46,8 @@ class WindowSetup(object):
 
         # window title
         self.parent.title("Website Parser Comparision Tool - (WPCT)")
-        SetUp(self.parent)
+        LoadingScreen(self.parent)
+        Factory("SetUp")(self.parent)
 
 class SetUp():
     def __init__(self, parent):
@@ -83,7 +84,7 @@ class SetUp():
         self.quit_Button = ttk.Button(self.parent, width=5, text="Quit ", command=self.parent.quit)
         self.start_Button = ttk.Button(self.f1, width=5, text="Start", command=self.get_entries)
         self.clear_Button = ttk.Button(self.parent, width=5, text="Clear", command=self.destroy_f1_frame)
-        self.help_Button = ttk.Button(self.parent, width=5, text="Help", command=self.help_screen)
+        self.help_Button = ttk.Button(self.parent, width=5, text="Help", command=Factory("HelpScreen")(self.parent).help_screen)
 
         # logo image
         self.image = Image.open('assets/ezgif-2-18770de0fea5.gif')
@@ -157,98 +158,9 @@ class SetUp():
         self.parent.rowconfigure(0, weight=1)
         self.f1.columnconfigure(0, weight=2)# weight determines how much of the available space a row or column should occupy relative to the other rows or columns
         self.f1.rowconfigure(0, weight=2)
-
-
-    # second screen - load screen
-    def help_screen(self):
-        """
-        This is the initial load window --- maybe separate this and put a load bar in the future
-        """
-        # init top level frame/window
-        self.help = Toplevel(self.parent) 
-        # frame/window size
-        self.help.geometry("420x420")
-        # get frame/window width/height
-        windowWidth = self.help.winfo_reqwidth()
-        windowHeight = self.help.winfo_reqheight()
-        # confirm frame/window width/height
-        print("Width",windowWidth,"Height",windowHeight)
-        # calculate center of frame/window width/height
-        positionRight = int(self.help.winfo_screenwidth()/2 - windowWidth/2)
-        positionDown = int(self.help.winfo_screenheight()/2 - windowHeight/2)
-        # positions frame/window
-        self.help.geometry("+{}+{}".format(positionRight, positionDown))
-        # init percentage of load value
-        self.percentage = 0
-        # load screen text
-        self.title2 = Label(self.help, text=f"How do you use this URL scraper?", foreground="black",pady=10, padx=1)    
-        self.title2.pack()
-        self.text1 = Label(self.help, text=f"\
-        1. Copy a URL from any site you are interested in and paste  \n\
-        it into the ~Enter URL To Parse~ input box.\n\n\
-        2. Make sure the Full HTML checkbox is selected. This will \n\
-        search each site from the opening body tag to the opening \n\
-        footer tag \n\n\
-        3. Upload the .txt data file. This needs to be a list of \n\
-        words with a space between each word. \n\n\
-        * Important * \n\
-        -------------\n\
-        The clear button will clear the URL entered and \n\
-        the last .txt file uploaded\n\n\
-        ** What can this tool do? ** \n\
-        -----------------------------\n\
-        This tool will request the html from the url \n\
-        you entered and search for the keywords from \n\
-        the .txt file that you uploaded in the requested html\n", foreground="black", width=70, anchor="w", justify=LEFT)
-        self.text1.pack()
-        self.button1 = ttk.Button(self.help, text="Close", command=self.close_help)
-        self.button1.pack()
         
     
-    def close_help(self):
-        self.help.destroy()
-        
 
-    # second screen - load screen
-    def load_screen(self):
-        """
-        This is the initial load window --- maybe separate this and put a load bar in the future
-        """
-        # init top level frame/window
-        self.a = Toplevel(self.parent) 
-        self.a.configure(background='#013A70')
-        # frame/window size
-        self.a.geometry("420x315")
-        # get frame/window width/height
-        windowWidth = self.a.winfo_reqwidth()
-        windowHeight = self.a.winfo_reqheight()
-        # confirm frame/window width/height
-        print("Width",windowWidth,"Height",windowHeight)
-        # calculate center of frame/window width/height
-        positionRight = int(self.a.winfo_screenwidth()/2 - windowWidth/2)
-        positionDown = int(self.a.winfo_screenheight()/2 - windowHeight/2)
-        # positions frame/window
-        self.a.geometry("+{}+{}".format(positionRight, positionDown))
-        # init percentage of load value
-        self.percentage = 0
-        # load screen text
-        self.title = Label(self.a, text=f"Loading...{self.percentage}", background="#013A70", foreground="white", pady=200, padx=200)
-        self.title.pack()
-        # call loading function
-        self.loading()
-
-    # loading calculator
-    def loading(self):
-        """
-        Length of time load shall last
-        """
-        self.percentage += 10
-        self.title.config(text=f"Loading... {self.percentage}", background="#013A70")
-        if self.percentage == 100:
-            self.a.destroy()
-            return
-        else:
-            engine.after(100,self.loading)  
 
     # clear url value
     def destroy_f1_frame(self):
@@ -275,6 +187,7 @@ class SetUp():
                     if filename:
                         print("Printing filename.... ",filename)
                         num_dirs.append(filename)
+
 
     # ask if they want to use prior upload and skip upload action
     def rename_upload(self):
@@ -424,7 +337,7 @@ class SetUp():
         if self.url_data and self.checkboxes_val and self.upload_val:
             print('We have all data')
             # queue messaging jobs
-            TaskProcessor(message, self.run_parser)
+            MessageTaskProcessor(message, self.run_parser)
         else:
             print('We are missing some stuff!!!! ')
             print('printing the val of the url... ', self.url_data)
@@ -441,15 +354,115 @@ class SetUp():
         parse = Parser(self.urls[0], self.checkboxes)
         return parse.parse_web()
 
+
+class HelpScreen():
+
+    def __init__(self, parent):
+        self.parent = parent
+    
+    # second screen - load screen
+    def help_screen(self):
+        """
+        This is the initial load window --- maybe separate this and put a load bar in the future
+        """
+        # init top level frame/window
+        self.help = Toplevel(self.parent) 
+        # frame/window size
+        self.help.geometry("420x420")
+        # get frame/window width/height
+        windowWidth = self.help.winfo_reqwidth()
+        windowHeight = self.help.winfo_reqheight()
+        # confirm frame/window width/height
+        print("Width",windowWidth,"Height",windowHeight)
+        # calculate center of frame/window width/height
+        positionRight = int(self.help.winfo_screenwidth()/2 - windowWidth/2)
+        positionDown = int(self.help.winfo_screenheight()/2 - windowHeight/2)
+        # positions frame/window
+        self.help.geometry("+{}+{}".format(positionRight, positionDown))
+        # init percentage of load value
+        self.percentage = 0
+        # load screen text
+        self.title2 = Label(self.help, text=f"How do you use this URL scraper?", foreground="black",pady=10, padx=1)    
+        self.title2.pack()
+        self.text1 = Label(self.help, text=f"\
+        1. Copy a URL from any site you are interested in and paste  \n\
+        it into the ~Enter URL To Parse~ input box.\n\n\
+        2. Make sure the Full HTML checkbox is selected. This will \n\
+        search each site from the opening body tag to the opening \n\
+        footer tag \n\n\
+        3. Upload the .txt data file. This needs to be a list of \n\
+        words with a space between each word. \n\n\
+        * Important * \n\
+        -------------\n\
+        The clear button will clear the URL entered and \n\
+        the last .txt file uploaded\n\n\
+        ** What can this tool do? ** \n\
+        -----------------------------\n\
+        This tool will request the html from the url \n\
+        you entered and search for the keywords from \n\
+        the .txt file that you uploaded in the requested html\n", foreground="black", width=70, anchor="w", justify=LEFT)
+        self.text1.pack()
+        self.button1 = ttk.Button(self.help, text="Close", command=self.close_help)
+        self.button1.pack()
+
+    def close_help(self):
+        self.help.destroy()
+
+
+class LoadingScreen():
+
+    def __init__(self, parent):
+        self.parent = parent
+        self.load_screen()
+
+    # second screen - load screen
+    def load_screen(self):
+        """
+        This is the initial load window --- maybe separate this and put a load bar in the future
+        """
+        # init top level frame/window
+        self.a = Toplevel(self.parent) 
+        self.a.configure(background='#013A70')
+        # frame/window size
+        self.a.geometry("420x315")
+        # get frame/window width/height
+        windowWidth = self.a.winfo_reqwidth()
+        windowHeight = self.a.winfo_reqheight()
+        # confirm frame/window width/height
+        print("Width",windowWidth,"Height",windowHeight)
+        # calculate center of frame/window width/height
+        positionRight = int(self.a.winfo_screenwidth()/2 - windowWidth/2)
+        positionDown = int(self.a.winfo_screenheight()/2 - windowHeight/2)
+        # positions frame/window
+        self.a.geometry("+{}+{}".format(positionRight, positionDown))
+        # init percentage of load value
+        self.percentage = 0
+        # load screen text
+        self.title = Label(self.a, text=f"Loading...{self.percentage}", background="#013A70", foreground="white", pady=200, padx=200)
+        self.title.pack()
+        # call loading function
+        self.loading()
+
+    # loading calculator
+    def loading(self):
+        """
+        Length of time load shall last
+        """
+        self.percentage += 10
+        self.title.config(text=f"Loading... {self.percentage}", background="#013A70")
+        if self.percentage == 100:
+            self.a.destroy()
+            return
+        else:
+            engine.after(100,self.loading)  
+
+
 class Messaging():
     def __init__(self, err_msg, go_msg, done_msg, f1):
         self.error_message = err_msg
         self.go_message = go_msg
         self.done_message = done_msg
         self.f1 = f1
-    ###########################################################
-    # Messaging that is queued              #############
-    ##################################################
 
     def supply_go_message(self):
         self.error_message.grid_remove()
@@ -476,14 +489,8 @@ class Messaging():
         self.error_message.grid_remove()
         self.f1.update()        
 
-    #############################################################
-    # End Messages                   ################################
-    #####################################################################
-    ###################################################################
-    ###### JOB THREAD AND QUEUE         #############################
-    ###############################################################
 
-class TaskProcessor():
+class MessageTaskProcessor():
     print('In the task processing class')
     def __init__(self, msg, job):
         self.messages = msg
@@ -524,11 +531,6 @@ class TaskProcessor():
             th = Thread(target=self.processor)
             th.setDaemon(True)
             th.start()
-
-    #################################################
-    ###### END JOB QUEUE and THREADING      #############
-    ###########################################################
-
 
 
 # Passing something to class
@@ -732,9 +734,9 @@ class ComparisonTool(object):
 def Factory(show_window=None):
     """Factory Method"""
     display = {
-        # "HelpScreen": HelpFrame,
-        # "HomeScreen": HomeFrame,
-        # "LoadScreen": LoadScreen,
+        "HelpScreen": HelpScreen,
+        "SetUp": SetUp,
+        "LoadScreen": LoadingScreen,
         "WindowSetup": WindowSetup
     }
     print('returning factory selection')
