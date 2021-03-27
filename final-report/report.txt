@@ -1,6 +1,28 @@
-We found nothing for URL: 
+Page URL: 
+---------
+https://www.mutualofomaha.com/medicare-solutions/medicare-basics                        
 
-This is not a correct URL                        
 
 
+Matched Word        
+--------------------------------------------------  
+
+{
+  "Medicare": 75,
+  "Medicare supplement insurance": 13,
+  "Deductible": 3,
+  "Premium": 12,
+  "Original medicare": 4,
+  "Out-of-pocket costs": 1,
+  "Coinsurance": 3
+}                        
+
+
+
+DISCLAIMER
+-------------
+***
+These words are matches within the body copy of the web-page excluding 
+anything in <header></header> and <footer></footer> tags.
+***
 

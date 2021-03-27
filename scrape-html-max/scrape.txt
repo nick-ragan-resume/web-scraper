@@ -1,1383 +1,456 @@
-<body class="question-page unified-theme">
-<div id="notify-container"></div>
-<div id="custom-header"></div>
-
-<script>
-        StackExchange.ready(function () { StackExchange.topbar.init(); });
-StackExchange.scrollPadding.setPaddingTop(50, 10);    </script>
-<div class="bg-black-025 bs-sm bt bc-black-100 ps-fixed l0 r0 b0 z-nav js-dismissable-hero" data-campaign-name="stk">
-<div class="grid wmx12 mx-auto px8 py12 jc-space-between ai-center lg:pl24 lg:pr24 md:fd-column sm:fd-row sm:ai-center">
-<div class="grid--cell fs-body2 fl1 mr16 md:mr0 md:mb12 sm:mb0 sm:mr16">
-<p class="mb0"><strong>Join Stack Overflow</strong> to learn, share knowledge, and build your career.</p>
+<body class="u-bgWhite Section-medicareSolutions Page-medicareSolutions-medicareBasics browser-webp--no">
+<div id="top"></div>
+<noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-NTQLMT" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+<div class="SkipLink"><a href="#mainContent">Skip to Main Content</a></div>
+<div class="SiteAlerts">
+<div class="Alert Alert--yellow Alert--unsupportedBrowser">
+<div class="Container">
+<div class="Alert-message">
+<div class="Message-icon">
+<svg height="20px" version="1.1" viewbox="0 0 20 20" width="20px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g fill="none" fill-rule="evenodd" id="mock-ups" stroke="none" stroke-width="1">
+<g id="alert-technical-banner" transform="translate(-613.000000, -9.000000)">
+<g id="Group-2" transform="translate(614.000000, 7.000000)">
+<g id="Group-7" transform="translate(0.000000, 3.000000)">
+<path d="M6.66666667e-05,9.0013 C6.66666667e-05,4.02963333 4.02906667,-3.33333333e-05 8.99873333,-3.33333333e-05 C13.9717333,-3.33333333e-05 18.0000667,4.02963333 18.0000667,9.0013 C18.0000667,13.9716333 13.9717333,18.0026333 8.99873333,18.0026333 C4.02906667,18.0026333 6.66666667e-05,13.9716333 6.66666667e-05,9.0013 Z" id="Stroke-1" stroke="#444444" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M9.00006667,13.9069 L9.00006667,7.82223333" id="Stroke-3" stroke="#444444" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M8.3334,4.59473333 C8.3334,4.2274 8.63206667,3.92906667 9.00006667,3.92906667 C9.36773333,3.92906667 9.66673333,4.2274 9.66673333,4.59473333 C9.66673333,4.96373333 9.36773333,5.2624 9.00006667,5.2624 C8.63206667,5.2624 8.3334,4.96373333 8.3334,4.59473333" fill="#444444" id="Fill-5"></path>
+</g>
+</g>
+</g>
+</g>
+</svg>
 </div>
-<div class="grid gs8 gsx ai-center sm:jc-space-between" id="openid-buttons">
-<a class="grid--cell s-btn s-btn__filled ws-nowrap" data-ga='["sign up","Sign Up Navigation","Question Hero",null,null]' href="/users/signup?ssrc=hero&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f60469202%2funable-to-install-tkinter-with-pyenv-pythons-on-macos%2f60469203" rel="nofollow">
-<span class="sm:d-none">Sign up with email</span>
-<span class="d-none sm:d-inline">Sign up</span>
-</a>
-<button class="grid--cell ws-nowrap s-btn s-btn__icon s-btn__google ta-center js-major-provider sm:d-none" data-ga='["sign up","Sign Up Started - Google","Question Hero",null,null]' data-oauthserver="https://accounts.google.com/o/oauth2/auth" data-oauthversion="2.0" data-provider="google">
-<svg aria-hidden="true" class="native svg-icon iconGoogle" height="18" viewbox="0 0 18 18" width="18"><path d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 002.38-5.88c0-.57-.05-.66-.15-1.18z" fill="#4285F4"></path><path d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 01-7.18-2.54H1.83v2.07A8 8 0 008.98 17z" fill="#34A853"></path><path d="M4.5 10.52a4.8 4.8 0 010-3.04V5.41H1.83a8 8 0 000 7.18l2.67-2.07z" fill="#FBBC05"></path><path d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 001.83 5.4L4.5 7.49a4.77 4.77 0 014.48-3.3z" fill="#EA4335"></path></svg>
-                    Sign up with Google
-                </button>
-<button class="grid--cell ws-nowrap s-btn s-btn__icon s-btn__github ta-center js-major-provider sm:d-none" data-ga='["sign up","Sign Up Started - GitHub","Question Hero",null,null]' data-oauthserver="https://github.com/login/oauth/authorize" data-oauthversion="2.0" data-provider="github">
-<svg aria-hidden="true" class="svg-icon iconGitHub" height="18" viewbox="0 0 18 18" width="18"><path d="M9 1a8 8 0 00-2.53 15.59c.4.07.55-.17.55-.38l-.01-1.49c-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 014 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.2c0 .21.15.46.55.38A8.01 8.01 0 009 1z" fill="#010101"></path></svg>
-                    Sign up with GitHub
-                </button>
-<button class="grid--cell ws-nowrap s-btn s-btn__icon s-btn__facebook ta-center js-major-provider sm:d-none" data-ga='["sign up","Sign Up Started - Facebook","Question Hero",null,null]' data-oauthserver="https://www.facebook.com/v2.0/dialog/oauth" data-oauthversion="2.0" data-provider="facebook">
-<svg aria-hidden="true" class="svg-icon iconFacebook" height="18" viewbox="0 0 18 18" width="18"><path d="M3 1a2 2 0 00-2 2v12c0 1.1.9 2 2 2h12a2 2 0 002-2V3a2 2 0 00-2-2H3zm6.55 16v-6.2H7.46V8.4h2.09V6.61c0-2.07 1.26-3.2 3.1-3.2.88 0 1.64.07 1.87.1v2.16h-1.29c-1 0-1.19.48-1.19 1.18V8.4h2.39l-.31 2.42h-2.08V17h-2.5z" fill="#4167B2"></path></svg>
-                    Sign up with Facebook
-                </button>
-<button class="grid--cell s-btn s-btn__muted s-btn__icon px8 js-dismiss" title="Dismiss"><svg aria-hidden="true" class="svg-icon iconClear" height="18" viewbox="0 0 18 18" width="18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9 15 4.41z"></path></svg></button>
-</div>
-<form action="/users/signup?ssrc=hero&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f60469202%2funable-to-install-tkinter-with-pyenv-pythons-on-macos%2f60469203" id="login-form" method="POST">
-<input name="fkey" type="hidden" value="e736c970ecfc64365580a5251b6b84bb4999eb903553e5614aed923cea083ce4"/>
-<input name="ssrc" type="hidden" value="">
-<input id="oauth_version" name="oauth_version" type="hidden"/>
-<input id="oauth_server" name="oauth_server" type="hidden"/>
-<div id="se-login-fields">
-<input name="legalLinksShown" type="hidden" value="0"/>
-</div>
-</input></form>
-<script>
-            StackExchange.ready(function () {
-                StackExchange.InlineAuth.init();
-            })
-        </script>
+<p>Your web browser is not a supported version and may not be fully compatible with this website</p>
 </div>
 </div>
-<script>
-    StackExchange.ready(function () {
-        StackExchange.Hero.init("stk", "a");
-
-        var location = 0;
-        if ($("body").hasClass("questions-page")) {
-            location = 1;
-        } else if ($("body").hasClass("question-page")) {
-            location = 1;
-        } else if ($("body").hasClass("faq-page")) {
-            location = 5;
-        } else if ($("body").hasClass("home-page")) {
-            location = 3;
-        }
-
-        $('.js-cta-button').click(function () {
-            StackExchange.using("gps", function () {
-                StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
-            });
-        });
-
-        // TODO: we should review the class names and whatnot in use here. Older heroes use id selectors, the newer
-        // sticky question hero on SO has a .js-dismiss class instead, but it's apparently not used anywhere... 
-        // It's not great. Ideally we'd have a set of classes in the partials above that would correspond to 
-        // the behaviours we want here in a more clear way. 
-
-        // sticky question-page hero at the bottom of the page on SO
-        $('.js-dismiss').on('click', function () {
-            StackExchange.using("gps", function () {
-                StackExchange.gps.track("hero.action", { hero_action_type: "close", location: location }, true);
-            });
-            StackExchange.Hero.dismiss();
-            $(".js-dismissable-hero").fadeOut("fast");
-        });
-    });
-</script>
-<div class="container">
-<div class="left-sidebar js-pinned-left-sidebar ps-relative" data-is-here-when="md lg" id="left-sidebar">
-<div class="left-sidebar--sticky-container js-sticky-leftnav">
-<nav role="navigation">
-<ol class="nav-links">
-<li class="">
-<a aria-controls="" class="pl8 js-gps-track nav-links--link" data-controller="" data-gps-track="top_nav.click({is_current:false, location:2, destination:8})" data-s-popover-placement="right" href="/">
-<div class="grid ai-center">
-<div class="grid--cell truncate">
-                            Home
-                        </div>
 </div>
-</a>
-</li>
-<li>
-<ol class="nav-links">
-<li class="fs-fine tt-uppercase ml8 mt16 mb4 fc-light">Public</li>
-<li class="youarehere">
-<a aria-controls="" class="pl8 js-gps-track nav-links--link -link__with-icon" data-controller="" data-gps-track="top_nav.click({is_current:true, location:2, destination:1})" data-s-popover-placement="right" href="/questions" id="nav-questions">
-<svg aria-hidden="true" class="svg-icon iconGlobe" height="18" viewbox="0 0 18 18" width="18"><path d="M9 1a8 8 0 100 16A8 8 0 009 1zM8 15.32a6.4 6.4 0 01-5.23-7.75L7 11.68v.8c0 .88.12 1.32 1 1.32v1.52zm5.72-2c-.2-.66-1-1.32-1.72-1.32h-1v-2c0-.44-.56-1-1-1H6V7h1c.44 0 1-.56 1-1V5h2c.88 0 1.4-.72 1.4-1.6v-.33a6.4 6.4 0 012.32 10.24v.01z"></path></svg> <span class="-link--channel-name">Questions</span>
-</a>
-</li>
-<li class="">
-<a aria-controls="" class="js-gps-track nav-links--link" data-controller="" data-gps-track="top_nav.click({is_current:false, location:2, destination:2})" data-s-popover-placement="right" href="/tags" id="nav-tags">
-<div class="grid ai-center">
-<div class="grid--cell truncate">
-                            Tags
-                        </div>
-</div>
-</a>
-</li>
-<li class="">
-<a aria-controls="" class="js-gps-track nav-links--link" data-controller="" data-gps-track="top_nav.click({is_current:false, location:2, destination:3})" data-s-popover-placement="right" href="/users" id="nav-users">
-<div class="grid ai-center">
-<div class="grid--cell truncate">
-                            Users
-                        </div>
-</div>
-</a>
-</li>
-<li class="fs-fine tt-uppercase ml8 mt16 mb4 fc-light">Find a Job</li>
-<li class="">
-<a aria-controls="" class="js-gps-track nav-links--link" data-controller="" data-gps-track="top_nav.click({is_current:false, location:2, destination:6})" data-s-popover-placement="right" href="/jobs?so_medium=StackOverflow&amp;so_source=SiteNav" id="nav-jobs">
-<div class="grid ai-center">
-<div class="grid--cell truncate">
-                            Jobs
-                        </div>
-</div>
-</a>
-</li>
-<li class="">
-<a aria-controls="" class="js-gps-track nav-links--link" data-controller="" data-gps-track="top_nav.click({is_current:false, location:2, destination:12})" data-s-popover-placement="right" href="/jobs/companies?so_medium=StackOverflow&amp;so_source=SiteNav" id="nav-companies">
-<div class="grid ai-center">
-<div class="grid--cell truncate">
-                            Companies
-                        </div>
-</div>
-</a>
-</li>
-</ol>
-</li>
-<li>
-<ol class="nav-links">
-<div class="js-freemium-cta ps-relative">
-<div class="fs-fine tt-uppercase ml8 mt16 mb8 fc-light">Teams</div>
-<div class="bt bl bb bc-black-075 p12 pb6 fc-black-600 blr-sm overflow-hidden">
-<strong class="fc-black-750 mb6">Stack Overflow for Teams</strong>
-        – Collaborate and share knowledge with a private group.
-        
-        <img alt="" class="wmx100 mx-auto my8 h-auto d-block" height="114" src="https://cdn.sstatic.net/Img/teams/teams-illo-free-sidebar-promo.svg?v=47faa659a05e" width="139"/>
-<a class="w100 s-btn s-btn__primary s-btn__xs js-gps-track" data-ga='["teams left navigation - anonymous","left nav free cta","stackoverflow.com/teams/create/free",null,null]' data-gps-track="teams.create.left-sidenav.click({ Action: 6 })" href="https://stackoverflow.com/teams/create/free">Create a free Team</a>
-<a class="w100 s-btn s-btn__muted s-btn__xs js-gps-track" data-ga='["teams left navigation - anonymous","left nav free cta","stackoverflow.com/teams",null,null]' data-gps-track="teams.create.left-sidenav.click({ Action: 5 })" href="https://stackoverflow.com/teams">What is Teams?</a>
+<div id="alertMessage-tool">
+<alertmessage-tool :alert-content="[{&quot;id&quot;:&quot;coronavirus2&quot;,&quot;idComment&quot;:&quot;String that is an unique id for the 'don't show' cookie&quot;,&quot;message&quot;:&quot;&quot;,&quot;messageComment&quot;:&quot;String without any html that is the text for the alert message&quot;,&quot;type&quot;:&quot;red&quot;,&quot;typeComment&quot;:&quot;There are currently three types (blue, red, and yellow) with their own icon and background color. Please use the appropriate color per alert level sensitivity.&quot;,&quot;link&quot;:{&quot;href&quot;:&quot;\/medicare-solutions\/coronavirus-info&quot;,&quot;text&quot;:&quot;Coronavirus (COVID-19) \u2013 Information for Medicare Customers&quot;},&quot;linkMessage&quot;:&quot;The link is an object, so we can set the text and href.&quot;}]" :session-data="null"></alertmessage-tool>
 </div>
 </div>
-<li class="grid ai-center jc-space-between ml8 mt24 mb4 js-create-team-cta d-none">
-<div class="grid--cell tt-uppercase fs-fine fc-light">Teams</div>
-<div class="grid--cell fs-fine fc-light mr4">
-<a aria-controls="popover-teams-create-cta" class="s-link s-link__inherit js-gps-track" data-action="s-popover#toggle" data-controller="s-popover" data-ga='["teams left navigation - anonymous","left nav show teams info",null,null,null]' data-gps-track="teams.create.left-sidenav.click({ Action: ShowInfo })" data-s-popover-placement="bottom-start" data-s-popover-toggle-class="is-selected" href="javascript:void(0)" role="button">
-                                            What’s this?
-                                        </a>
+<div class="">
+<nav aria-label="corporate-nav" class="CorporateNav">
+<div class="Container">
+<div class="CorporateNav-container">
+<div class="CorporateNav-location">
+<div id="locationLookup">
+<location-lookup :session-visitor='{"fromIp":"true","stateSelected":"false","state":"NE","stateName":"Nebraska","zipCode":"68175","locale":"en","county":"Douglas"}'></location-lookup>
 </div>
-</li>
-<li class="ps-relative js-create-team-cta d-none">
-<a class="pl8 js-gps-track nav-links--link" data-ga='["teams left navigation - anonymous","left nav team click","stackoverflow.com/teams/create/free",null,null]' data-gps-track="teams.create.left-sidenav.click({ Action: FreemiumTeamsCreateClick })" href="https://stackoverflow.com/teams/create/free" title="Stack Overflow for Teams is a private, secure spot for your organization's questions and answers.">
-<div class="grid ai-center">
-<div class="grid--cell s-avatar va-middle bg-orange-400">
-<div class="s-avatar--letter mtn1">
-<svg aria-hidden="true" class="svg-icon iconBriefcaseSm" height="14" viewbox="0 0 14 14" width="14"><path d="M4 3a1 1 0 011-1h4a1 1 0 011 1v1h.5c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5h-7A1.5 1.5 0 012 10.5v-5C2 4.67 2.67 4 3.5 4H4V3zm5 1V3H5v1h4z"></path></svg>
 </div>
-<svg aria-hidden="true" class="native s-avatar--badge svg-icon iconShieldXSm" height="10" viewbox="0 0 9 10" width="9"><path d="M0 1.84L4.5 0 9 1.84v3.17C9 7.53 6.3 10 4.5 10 2.7 10 0 7.53 0 5.01V1.84z" fill="var(--white)"></path><path d="M1 2.5L4.5 1 8 2.5v2.51C8 7.34 5.34 9 4.5 9 3.65 9 1 7.34 1 5.01V2.5zm2.98 3.02L3.2 7h2.6l-.78-1.48a.4.4 0 01.15-.38c.34-.24.73-.7.73-1.14 0-.71-.5-1.23-1.41-1.23-.92 0-1.39.52-1.39 1.23 0 .44.4.9.73 1.14.12.08.18.23.15.38z" fill="var(--black-500)"></path></svg>
 </div>
-<div class="grid--cell pl6">
-                                                Create free Team
-                                            </div>
 </div>
-</a>
-</li>
-</ol>
-</li>
-</ol>
 </nav>
+
+<aside aria-label="section-title" class="SectionTitle">
+<div class="Container">
+<span class="SectionTitle-text">
+        Medicare Solutions    </span>
+<span class="SectionTitle-underwriter">Medicare Supplement Insurance underwritten by <strong>United World Life Insurance Company</strong></span>
 </div>
-<div aria-hidden="true" class="s-popover" id="popover-teams-create-cta" role="menu">
-<div class="s-popover--arrow"></div>
-<div class="ps-relative overflow-hidden">
-<p class="mb2"><strong>Teams</strong></p>
-<p class="mb12 fs-caption fc-black-400">Q&amp;A for work</p>
-<p class="mb12 fs-caption fc-medium">Connect and share knowledge within a single location that is structured and easy to search.</p>
-<a class="js-gps-track s-btn s-btn__primary s-btn__xs" data-ga='["teams left navigation - anonymous","left nav cta","stackoverflow.com/teams",null,null]' data-gps-track="teams.create.left-sidenav.click({ Action: CtaClick })" href="https://stackoverflow.com/teams">
-                    Learn more
-                </a>
+</aside>
+<div aria-label="section-nav" class="SectionNav" id="sectionNav" role="navigation">
+<div class="Container SectionNav--flex">
+<div class="SectionNav-label" data-openable="" href="#sectionNav">
+            Medicare Solutions        </div>
+<ul class="SectionNav-menu SectionNav-menu--flex">
+<li class="SectionNav-item" id="sectionsubmenu-1">
+<a class="SectionNav-itemLink" href="/medicare-solutions">
+                Medicare Solutions
+            </a>
+</li>
+<li class="SectionNav-item is-active" id="sectionsubmenu-2">
+<a class="SectionNav-itemLink" href="/medicare-solutions/medicare-basics">
+                Medicare 101
+            </a>
+</li>
+<li class="SectionNav-item" id="sectionsubmenu-3">
+<a class="SectionNav-itemLink" href="/medicare-solutions/recommendation">
+                Advice Center
+            </a>
+</li>
+<li class="SectionNav-item" id="sectionsubmenu-4">
+<a class="SectionNav-itemLink" href="/medicare-solutions/questions">
+                Medicare Questions
+            </a>
+</li>
+</ul>
 </div>
-<div class="ps-absolute t8 r8">
-<svg aria-hidden="true" class="fc-orange-500 svg-spot spotPeople" height="48" viewbox="0 0 48 48" width="48"><path d="M13.5 28a4.5 4.5 0 100-9 4.5 4.5 0 000 9zM7 30a1 1 0 011-1h11a1 1 0 011 1v5h11v-5a1 1 0 011-1h12a1 1 0 011 1v10a2 2 0 01-2 2H33v5a1 1 0 01-1 1H20a1 1 0 01-1-1v-5H8a1 1 0 01-1-1V30zm25-6.5a4.5 4.5 0 109 0 4.5 4.5 0 00-9 0zM24.5 34a4.5 4.5 0 100-9 4.5 4.5 0 000 9z" opacity=".2"></path><path d="M16.4 26.08A6 6 0 107.53 26C5.64 26.06 4 27.52 4 29.45V40a1 1 0 001 1h9a1 1 0 100-2h-4v-7a1 1 0 10-2 0v7H6v-9.55c0-.73.67-1.45 1.64-1.45H16a1 1 0 00.4-1.92zM12 18a4 4 0 110 8 4 4 0 010-8zm16.47 14a6 6 0 10-8.94 0A3.6 3.6 0 0016 35.5V46a1 1 0 001 1h14a1 1 0 001-1V35.5c0-1.94-1.64-3.42-3.53-3.5zM20 28a4 4 0 118 0 4 4 0 01-8 0zm-.3 6h8.6c1 0 1.7.75 1.7 1.5V45h-2v-7a1 1 0 10-2 0v7h-4v-7a1 1 0 10-2 0v7h-2v-9.5c0-.75.7-1.5 1.7-1.5zM42 22c0 1.54-.58 2.94-1.53 4A3.5 3.5 0 0144 29.45V40a1 1 0 01-1 1h-9a1 1 0 110-2h4v-7a1 1 0 112 0v7h2v-9.55A1.5 1.5 0 0040.48 28H32a1 1 0 01-.4-1.92A6 6 0 1142 22zm-2 0a4 4 0 10-8 0 4 4 0 008 0z"></path><path d="M17 10a1 1 0 011-1h12a1 1 0 110 2H18a1 1 0 01-1-1zm1-5a1 1 0 100 2h12a1 1 0 100-2H18zm-4-4a1 1 0 00-1 1v12a1 1 0 001 1h5.09l4.2 4.2a1 1 0 001.46-.04l3.7-4.16H34a1 1 0 001-1V2a1 1 0 00-1-1H14zm1 12V3h18v10h-5a1 1 0 00-.75.34l-3.3 3.7-3.74-3.75a1 1 0 00-.71-.29H15z" opacity=".35"></path></svg>
 </div>
-</div>
-</div>
-<div class="snippet-hidden" id="content">
-<div itemprop="mainEntity" itemscope="" itemtype="https://schema.org/Question">
-<link href="https://cdn.sstatic.net/Sites/stackoverflow/Img/apple-touch-icon.png?v=c78bd457575a" itemprop="image"/>
-<div class="inner-content clearfix">
-<div class="grid sm:fd-column" id="question-header">
-<h1 class="fs-headline1 ow-break-word mb8 grid--cell fl1" itemprop="name"><a class="question-hyperlink" href="/questions/60469202/unable-to-install-tkinter-with-pyenv-pythons-on-macos">Unable to install tkinter with pyenv Pythons on MacOS</a></h1>
-<div class="ml12 aside-cta grid--cell print:d-none sm:ml0 sm:mb12 sm:order-first sm:as-end">
-<a class="ws-nowrap s-btn s-btn__primary" href="/questions/ask">
-        Ask Question
-    </a>
-</div>
-</div>
-<div class="grid fw-wrap pb8 mb16 bb bc-black-075">
-<div class="grid--cell ws-nowrap mr16 mb8" title="2020-02-29 20:11:05Z">
-<span class="fc-light mr2">Asked</span>
-<time datetime="2020-02-29T20:11:05" itemprop="dateCreated">1 year ago</time>
-</div>
-<div class="grid--cell ws-nowrap mr16 mb8">
-<span class="fc-light mr2">Active</span>
-<a class="s-link s-link__inherit" href="?lastactivity" title="2021-01-15 16:44:08Z">2 months ago</a>
-</div>
-<div class="grid--cell ws-nowrap mb8" title="Viewed 8,331 times">
-<span class="fc-light mr2">Viewed</span>
-                        8k times
-                    </div>
-</div>
-<div aria-label="question and answers" id="mainbar" role="main">
-<div class="question" data-ownerid="39396" data-questionid="60469202" data-score="32" id="question">
 <style>
-</style>
-<div class="js-zone-container zone-container-main">
-<div class="everyonelovesstackoverflow everyoneloves__top-leaderboard everyoneloves__leaderboard" id="dfp-tlb"></div>
-<div class="js-report-ad-button-container" style="width: 728px"></div>
-</div>
-<div class="post-layout">
-<div class="votecell post-layout--left">
-<div class="js-voting-container grid jc-center fd-column ai-stretch gs4 fc-black-200" data-post-id="60469202">
-<button aria-label="Up vote" aria-pressed="false" class="js-vote-up-btn grid--cell s-btn s-btn__unset c-pointer" data-controller="s-tooltip" data-s-tooltip-placement="right" data-selected-classes="fc-theme-primary" title="This question shows research effort; it is useful and clear"><svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" height="36" viewbox="0 0 36 36" width="36"><path d="M2 26h32L18 10 2 26z"></path></svg></button>
-<div class="js-vote-count grid--cell fc-black-500 fs-title grid fd-column ai-center" data-value="32" itemprop="upvoteCount">32</div>
-<button aria-label="Down vote" aria-pressed="false" class="js-vote-down-btn grid--cell s-btn s-btn__unset c-pointer" data-controller="s-tooltip" data-s-tooltip-placement="right" data-selected-classes="fc-theme-primary" title="This question does not show any research effort; it is unclear or not useful"><svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" height="36" viewbox="0 0 36 36" width="36"><path d="M2 10h32L18 26 2 10z"></path></svg></button>
-<button aria-label="Bookmark (16)" aria-pressed="false" class="js-bookmark-btn s-btn s-btn__unset c-pointer py4 js-gps-track" data-controller="s-tooltip" data-gps-track="post.click({ item: 1, priv: 0, post_type: 1 })" data-s-tooltip-placement="right" data-selected-classes="fc-yellow-600" title="Bookmark this question.">
-<svg aria-hidden="true" class="svg-icon iconBookmark" height="18" viewbox="0 0 18 18" width="18"><path d="M6 1a2 2 0 00-2 2v14l5-4 5 4V3a2 2 0 00-2-2H6zm3.9 3.83h2.9l-2.35 1.7.9 2.77L9 7.59l-2.35 1.7.9-2.76-2.35-1.7h2.9L9 2.06l.9 2.77z"></path></svg>
-<div class="js-bookmark-count mt4" data-value="16">16</div>
-</button>
-<a aria-label="Timeline" class="js-post-issue grid--cell s-btn s-btn__unset c-pointer py6 mx-auto" data-controller="s-tooltip" data-s-tooltip-placement="right" data-shortcut="T" href="/posts/60469202/timeline" title="Show activity on this post."><svg aria-hidden="true" class="mln2 mr0 svg-icon iconHistory" height="18" viewbox="0 0 19 18" width="19"><path d="M3 9a8 8 0 113.73 6.77L8.2 14.3A6 6 0 105 9l3.01-.01-4 4-4-4h3L3 9zm7-4h1.01L11 9.36l3.22 2.1-.6.93L10 10V5z"></path></svg></a>
-</div>
-</div>
-<div class="postcell post-layout--right">
-<div class="s-prose js-post-body" itemprop="text">
-<p>Versions of Python installed via pyenv fail to import <code>tkinter</code>:</p>
-<pre><code>※ python
-Python 3.8.1 (default, Feb 29 2020, 11:45:59)
-[Clang 11.0.0 (clang-1100.0.33.17)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
-&gt;&gt;&gt; import tkinter
-Traceback (most recent call last):
-  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
-  File "/Users/factor/.pyenv/versions/3.8.1/lib/python3.8/tkinter/__init__.py", line 36, in &lt;module&gt;
-    import _tkinter # If this fails your Python may not be configured for Tk
-ModuleNotFoundError: No module named '_tkinter'
-&gt;&gt;&gt;
-</code></pre>
-<p>or you might get a message about the header version doesn't match the binary:</p>
-<pre><code>DEPRECATION WARNING: The system version of Tk is deprecated and may be removed in a future release. Please don't rely on it. Set TK_SILENCE_DEPRECATION=1 to suppress this warning.
-Traceback (most recent call last):
-  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
-  File "/Users/factor/.pyenv/versions/3.8.1/lib/python3.8/tkinter/__init__.py", line 4552, in _test
-    root = Tk()
-  File "/Users/factor/.pyenv/versions/3.8.1/lib/python3.8/tkinter/__init__.py", line 2263, in __init__
-    self._loadtk()
-  File "/Users/factor/.pyenv/versions/3.8.1/lib/python3.8/tkinter/__init__.py", line 2279, in _loadtk
-    raise RuntimeError("tk.h version (%s) doesn't match libtk.a version (%s)"
-RuntimeError: tk.h version (8.6) doesn't match libtk.a version (8.5)
-</code></pre>
-</div>
-<div class="mt24 mb12">
-<div class="post-taglist grid gs4 gsy fd-column">
-<div class="grid ps-relative">
-<a class="post-tag" href="/questions/tagged/python" rel="tag" title="show questions tagged 'python'">python</a> <a class="post-tag" href="/questions/tagged/macos" rel="tag" title="show questions tagged 'macos'">macos</a> <a class="post-tag" href="/questions/tagged/tkinter" rel="tag" title="show questions tagged 'tkinter'">tkinter</a> <a class="post-tag" href="/questions/tagged/pyenv" rel="tag" title="show questions tagged 'pyenv'">pyenv</a>
-</div>
-</div>
-</div>
-<div class="mb0">
-<div class="mt16 grid gs8 gsy fw-wrap jc-end ai-start pt4 mb16">
-<div class="grid--cell mr16 fl1 w96">
-<div class="js-post-menu pt2" data-post-id="60469202">
-<div class="grid d-flex gs8 s-anchors s-anchors__muted fw-wrap">
-<div class="grid--cell">
-<a class="js-share-link js-gps-track" data-controller="se-share-sheet" data-gps-track="post.click({ item: 2, priv: 0, post_type: 1 })" data-s-popover-placement="bottom-start" data-se-share-sheet-license-name="CC BY-SA 4.0" data-se-share-sheet-license-url="https%3a%2f%2fcreativecommons.org%2flicenses%2fby-sa%2f4.0%2f" data-se-share-sheet-location="1" data-se-share-sheet-post-type="question" data-se-share-sheet-social="facebook twitter devto" data-se-share-sheet-subtitle="" data-se-share-sheet-title="Share a link to this question" href="/q/60469202" itemprop="url" rel="nofollow" title="Short permalink to this question">Share</a>
-</div>
-<div class="grid--cell">
-<a class="js-suggest-edit-post js-gps-track" data-gps-track="post.click({ item: 6, priv: 0, post_type: 1 })" href="/posts/60469202/edit" title="">Improve this question</a>
-</div>
-<div class="grid--cell">
-<button aria-controls="" class="s-btn s-btn__link js-follow-post js-follow-question js-gps-track" data-controller="s-tooltip " data-gps-track="post.click({ item: 14, priv: 0, post_type: 1 })" data-s-popover-placement="bottom" data-s-tooltip-placement="bottom" id="btnFollowPost-60469202" title="Follow this question to receive notifications" type="button">
-                Follow
-            </button>
-</div>
-</div>
-<div class="js-menu-popup-container"></div>
-</div>
-</div>
-<div class="post-signature grid--cell">
-<div class="user-info">
-<div class="user-action-time">
-<a class="js-gps-track" data-gps-track="post.click({ item: 4, priv: 0, post_type: 1 })" href="/posts/60469202/revisions" title="show all edits to this post">edited <span class="relativetime" title="2020-04-04 18:24:31Z">Apr 4 '20 at 18:24</span></a>
-</div>
-<div class="user-gravatar32">
-</div>
-<div class="user-details" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-<span class="d-none" itemprop="name">Carl G</span>
-<div class="-flair">
-</div>
-</div>
-</div>
-</div>
-<div class="post-signature owner grid--cell">
-<div class="user-info user-hover">
-<div class="user-action-time">
-        asked <span class="relativetime" title="2020-02-29 20:11:05Z">Feb 29 '20 at 20:11</span>
-</div>
-<div class="user-gravatar32">
-<a href="/users/39396/carl-g"><div class="gravatar-wrapper-32"><img alt="" class="bar-sm" height="32" src="https://www.gravatar.com/avatar/bb9303c5d001063fb89084ea45f97ec4?s=32&amp;d=identicon&amp;r=PG" width="32"/></div></a>
-</div>
-<div class="user-details" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-<a href="/users/39396/carl-g">Carl G</a><span class="d-none" itemprop="name">Carl G</span>
-<div class="-flair">
-<span class="reputation-score" dir="ltr" title="reputation score 13,995">14k</span><span aria-hidden="true" title="11 gold badges"><span class="badge1"></span><span class="badgecount">11</span></span><span class="v-visible-sr">11 gold badges</span><span aria-hidden="true" title="76 silver badges"><span class="badge2"></span><span class="badgecount">76</span></span><span class="v-visible-sr">76 silver badges</span><span aria-hidden="true" title="102 bronze badges"><span class="badge3"></span><span class="badgecount">102</span></span><span class="v-visible-sr">102 bronze badges</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<span class="d-none" itemprop="commentCount"></span>
-<div class="post-layout--right js-post-comments-component">
-<div class="comments js-comments-container bt bc-black-075 mt12 dno" data-min-length="15" data-post-id="60469202" id="comments-60469202">
-<ul class="comments-list js-comments-list" data-addlink-disabled="true" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-remaining-comments-count="0">
-</ul>
-</div>
-<div data-anon="true" data-rep="50" id="comments-link-60469202">
-<a class="js-add-link comments-link disabled-link" href="#" role="button" title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">Add a comment</a>
-<span class="js-link-separator dno"> | </span>
-<a class="js-show-link comments-link dno" href="#" onclick="" role="button" title="Expand to show all comments on this post"></a>
-</div>
-</div>
-</div>
-</div>
-<div class="js-zone-container zone-container-responsive">
-<div class="everyonelovesstackoverflow everyoneloves__inline-sidebar mx-auto" id="dfp-isb"></div>
-<div class="js-report-ad-button-container mx-auto" style="width: 300px"></div>
-</div>
-<div id="answers">
-<a name="tab-top"></a>
-<div id="answers-header">
-<div class="answers-subheader grid ai-center mb8">
-<div class="grid--cell fl1">
-<h2 class="mb0" data-answercount="3">
-                                        3 Answers
-                                    <span itemprop="answerCount" style="display:none;">3</span>
-</h2>
-</div>
-<div class="grid--cell">
-<div class="grid s-btn-group js-filter-btn">
-<a class="grid--cell s-btn s-btn__muted s-btn__outlined" data-nav-xhref="" data-shortcut="A" data-value="active" href="/questions/60469202/unable-to-install-tkinter-with-pyenv-pythons-on-macos?answertab=active#tab-top" title="Answers with the latest activity first">
-            Active</a>
-<a class="grid--cell s-btn s-btn__muted s-btn__outlined" data-nav-xhref="" data-shortcut="O" data-value="oldest" href="/questions/60469202/unable-to-install-tkinter-with-pyenv-pythons-on-macos?answertab=oldest#tab-top" title="Answers in the order they were provided">
-            Oldest</a>
-<a class="youarehere is-selected grid--cell s-btn s-btn__muted s-btn__outlined" data-nav-xhref="" data-shortcut="V" data-value="votes" href="/questions/60469202/unable-to-install-tkinter-with-pyenv-pythons-on-macos?answertab=votes#tab-top" title="Answers with the highest score first">
-            Votes</a>
-</div>
-</div>
-</div>
-</div>
-<a name="60469203"></a>
-<div class="answer" data-answerid="60469203" data-ownerid="39396" data-score="71" id="answer-60469203" itemprop="suggestedAnswer" itemscope="" itemtype="https://schema.org/Answer">
-<div class="post-layout">
-<div class="votecell post-layout--left">
-<div class="js-voting-container grid jc-center fd-column ai-stretch gs4 fc-black-200" data-post-id="60469203">
-<button aria-label="Up vote" aria-pressed="false" class="js-vote-up-btn grid--cell s-btn s-btn__unset c-pointer" data-controller="s-tooltip" data-s-tooltip-placement="right" data-selected-classes="fc-theme-primary" title="This answer is useful"><svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" height="36" viewbox="0 0 36 36" width="36"><path d="M2 26h32L18 10 2 26z"></path></svg></button>
-<div class="js-vote-count grid--cell fc-black-500 fs-title grid fd-column ai-center" data-value="71" itemprop="upvoteCount">71</div>
-<button aria-label="Down vote" aria-pressed="false" class="js-vote-down-btn grid--cell s-btn s-btn__unset c-pointer" data-controller="s-tooltip" data-s-tooltip-placement="right" data-selected-classes="fc-theme-primary" title="This answer is not useful"><svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" height="36" viewbox="0 0 36 36" width="36"><path d="M2 10h32L18 26 2 10z"></path></svg></button>
-<div aria-label="Accepted" class="js-accepted-answer-indicator grid--cell fc-green-500 py6 mtn8 d-none" data-s-tooltip-placement="right" role="note" tabindex="0" title="Loading when this answer was accepted…">
-<div class="ta-center">
-<svg aria-hidden="true" class="svg-icon iconCheckmarkLg" height="36" viewbox="0 0 36 36" width="36"><path d="M6 14l8 8L30 6v8L14 30l-8-8v-8z"></path></svg>
-</div>
-</div>
-<a aria-label="Timeline" class="js-post-issue grid--cell s-btn s-btn__unset c-pointer py6 mx-auto" data-controller="s-tooltip" data-s-tooltip-placement="right" data-shortcut="T" href="/posts/60469203/timeline" title="Show activity on this post."><svg aria-hidden="true" class="mln2 mr0 svg-icon iconHistory" height="18" viewbox="0 0 19 18" width="19"><path d="M3 9a8 8 0 113.73 6.77L8.2 14.3A6 6 0 105 9l3.01-.01-4 4-4-4h3L3 9zm7-4h1.01L11 9.36l3.22 2.1-.6.93L10 10V5z"></path></svg></a>
-</div>
-</div>
-<div class="answercell post-layout--right">
-<div class="s-prose js-post-body" itemprop="text">
-<p>TL;DR set the env. vars. mentioned in <code>tcl-tk</code>'s caveats <strong>and</strong> <a href="https://github.com/pyenv/pyenv/issues/1375#issuecomment-533182043" rel="noreferrer">this GitHub comment</a> when installing new Pythons via pyenv to get <code>tkinter</code>.</p>
-<p>First, ensure you have the latest <code>tcl-tk</code> via homebrew and then pay attention to its caveats:</p>
-<pre><code>※ brew install tcl-tk
-※ brew info tcl-tk
-tcl-tk: stable 8.6.10 (bottled) [keg-only]
-...
-==&gt; Caveats
-tcl-tk is keg-only, which means it was not symlinked into /usr/local,
-because tk installs some X11 headers and macOS provides an (older) Tcl/Tk.
-
-If you need to have tcl-tk first in your PATH run:
-  echo 'export PATH="/usr/local/opt/tcl-tk/bin:$PATH"' &gt;&gt; ~/.zshrc
-
-For compilers to find tcl-tk you may need to set:
-  export LDFLAGS="-L/usr/local/opt/tcl-tk/lib"
-  export CPPFLAGS="-I/usr/local/opt/tcl-tk/include"
-
-For pkg-config to find tcl-tk you may need to set:
-  export PKG_CONFIG_PATH="/usr/local/opt/tcl-tk/lib/pkgconfig"
-...
-</code></pre>
-<p>You'll also need to know about pyenv's <code>PYTHON_CONFIGURE_OPTS</code>, <code>--with-tcltk-includes</code>, and <code>--with-tcltk-libs</code>, e.g. from <a href="https://github.com/pyenv/pyenv/issues/1375#issuecomment-533182043" rel="noreferrer">this comment</a>.</p>
-<p>Next, reinstall Python with the environment variables active:</p>
-<pre><code>※ pyenv uninstall 3.8.1
-※ env \
-  PATH="$(brew --prefix tcl-tk)/bin:$PATH" \
-  LDFLAGS="-L$(brew --prefix tcl-tk)/lib" \
-  CPPFLAGS="-I$(brew --prefix tcl-tk)/include" \
-  PKG_CONFIG_PATH="$(brew --prefix tcl-tk)/lib/pkgconfig" \
-  CFLAGS="-I$(brew --prefix tcl-tk)/include" \
-  PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I$(brew --prefix tcl-tk)/include' --with-tcltk-libs='-L$(brew --prefix tcl-tk)/lib -ltcl8.6 -ltk8.6'" \
-  pyenv install 3.8.1
-</code></pre>
-<p>It should work now:</p>
-<pre><code>※ pyenv global 3.8.1
-※ python
-Python 3.8.1 (default, Feb 29 2020, 11:56:10)
-[Clang 11.0.0 (clang-1100.0.33.17)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
-&gt;&gt;&gt; import tkinter
-&gt;&gt;&gt; tkinter.TclVersion, tkinter.TkVersion
-(8.6, 8.6)
-&gt;&gt;&gt; tkinter._test()
-# You should get a GUI
-</code></pre>
-<p>If you get the following error, you might be missing the <code>PYTHON_CONFIGURE_OPTS</code> env. var. above.</p>
-<pre><code>DEPRECATION WARNING: The system version of Tk is deprecated and may be removed in a future release. Please don't rely on it. Set TK_SILENCE_DEPRECATION=1 to suppress this warning.
-Traceback (most recent call last):
-  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
-  File "/Users/factor/.pyenv/versions/3.8.1/lib/python3.8/tkinter/__init__.py", line 4552, in _test
-    root = Tk()
-  File "/Users/factor/.pyenv/versions/3.8.1/lib/python3.8/tkinter/__init__.py", line 2263, in __init__
-    self._loadtk()
-  File "/Users/factor/.pyenv/versions/3.8.1/lib/python3.8/tkinter/__init__.py", line 2279, in _loadtk
-    raise RuntimeError("tk.h version (%s) doesn't match libtk.a version (%s)"
-RuntimeError: tk.h version (8.6) doesn't match libtk.a version (8.5)
-</code></pre>
-</div>
-<div class="mt24">
-<div class="grid fw-wrap ai-start jc-end gs8 gsy">
-<time datetime="2020-02-29T20:11:05" itemprop="dateCreated"></time>
-<div class="grid--cell mr16" style="flex: 1 1 100px;">
-<div class="js-post-menu pt2" data-post-id="60469203">
-<div class="grid d-flex gs8 s-anchors s-anchors__muted fw-wrap">
-<div class="grid--cell">
-<a class="js-share-link js-gps-track" data-controller="se-share-sheet" data-gps-track="post.click({ item: 2, priv: 0, post_type: 2 })" data-s-popover-placement="bottom-start" data-se-share-sheet-license-name="CC BY-SA 4.0" data-se-share-sheet-license-url="https%3a%2f%2fcreativecommons.org%2flicenses%2fby-sa%2f4.0%2f" data-se-share-sheet-location="2" data-se-share-sheet-post-type="answer" data-se-share-sheet-social="facebook twitter devto" data-se-share-sheet-subtitle="" data-se-share-sheet-title="Share a link to this answer" href="/a/60469203" itemprop="url" rel="nofollow" title="Short permalink to this answer">Share</a>
-</div>
-<div class="grid--cell">
-<a class="js-suggest-edit-post js-gps-track" data-gps-track="post.click({ item: 6, priv: 0, post_type: 2 })" href="/posts/60469203/edit" title="">Improve this answer</a>
-</div>
-<div class="grid--cell">
-<button aria-controls="" class="s-btn s-btn__link js-follow-post js-follow-answer js-gps-track" data-controller="s-tooltip " data-gps-track="post.click({ item: 14, priv: 0, post_type: 2 })" data-s-popover-placement="bottom" data-s-tooltip-placement="bottom" id="btnFollowPost-60469203" title="Follow this answer to receive notifications" type="button">
-                Follow
-            </button>
-</div>
-</div>
-<div class="js-menu-popup-container"></div>
-</div>
-</div>
-<div class="post-signature grid--cell fl0">
-<div class="user-info">
-<div class="user-action-time">
-<a class="js-gps-track" data-gps-track="post.click({ item: 4, priv: 0, post_type: 2 })" href="/posts/60469203/revisions" title="show all edits to this post">edited <span class="relativetime" title="2020-03-03 17:21:42Z">Mar 3 '20 at 17:21</span></a>
-</div>
-<div class="user-gravatar32">
-</div>
-<div class="user-details">
-<div class="-flair">
-</div>
-</div>
-</div>
-</div>
-<div class="post-signature owner grid--cell fl0">
-<div class="user-info user-hover">
-<div class="user-action-time">
-        answered <span class="relativetime" title="2020-02-29 20:11:05Z">Feb 29 '20 at 20:11</span>
-</div>
-<div class="user-gravatar32">
-<a href="/users/39396/carl-g"><div class="gravatar-wrapper-32"><img alt="" class="bar-sm" height="32" src="https://www.gravatar.com/avatar/bb9303c5d001063fb89084ea45f97ec4?s=32&amp;d=identicon&amp;r=PG" width="32"/></div></a>
-</div>
-<div class="user-details" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-<a href="/users/39396/carl-g">Carl G</a><span class="d-none" itemprop="name">Carl G</span>
-<div class="-flair">
-<span class="reputation-score" dir="ltr" title="reputation score 13,995">14k</span><span aria-hidden="true" title="11 gold badges"><span class="badge1"></span><span class="badgecount">11</span></span><span class="v-visible-sr">11 gold badges</span><span aria-hidden="true" title="76 silver badges"><span class="badge2"></span><span class="badgecount">76</span></span><span class="v-visible-sr">76 silver badges</span><span aria-hidden="true" title="102 bronze badges"><span class="badge3"></span><span class="badgecount">102</span></span><span class="v-visible-sr">102 bronze badges</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<span class="d-none" itemprop="commentCount">3</span>
-<div class="post-layout--right js-post-comments-component">
-<div class="comments js-comments-container bt bc-black-075 mt12" data-min-length="15" data-post-id="60469203" id="comments-60469203">
-<ul class="comments-list js-comments-list" data-addlink-disabled="true" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-remaining-comments-count="0">
-<li class="comment js-comment" data-comment-id="116048896" data-comment-owner-id="2397068" data-comment-score="0" id="comment-116048896">
-<div class="js-comment-actions comment-actions">
-<div class="comment-score js-comment-edit-hide">
-</div>
-</div>
-<div class="comment-text js-comment-text-and-form">
-<div class="comment-body js-comment-edit-hide">
-<span class="comment-copy">For the record this worked out-of-the-box on Linux (Debian 10) as well. The only difference is that the output of <code>brew info</code> was a bit different.</span>
-                
-– <a class="comment-user" href="/users/2397068/lane-rettig" title="5,575 reputation">Lane Rettig</a>
-<span class="comment-date" dir="ltr"><span class="relativetime-clean" title="2021-01-08 21:54:06Z, License: CC BY-SA 4.0">Jan 8 at 21:54</span></span>
-</div>
-</div>
-</li>
-<li class="comment js-comment" data-comment-id="116172605" data-comment-owner-id="1090590" data-comment-score="0" id="comment-116172605">
-<div class="js-comment-actions comment-actions">
-<div class="comment-score js-comment-edit-hide">
-</div>
-</div>
-<div class="comment-text js-comment-text-and-form">
-<div class="comment-body js-comment-edit-hide">
-<span class="comment-copy">after I did this, I cannot install python anymore, it shows: BUILD FAILED (OS X 11.1 using python-build 20180424)</span>
-                
-– <a class="comment-user" href="/users/1090590/bergp" title="3,305 reputation">BergP</a>
-<span class="comment-date" dir="ltr"><span class="relativetime-clean" title="2021-01-13 16:21:52Z, License: CC BY-SA 4.0">Jan 13 at 16:21</span></span>
-<span title="this comment was edited 1 time">
-<svg aria-hidden="true" class="va-text-bottom o50 svg-icon iconPencilSm" height="14" viewbox="0 0 14 14" width="14"><path d="M11.1 1.71l1.13 1.12c.2.2.2.51 0 .71L11.1 4.7 9.21 2.86l1.17-1.15c.2-.2.51-.2.71 0zM2 10.12l6.37-6.43 1.88 1.88L3.88 12H2v-1.88z"></path></svg>
-</span>
-</div>
-</div>
-</li>
-<li class="comment js-comment" data-comment-id="116367228" data-comment-owner-id="39396" data-comment-score="0" id="comment-116367228">
-<div class="js-comment-actions comment-actions">
-<div class="comment-score js-comment-edit-hide">
-</div>
-</div>
-<div class="comment-text js-comment-text-and-form">
-<div class="comment-body js-comment-edit-hide">
-<span class="comment-copy">@BergP you will probably need to provide more of the error message. I would recommend creating a new question that references this answer.  You can link to your question from this answer.</span>
-                
-– <a class="comment-user owner" href="/users/39396/carl-g" title="13,995 reputation">Carl G</a>
-<span class="comment-date" dir="ltr"><span class="relativetime-clean" title="2021-01-20 18:49:21Z, License: CC BY-SA 4.0">Jan 20 at 18:49</span></span>
-</div>
-</div>
-</li>
-</ul>
-</div>
-<div data-anon="true" data-rep="50" id="comments-link-60469203">
-<a class="js-add-link comments-link disabled-link" href="#" role="button" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">Add a comment</a>
-<span class="js-link-separator dno"> | </span>
-<a class="js-show-link comments-link dno" href="#" onclick="" role="button" title="Expand to show all comments on this post"></a>
-</div>
-</div>
-</div>
-</div>
-<div class="js-zone-container zone-container-main">
-<div class="everyonelovesstackoverflow everyoneloves__mid-leaderboard everyoneloves__leaderboard" id="dfp-mlb"></div>
-<div class="js-report-ad-button-container" style="width: 728px"></div>
-</div>
-<a name="61879759"></a>
-<div class="answer" data-answerid="61879759" data-ownerid="823048" data-score="19" id="answer-61879759" itemprop="suggestedAnswer" itemscope="" itemtype="https://schema.org/Answer">
-<div class="post-layout">
-<div class="votecell post-layout--left">
-<div class="js-voting-container grid jc-center fd-column ai-stretch gs4 fc-black-200" data-post-id="61879759">
-<button aria-label="Up vote" aria-pressed="false" class="js-vote-up-btn grid--cell s-btn s-btn__unset c-pointer" data-controller="s-tooltip" data-s-tooltip-placement="right" data-selected-classes="fc-theme-primary" title="This answer is useful"><svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" height="36" viewbox="0 0 36 36" width="36"><path d="M2 26h32L18 10 2 26z"></path></svg></button>
-<div class="js-vote-count grid--cell fc-black-500 fs-title grid fd-column ai-center" data-value="19" itemprop="upvoteCount">19</div>
-<button aria-label="Down vote" aria-pressed="false" class="js-vote-down-btn grid--cell s-btn s-btn__unset c-pointer" data-controller="s-tooltip" data-s-tooltip-placement="right" data-selected-classes="fc-theme-primary" title="This answer is not useful"><svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" height="36" viewbox="0 0 36 36" width="36"><path d="M2 10h32L18 26 2 10z"></path></svg></button>
-<div aria-label="Accepted" class="js-accepted-answer-indicator grid--cell fc-green-500 py6 mtn8 d-none" data-s-tooltip-placement="right" role="note" tabindex="0" title="Loading when this answer was accepted…">
-<div class="ta-center">
-<svg aria-hidden="true" class="svg-icon iconCheckmarkLg" height="36" viewbox="0 0 36 36" width="36"><path d="M6 14l8 8L30 6v8L14 30l-8-8v-8z"></path></svg>
-</div>
-</div>
-<a aria-label="Timeline" class="js-post-issue grid--cell s-btn s-btn__unset c-pointer py6 mx-auto" data-controller="s-tooltip" data-s-tooltip-placement="right" data-shortcut="T" href="/posts/61879759/timeline" title="Show activity on this post."><svg aria-hidden="true" class="mln2 mr0 svg-icon iconHistory" height="18" viewbox="0 0 19 18" width="19"><path d="M3 9a8 8 0 113.73 6.77L8.2 14.3A6 6 0 105 9l3.01-.01-4 4-4-4h3L3 9zm7-4h1.01L11 9.36l3.22 2.1-.6.93L10 10V5z"></path></svg></a>
-</div>
-</div>
-<div class="answercell post-layout--right">
-<div class="s-prose js-post-body" itemprop="text">
-<p>Here is <strong>step by step guide</strong> to make <code>tkinter</code> (and IDLE) work if you use <code>pyenv</code> for Python environments management on macOS:</p>
-<ol>
-<li>install <code>tcl-tk</code> with Homebrew. In shell run <code>brew install tcl-tk</code></li>
-<li>in shell run <code>echo 'export PATH="/usr/local/opt/tcl-tk/bin:$PATH"' &gt;&gt; ~/.zshrc</code></li>
-<li>reload shell by quitting <code>Terminal</code> app or run <code>source ~/.zshrc</code></li>
-<li>after reloaded check that <code>tck-tk</code> is in <code>$PATH</code>. Run <code>echo $PATH | grep --color=auto tcl-tk</code>. As the result you should see your $PATH contents with <code>tcl-tk</code> highlighted</li>
-<li>now we run three commands from Homebrew's output from step #1
-
-<ol>
-<li>in shell run <code>export LDFLAGS="-L/usr/local/opt/tcl-tk/lib"</code></li>
-<li>in shell run <code>export CPPFLAGS="-I/usr/local/opt/tcl-tk/include"</code></li>
-<li>in shell run <code>export PKG_CONFIG_PATH="/usr/local/opt/tcl-tk/lib/pkgconfig"</code></li>
-</ol></li>
-<li>if you have your Python version already installed with <code>pyenv</code> then uninstall it with <code>pyenv uninstall &lt;your python version&gt;</code>. E.g. <code>pyenv uninstall 3.8.2</code></li>
-<li>set environment variable that will be used by <code>python-build</code>. In shell run <code>PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I/usr/local/opt/tcl-tk/include' --with-tcltk-libs='-L/usr/local/opt/tcl-tk/lib -ltcl8.6 -ltk8.6'"</code>
-<em>Note: in future use <code>tck-tk</code> version that actually installed with Homebrew. At the moment of posting <code>8.6</code> was the actual</em></li>
-<li>finally install Python with <code>pyenv</code> with <code>pyenv install &lt;version&gt;</code>. E.g. <code>pyenv install 3.8.2</code></li>
-</ol>
-<p><strong>Test</strong></p>
-<ol>
-<li>in shell run <code>pyenv global &lt;verion that you've just installed&gt;</code></li>
-<li>now check IDLE. In shell run <code>idle</code>. You should see IDLE window without any warnings and "text printed in red".</li>
-</ol>
-<p><a href="https://i.stack.imgur.com/tysBK.png" rel="noreferrer"><img alt="IDLE window run from Terminal. No warnings" src="https://i.stack.imgur.com/tysBK.png"/></a></p>
-<ol start="3">
-<li>now check <code>tkinter</code>. In shell run <code>python -m tkinter -c "tkinter._test()"</code>. You should see test window like on the image:</li>
-</ol>
-<p><a href="https://i.stack.imgur.com/hDBOH.png" rel="noreferrer"><img alt="tkinter test window" src="https://i.stack.imgur.com/hDBOH.png"/></a></p>
-<p>That's it!</p>
-<p><strong>My environment:</strong></p>
-<p>check this is something went wrong executing steps above:</p>
-<ol>
-<li>macOS Catalina</li>
-<li><code>zsh</code> (included in macOS Catalina) = <strong>"shell" above</strong></li>
-<li>Homebrew (installed with instructions from Homebrew official website)</li>
-<li><code>pyenv</code> (installed with Homebrew and PATH updated according to <code>pyenv</code> official readme from GitHub)</li>
-<li>Python <code>3.8.x</code> - <code>3.9.x</code> (installed with <code>pyenv install &lt;version&gt;</code> command)</li>
-</ol>
-</div>
-<div class="mt24">
-<div class="grid fw-wrap ai-start jc-end gs8 gsy">
-<time datetime="2020-05-18T22:03:17" itemprop="dateCreated"></time>
-<div class="grid--cell mr16" style="flex: 1 1 100px;">
-<div class="js-post-menu pt2" data-post-id="61879759">
-<div class="grid d-flex gs8 s-anchors s-anchors__muted fw-wrap">
-<div class="grid--cell">
-<a class="js-share-link js-gps-track" data-controller="se-share-sheet" data-gps-track="post.click({ item: 2, priv: 0, post_type: 2 })" data-s-popover-placement="bottom-start" data-se-share-sheet-license-name="CC BY-SA 4.0" data-se-share-sheet-license-url="https%3a%2f%2fcreativecommons.org%2flicenses%2fby-sa%2f4.0%2f" data-se-share-sheet-location="2" data-se-share-sheet-post-type="answer" data-se-share-sheet-social="facebook twitter devto" data-se-share-sheet-subtitle="" data-se-share-sheet-title="Share a link to this answer" href="/a/61879759" itemprop="url" rel="nofollow" title="Short permalink to this answer">Share</a>
-</div>
-<div class="grid--cell">
-<a class="js-suggest-edit-post js-gps-track" data-gps-track="post.click({ item: 6, priv: 0, post_type: 2 })" href="/posts/61879759/edit" title="">Improve this answer</a>
-</div>
-<div class="grid--cell">
-<button aria-controls="" class="s-btn s-btn__link js-follow-post js-follow-answer js-gps-track" data-controller="s-tooltip " data-gps-track="post.click({ item: 14, priv: 0, post_type: 2 })" data-s-popover-placement="bottom" data-s-tooltip-placement="bottom" id="btnFollowPost-61879759" title="Follow this answer to receive notifications" type="button">
-                Follow
-            </button>
-</div>
-</div>
-<div class="js-menu-popup-container"></div>
-</div>
-</div>
-<div class="post-signature grid--cell fl0">
-<div class="user-info">
-<div class="user-action-time">
-        answered <span class="relativetime" title="2020-05-18 22:03:17Z">May 18 '20 at 22:03</span>
-</div>
-<div class="user-gravatar32">
-<a href="/users/823048/nickolay"><div class="gravatar-wrapper-32"><img alt="" class="bar-sm" height="32" src="https://www.gravatar.com/avatar/7a371762d1cafd216aba9bd068e8f443?s=32&amp;d=identicon&amp;r=PG" width="32"/></div></a>
-</div>
-<div class="user-details" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-<a href="/users/823048/nickolay">nickolay</a><span class="d-none" itemprop="name">nickolay</span>
-<div class="-flair">
-<span class="reputation-score" dir="ltr" title="reputation score ">2,732</span><span aria-hidden="true" title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span class="v-visible-sr">2 gold badges</span><span aria-hidden="true" title="24 silver badges"><span class="badge2"></span><span class="badgecount">24</span></span><span class="v-visible-sr">24 silver badges</span><span aria-hidden="true" title="35 bronze badges"><span class="badge3"></span><span class="badgecount">35</span></span><span class="v-visible-sr">35 bronze badges</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<span class="d-none" itemprop="commentCount">2</span>
-<div class="post-layout--right js-post-comments-component">
-<div class="comments js-comments-container bt bc-black-075 mt12" data-min-length="15" data-post-id="61879759" id="comments-61879759">
-<ul class="comments-list js-comments-list" data-addlink-disabled="true" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-remaining-comments-count="0">
-<li class="comment js-comment" data-comment-id="112082121" data-comment-owner-id="1040929" data-comment-score="4" id="comment-112082121">
-<div class="js-comment-actions comment-actions">
-<div class="comment-score js-comment-edit-hide">
-<span class="cool" title="number of 'useful comment' votes received">4</span>
-</div>
-</div>
-<div class="comment-text js-comment-text-and-form">
-<div class="comment-body js-comment-edit-hide">
-<span class="comment-copy">This was very helpful! I was able to do it in fewer steps by simply using the <code>env</code> approach (i.e., no need to edit ~/.zshrc to add all the exports):  <code>env PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I/usr/local/opt/tcl-tk/include' --with-tcltk-libs='-L/usr/local/opt/tcl-tk/lib -ltcl8.6 -ltk8.6' --enable-shared" pyenv install 3.8.5</code>  I added --enable-shared since PyInstaller needs it. If you don't need it:  <code>env PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I/usr/local/opt/tcl-tk/include' --with-tcltk-libs='-L/usr/local/opt/tcl-tk/lib -ltcl8.6 -ltk8.6'" pyenv install 3.8.5</code></span>
-                
-– <a class="comment-user" href="/users/1040929/davedgd" title="152 reputation">davedgd</a>
-<span class="comment-date" dir="ltr"><span class="relativetime-clean" title="2020-08-12 22:37:38Z, License: CC BY-SA 4.0">Aug 12 '20 at 22:37</span></span>
-<span title="this comment was edited 3 times">
-<svg aria-hidden="true" class="va-text-bottom o50 svg-icon iconPencilSm" height="14" viewbox="0 0 14 14" width="14"><path d="M11.1 1.71l1.13 1.12c.2.2.2.51 0 .71L11.1 4.7 9.21 2.86l1.17-1.15c.2-.2.51-.2.71 0zM2 10.12l6.37-6.43 1.88 1.88L3.88 12H2v-1.88z"></path></svg>
-</span>
-</div>
-</div>
-</li>
-<li class="comment js-comment" data-comment-id="116150909" data-comment-owner-id="3928599" data-comment-score="1" id="comment-116150909">
-<div class="js-comment-actions comment-actions">
-<div class="comment-score js-comment-edit-hide">
-<span class="cool" title="number of 'useful comment' votes received">1</span>
-</div>
-</div>
-<div class="comment-text js-comment-text-and-form">
-<div class="comment-body js-comment-edit-hide">
-<span class="comment-copy">Thanks. This saved my life.</span>
-                
-– <a class="comment-user" href="/users/3928599/codingnow" title="875 reputation">CodingNow</a>
-<span class="comment-date" dir="ltr"><span class="relativetime-clean" title="2021-01-12 23:37:27Z, License: CC BY-SA 4.0">Jan 12 at 23:37</span></span>
-</div>
-</div>
-</li>
-</ul>
-</div>
-<div data-anon="true" data-rep="50" id="comments-link-61879759">
-<a class="js-add-link comments-link disabled-link" href="#" role="button" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">Add a comment</a>
-<span class="js-link-separator dno"> | </span>
-<a class="js-show-link comments-link dno" href="#" onclick="" role="button" title="Expand to show all comments on this post"></a>
-</div>
-</div>
-</div>
-</div>
-<a name="65738820"></a>
-<div class="answer" data-answerid="65738820" data-ownerid="8111013" data-score="0" id="answer-65738820" itemprop="suggestedAnswer" itemscope="" itemtype="https://schema.org/Answer">
-<div class="post-layout">
-<div class="votecell post-layout--left">
-<div class="js-voting-container grid jc-center fd-column ai-stretch gs4 fc-black-200" data-post-id="65738820">
-<button aria-label="Up vote" aria-pressed="false" class="js-vote-up-btn grid--cell s-btn s-btn__unset c-pointer" data-controller="s-tooltip" data-s-tooltip-placement="right" data-selected-classes="fc-theme-primary" title="This answer is useful"><svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" height="36" viewbox="0 0 36 36" width="36"><path d="M2 26h32L18 10 2 26z"></path></svg></button>
-<div class="js-vote-count grid--cell fc-black-500 fs-title grid fd-column ai-center" data-value="0" itemprop="upvoteCount">0</div>
-<button aria-label="Down vote" aria-pressed="false" class="js-vote-down-btn grid--cell s-btn s-btn__unset c-pointer" data-controller="s-tooltip" data-s-tooltip-placement="right" data-selected-classes="fc-theme-primary" title="This answer is not useful"><svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" height="36" viewbox="0 0 36 36" width="36"><path d="M2 10h32L18 26 2 10z"></path></svg></button>
-<div aria-label="Accepted" class="js-accepted-answer-indicator grid--cell fc-green-500 py6 mtn8 d-none" data-s-tooltip-placement="right" role="note" tabindex="0" title="Loading when this answer was accepted…">
-<div class="ta-center">
-<svg aria-hidden="true" class="svg-icon iconCheckmarkLg" height="36" viewbox="0 0 36 36" width="36"><path d="M6 14l8 8L30 6v8L14 30l-8-8v-8z"></path></svg>
-</div>
-</div>
-<a aria-label="Timeline" class="js-post-issue grid--cell s-btn s-btn__unset c-pointer py6 mx-auto" data-controller="s-tooltip" data-s-tooltip-placement="right" data-shortcut="T" href="/posts/65738820/timeline" title="Show activity on this post."><svg aria-hidden="true" class="mln2 mr0 svg-icon iconHistory" height="18" viewbox="0 0 19 18" width="19"><path d="M3 9a8 8 0 113.73 6.77L8.2 14.3A6 6 0 105 9l3.01-.01-4 4-4-4h3L3 9zm7-4h1.01L11 9.36l3.22 2.1-.6.93L10 10V5z"></path></svg></a>
-</div>
-</div>
-<div class="answercell post-layout--right">
-<div class="s-prose js-post-body" itemprop="text">
-<p>I had the same issue when I tried to install <code>tkinter</code> through pyenv. I was able to fix it using the following in case someone has the same problem and still want to stick with <code>pyenv</code>.</p>
-<p><strong>The Fix</strong></p>
-<ol>
-<li><p>I followed @nickolay instructions to install <code>tkinter</code> and set the path the proper way.</p>
-</li>
-<li><p>Then, I installed anaconda3-2020.07 using the <code>pyenv install anaconda3-2020.07</code> command.</p>
-</li>
-<li><p>Because I am using pyenv python 3.8.6 <strong>globally</strong>: I navigated to the folder I want to use tkinter and used the <code>anaconda3-2020.07</code> <strong>locally</strong> by utilizing the command <code>pyenv local anaconda3-2020.07</code>to use this version of pyenv in that specific folder. It ran without errors!</p>
-</li>
-</ol>
-<p><strong>Note:</strong> I am using the following script in the <code>.bash_profile</code> to trigger the virtualenv automatically when cd the desired directory</p>
-<pre class="lang-sh prettyprint-override"><code># manage python version using pyenv
-if command -v pyenv 1&gt;/dev/null 2&gt;&amp;1; then
-  eval "$(pyenv init -)"
-fi
-
-# add pyenv virtualenv
-eval "$(pyenv virtualenv-init -)"
-</code></pre>
-</div>
-<div class="mt24">
-<div class="grid fw-wrap ai-start jc-end gs8 gsy">
-<time datetime="2021-01-15T15:25:19" itemprop="dateCreated"></time>
-<div class="grid--cell mr16" style="flex: 1 1 100px;">
-<div class="js-post-menu pt2" data-post-id="65738820">
-<div class="grid d-flex gs8 s-anchors s-anchors__muted fw-wrap">
-<div class="grid--cell">
-<a class="js-share-link js-gps-track" data-controller="se-share-sheet" data-gps-track="post.click({ item: 2, priv: 0, post_type: 2 })" data-s-popover-placement="bottom-start" data-se-share-sheet-license-name="CC BY-SA 4.0" data-se-share-sheet-license-url="https%3a%2f%2fcreativecommons.org%2flicenses%2fby-sa%2f4.0%2f" data-se-share-sheet-location="2" data-se-share-sheet-post-type="answer" data-se-share-sheet-social="facebook twitter devto" data-se-share-sheet-subtitle="" data-se-share-sheet-title="Share a link to this answer" href="/a/65738820" itemprop="url" rel="nofollow" title="Short permalink to this answer">Share</a>
-</div>
-<div class="grid--cell">
-<a class="js-suggest-edit-post js-gps-track" data-gps-track="post.click({ item: 6, priv: 0, post_type: 2 })" href="/posts/65738820/edit" title="">Improve this answer</a>
-</div>
-<div class="grid--cell">
-<button aria-controls="" class="s-btn s-btn__link js-follow-post js-follow-answer js-gps-track" data-controller="s-tooltip " data-gps-track="post.click({ item: 14, priv: 0, post_type: 2 })" data-s-popover-placement="bottom" data-s-tooltip-placement="bottom" id="btnFollowPost-65738820" title="Follow this answer to receive notifications" type="button">
-                Follow
-            </button>
-</div>
-</div>
-<div class="js-menu-popup-container"></div>
-</div>
-</div>
-<div class="post-signature grid--cell fl0">
-<div class="user-info">
-<div class="user-action-time">
-<a class="js-gps-track" data-gps-track="post.click({ item: 4, priv: 0, post_type: 2 })" href="/posts/65738820/revisions" title="show all edits to this post">edited <span class="relativetime" title="2021-01-15 16:44:08Z">Jan 15 at 16:44</span></a>
-</div>
-<div class="user-gravatar32">
-</div>
-<div class="user-details">
-<div class="-flair">
-</div>
-</div>
-</div>
-</div>
-<div class="post-signature grid--cell fl0">
-<div class="user-info user-hover">
-<div class="user-action-time">
-        answered <span class="relativetime" title="2021-01-15 15:25:19Z">Jan 15 at 15:25</span>
-</div>
-<div class="user-gravatar32">
-<a href="/users/8111013/salma"><div class="gravatar-wrapper-32"><img alt="" class="bar-sm" height="32" src="https://www.gravatar.com/avatar/9bc5ef4eeaac3a0f7531794c4dd11fd5?s=32&amp;d=identicon&amp;r=PG&amp;f=1" width="32"/></div></a>
-</div>
-<div class="user-details" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-<a href="/users/8111013/salma">Salma</a><span class="d-none" itemprop="name">Salma</span>
-<div class="-flair">
-<span class="reputation-score" dir="ltr" title="reputation score ">990</span><span aria-hidden="true" title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span class="v-visible-sr">2 gold badges</span><span aria-hidden="true" title="8 silver badges"><span class="badge2"></span><span class="badgecount">8</span></span><span class="v-visible-sr">8 silver badges</span><span aria-hidden="true" title="19 bronze badges"><span class="badge3"></span><span class="badgecount">19</span></span><span class="v-visible-sr">19 bronze badges</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<span class="d-none" itemprop="commentCount"></span>
-<div class="post-layout--right js-post-comments-component">
-<div class="comments js-comments-container bt bc-black-075 mt12 dno" data-min-length="15" data-post-id="65738820" id="comments-65738820">
-<ul class="comments-list js-comments-list" data-addlink-disabled="true" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-remaining-comments-count="0">
-</ul>
-</div>
-<div data-anon="true" data-rep="50" id="comments-link-65738820">
-<a class="js-add-link comments-link disabled-link" href="#" role="button" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">Add a comment</a>
-<span class="js-link-separator dno"> | </span>
-<a class="js-show-link comments-link dno" href="#" onclick="" role="button" title="Expand to show all comments on this post"></a>
-</div>
-</div>
-</div>
-</div>
-<a name="new-answer"></a>
-<form action="/questions/60469202/answer/submit" class="js-add-answer-component post-form" id="post-form" method="post">
-<input id="post-id" type="hidden" value="60469202"/>
-<input id="qualityBanWarningShown" name="qualityBanWarningShown" type="hidden" value="false"/>
-<input name="referrer" type="hidden" value=""/>
-<h2 class="space">
-                                    Your Answer
-                                </h2>
-<script>
-        StackExchange.ifUsing("editor", function () {
-            StackExchange.using("externalEditor", function () {
-                StackExchange.using("snippets", function () {
-                    StackExchange.snippets.init();
-                });
-            });
-        }, "code-snippets");
-    </script>
-<script>
-    StackExchange.ready(function() {
-        var channelOptions = {
-            tags: "".split(" "),
-            id: "1"
-        };
-        initTagRenderer("".split(" "), "".split(" "), channelOptions);
-
-        StackExchange.using("externalEditor", function() {
-            // Have to fire editor after snippets, if snippets enabled
-            if (StackExchange.settings.snippets.snippetsEnabled) {
-                StackExchange.using("snippets", function() {
-                    createEditor();
-                });
-            }
-            else {
-                createEditor();
-            }
-        });
-
-        function createEditor() {
-            StackExchange.prepareEditor({
-                useStacksEditor: false,
-                heartbeatType: 'answer',
-                autoActivateHeartbeat: false,
-                convertImagesToLinks: true,
-                noModals: true,
-                showLowRepImageUploadWarning: true,
-                reputationToPostImages: 10,
-                bindNavPrevention: true,
-                postfix: "",
-                imageUploader: {
-                    brandingHtml: "Powered by \u003ca href=\"https://imgur.com/\"\u003e\u003csvg class=\"svg-icon\" width=\"50\" height=\"18\" viewBox=\"0 0 50 18\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"\u003e\u003cpath d=\"M46.1709 9.17788C46.1709 8.26454 46.2665 7.94324 47.1084 7.58816C47.4091 7.46349 47.7169 7.36433 48.0099 7.26993C48.9099 6.97997 49.672 6.73443 49.672 5.93063C49.672 5.22043 48.9832 4.61182 48.1414 4.61182C47.4335 4.61182 46.7256 4.91628 46.0943 5.50789C45.7307 4.9328 45.2525 4.66231 44.6595 4.66231C43.6264 4.66231 43.1481 5.28821 43.1481 6.59048V11.9512C43.1481 13.2535 43.6264 13.8962 44.6595 13.8962C45.6924 13.8962 46.1709 13.2535 46.1709 11.9512V9.17788Z\"/\u003e\u003cpath d=\"M32.492 10.1419C32.492 12.6954 34.1182 14.0484 37.0451 14.0484C39.9723 14.0484 41.5985 12.6954 41.5985 10.1419V6.59049C41.5985 5.28821 41.1394 4.66232 40.1061 4.66232C39.0732 4.66232 38.5948 5.28821 38.5948 6.59049V9.60062C38.5948 10.8521 38.2696 11.5455 37.0451 11.5455C35.8209 11.5455 35.4954 10.8521 35.4954 9.60062V6.59049C35.4954 5.28821 35.0173 4.66232 34.0034 4.66232C32.9703 4.66232 32.492 5.28821 32.492 6.59049V10.1419Z\" /\u003e\u003cpath fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M25.6622 17.6335C27.8049 17.6335 29.3739 16.9402 30.2537 15.6379C30.8468 14.7755 30.9615 13.5579 30.9615 11.9512V6.59049C30.9615 5.28821 30.4833 4.66231 29.4502 4.66231C28.9913 4.66231 28.4555 4.94978 28.1109 5.50789C27.499 4.86533 26.7335 4.56087 25.7005 4.56087C23.1369 4.56087 21.0134 6.57349 21.0134 9.27932C21.0134 11.9852 23.003 13.913 25.3754 13.913C26.5612 13.913 27.4607 13.4902 28.1109 12.6616C28.1109 12.7229 28.1161 12.7799 28.121 12.8346C28.1256 12.8854 28.1301 12.9342 28.1301 12.983C28.1301 14.4373 27.2502 15.2321 25.777 15.2321C24.8349 15.2321 24.1352 14.9821 23.5661 14.7787C23.176 14.6393 22.8472 14.5218 22.5437 14.5218C21.7977 14.5218 21.2429 15.0123 21.2429 15.6887C21.2429 16.7375 22.9072 17.6335 25.6622 17.6335ZM24.1317 9.27932C24.1317 7.94324 24.9928 7.09766 26.1024 7.09766C27.2119 7.09766 28.0918 7.94324 28.0918 9.27932C28.0918 10.6321 27.2311 11.5116 26.1024 11.5116C24.9737 11.5116 24.1317 10.6491 24.1317 9.27932Z\"/\u003e\u003cpath d=\"M16.8045 11.9512C16.8045 13.2535 17.2637 13.8962 18.2965 13.8962C19.3298 13.8962 19.8079 13.2535 19.8079 11.9512V8.12928C19.8079 5.82936 18.4879 4.62866 16.4027 4.62866C15.1594 4.62866 14.279 4.98375 13.3609 5.88013C12.653 5.05154 11.6581 4.62866 10.3573 4.62866C9.34336 4.62866 8.57809 4.89931 7.9466 5.5079C7.58314 4.9328 7.10506 4.66232 6.51203 4.66232C5.47873 4.66232 5.00066 5.28821 5.00066 6.59049V11.9512C5.00066 13.2535 5.47873 13.8962 6.51203 13.8962C7.54479 13.8962 8.0232 13.2535 8.0232 11.9512V8.90741C8.0232 7.58817 8.44431 6.91179 9.53458 6.91179C10.5104 6.91179 10.893 7.58817 10.893 8.94108V11.9512C10.893 13.2535 11.3711 13.8962 12.4044 13.8962C13.4375 13.8962 13.9157 13.2535 13.9157 11.9512V8.90741C13.9157 7.58817 14.3365 6.91179 15.4269 6.91179C16.4027 6.91179 16.8045 7.58817 16.8045 8.94108V11.9512Z\"/\u003e\u003cpath d=\"M3.31675 6.59049C3.31675 5.28821 2.83866 4.66232 1.82471 4.66232C0.791758 4.66232 0.313354 5.28821 0.313354 6.59049V11.9512C0.313354 13.2535 0.791758 13.8962 1.82471 13.8962C2.85798 13.8962 3.31675 13.2535 3.31675 11.9512V6.59049Z\" /\u003e\u003cpath d=\"M1.87209 0.400291C0.843612 0.400291 0 1.1159 0 1.98861C0 2.87869 0.822846 3.57676 1.87209 3.57676C2.90056 3.57676 3.7234 2.87869 3.7234 1.98861C3.7234 1.1159 2.90056 0.400291 1.87209 0.400291Z\" fill=\"#1BB76E\"/\u003e\u003c/svg\u003e\u003c/a\u003e",
-                    contentPolicyHtml: "User contributions licensed under \u003ca href=\"https://stackoverflow.com/help/licensing\"\u003ecc by-sa\u003c/a\u003e \u003ca href=\"https://stackoverflow.com/legal/content-policy\"\u003e(content policy)\u003c/a\u003e",
-                    allowUrls: true
-                },
-                onDemand: true,
-                discardSelector: ".discard-answer"
-                ,immediatelyShowMarkdownHelp:true,enableTables:true,enableSnippets:true
-            });
-                    }
-    });
-</script>
-<div class="post-editor js-post-editor" id="post-editor">
-<div class="ps-relative">
-<div class="wmd-container mb8">
-<div class="wmd-button-bar btr-sm" id="wmd-button-bar"></div>
-<div class="js-stacks-validation">
-<div class="ps-relative">
-<textarea class="wmd-input s-input bar0 js-post-body-field" cols="92" data-min-length="" data-post-type-id="2" id="wmd-input" name="post-text" rows="15" tabindex="101"></textarea>
-</div>
-<div class="s-input-message mt4 d-none js-stacks-validation-message"></div>
-</div>
-</div>
-</div>
-<aside aria-hidden="true" class="grid ai-start jc-space-between js-answer-help s-notice s-notice__warning pb0 pr4 pt4 mb8 d-none" role="status">
-<div class="grid--cell pt8">
-<p>Thanks for contributing an answer to Stack Overflow!</p><ul><li>Please be sure to <em>answer the question</em>. Provide details and share your research!</li></ul><p>But <em>avoid</em> …</p><ul><li>Asking for help, clarification, or responding to other answers.</li><li>Making statements based on opinion; back them up with references or personal experience.</li></ul><p>To learn more, see our <a href="/help/how-to-answer">tips on writing great answers</a>.</p>
-</div>
-<button class="grid--cell js-answer-help-close-btn s-btn s-btn__muted fc-dark">
-<svg aria-hidden="true" class="svg-icon iconClear" height="18" viewbox="0 0 18 18" width="18"><path d="M15 4.41L13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9 15 4.41z"></path></svg>
-</button>
-</aside>
-<div>
-<div class="fc-success h24" id="draft-saved" style="display:none;">Draft saved</div>
-<div class="fc-error h24" id="draft-discarded" style="display:none;">Draft discarded</div>
-</div>
-<div class="s-prose mb16 wmd-preview js-wmd-preview" id="wmd-preview"></div>
-<div></div>
-<div class="edit-block">
-<input id="fkey" name="fkey" type="hidden" value="e736c970ecfc64365580a5251b6b84bb4999eb903553e5614aed923cea083ce4"/>
-<input id="author" name="author" type="text"/>
-</div>
-</div>
-<div class="ps-relative">
-<div class="form-item dno new-post-login p0 my16">
-<div class="grid gs16 md:fd-column new-login-form">
-<div class="grid fd-column w50 md:w-auto gsy gs8 jc-space-between new-login-left">
-<h3 class="grid--cell fs-title">Sign up or <a href="/users/login?ssrc=question_page&amp;returnurl=https%3a%2f%2fstackoverflow.com%2fquestions%2f60469202%2funable-to-install-tkinter-with-pyenv-pythons-on-macos%23new-answer" id="login-link">log in</a></h3>
-<script>
-                            StackExchange.ready(function () {
-                                StackExchange.helpers.onClickDraftSave('#login-link');
-                            });
-                        </script>
-<div class="grid--cell s-btn s-btn__muted s-btn__outlined s-btn__icon google-login" data-ga='["sign up","Sign Up Started - Google","New Post",null,null]'>
-<svg aria-hidden="true" class="native svg-icon iconGoogle" height="18" viewbox="0 0 18 18" width="18"><path d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 002.38-5.88c0-.57-.05-.66-.15-1.18z" fill="#4285F4"></path><path d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 01-7.18-2.54H1.83v2.07A8 8 0 008.98 17z" fill="#34A853"></path><path d="M4.5 10.52a4.8 4.8 0 010-3.04V5.41H1.83a8 8 0 000 7.18l2.67-2.07z" fill="#FBBC05"></path><path d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 001.83 5.4L4.5 7.49a4.77 4.77 0 014.48-3.3z" fill="#EA4335"></path></svg> Sign up using Google
-                        </div>
-<div class="grid--cell s-btn s-btn__muted s-btn__icon facebook-login" data-ga='["sign up","Sign Up Started - Facebook","New Post",null,null]'>
-<svg aria-hidden="true" class="svg-icon iconFacebook" height="18" viewbox="0 0 18 18" width="18"><path d="M3 1a2 2 0 00-2 2v12c0 1.1.9 2 2 2h12a2 2 0 002-2V3a2 2 0 00-2-2H3zm6.55 16v-6.2H7.46V8.4h2.09V6.61c0-2.07 1.26-3.2 3.1-3.2.88 0 1.64.07 1.87.1v2.16h-1.29c-1 0-1.19.48-1.19 1.18V8.4h2.39l-.31 2.42h-2.08V17h-2.5z" fill="#4167B2"></path></svg> Sign up using Facebook
-                        </div>
-<div class="grid--cell s-btn s-btn__muted s-btn__outlined s-btn__icon stackexchange-login" data-ga='["sign up","Sign Up Navigation","New Post",null,null]'>
-<svg aria-hidden="true" class="native svg-icon iconLogoGlyphXSm" height="18" viewbox="0 0 18 18" width="18"><path d="M14 16v-5h2v7H2v-7h2v5h10z" fill="#BCBBBB"></path><path d="M12.09.72l-1.21.9 4.5 6.07 1.22-.9L12.09.71zM5 15h8v-2H5v2zm9.15-5.87L8.35 4.3l.96-1.16 5.8 4.83-.96 1.16zm-7.7-1.47l6.85 3.19.63-1.37-6.85-3.2-.63 1.38zm6.53 5L5.4 11.39l.38-1.67 7.42 1.48-.22 1.46z" fill="#F48024"></path></svg> Sign up using Email and Password
-                        </div>
-</div>
-<input class="use-facebook" name="use-facebook" type="hidden" value="false">
-<input class="use-google" name="use-google" type="hidden" value="false">
-<button class="d-none js-submit-openid" type="button">Submit</button>
-<div class="grid gsy gs8 fd-column w50 md:w-auto new-login-right form-item p0">
-<h3 class="grid--cell fs-title">Post as a guest</h3>
-<div class="grid--cell">
-<div class="grid gs4 gsy fd-column">
-<label class="s-label" for="display-name">Name</label>
-<div class="grid ps-relative">
-<input class="s-input" id="display-name" maxlength="30" name="display-name" placeholder="" tabindex="105" type="text" value=""/>
-</div>
-</div>
-</div>
-<div class="grid--cell">
-<div class="grid gs4 gsy fd-column">
-<div class="grid--cell">
-<div class="grid gs2 gsy fd-column">
-<label class="grid--cell s-label" for="m-address">Email</label>
-<p class="grid--cell s-description">Required, but never shown</p>
-</div>
-</div>
-<div class="grid ps-relative">
-<input class="s-input js-post-email-field" id="m-address" name="m-address" placeholder="" size="40" tabindex="106" type="text" value=""/>
-</div>
-</div>
-</div>
-</div>
-</input></input></div>
-</div>
-<script>
-                StackExchange.ready(
-                    function () {
-                        StackExchange.openid.initPostLogin('.new-post-login', 'https%3a%2f%2fstackoverflow.com%2fquestions%2f60469202%2funable-to-install-tkinter-with-pyenv-pythons-on-macos%23new-answer', 'question_page');
-                    }
-                );
-            </script>
-<noscript>
-<h3 class="grid--cell fs-title">Post as a guest</h3>
-<div class="grid--cell">
-<div class="grid gs4 gsy fd-column">
-<label class="s-label" for="display-name">Name</label>
-<div class="grid ps-relative">
-<input class="s-input" id="display-name" maxlength="30" name="display-name" placeholder="" tabindex="105" type="text" value=""/>
-</div>
-</div>
-</div>
-<div class="grid--cell">
-<div class="grid gs4 gsy fd-column">
-<div class="grid--cell">
-<div class="grid gs2 gsy fd-column">
-<label class="grid--cell s-label" for="m-address">Email</label>
-<p class="grid--cell s-description">Required, but never shown</p>
-</div>
-</div>
-<div class="grid ps-relative">
-<input class="s-input js-post-email-field" id="m-address" name="m-address" placeholder="" size="40" tabindex="106" type="text" value=""/>
-</div>
-</div>
-</div>
-</noscript>
-</div>
-<div class="form-submit cbt grid gsx gs4">
-<button autocomplete="off" class="grid--cell s-btn s-btn__primary s-btn__icon" id="submit-button" tabindex="120" type="submit">
-Post Your Answer                                        </button>
-<button class="grid--cell s-btn s-btn__danger discard-answer dno">
-                                            Discard
-                                        </button>
-<p class="privacy-policy-agreement">
-                                                By clicking “Post Your Answer”, you agree to our <a class="-link" href="https://stackoverflow.com/legal/terms-of-service/public" name="tos" target="_blank">terms of service</a>, <a class="-link" href="https://stackoverflow.com/legal/privacy-policy" name="privacy" target="_blank">privacy policy</a> and <a class="-link" href="https://stackoverflow.com/legal/cookie-policy" name="cookie" target="_blank">cookie policy</a><input name="legalLinksShown" type="hidden" value="1"/>
-</p>
-</div>
-<div class="js-general-error general-error cbt d-none"></div>
-</form>
-<h2 class="bottom-notice" data-loc="1">
-Not the answer you're looking for? Browse other questions tagged <a class="post-tag" href="/questions/tagged/python" rel="tag" title="show questions tagged 'python'">python</a> <a class="post-tag" href="/questions/tagged/macos" rel="tag" title="show questions tagged 'macos'">macos</a> <a class="post-tag" href="/questions/tagged/tkinter" rel="tag" title="show questions tagged 'tkinter'">tkinter</a> <a class="post-tag" href="/questions/tagged/pyenv" rel="tag" title="show questions tagged 'pyenv'">pyenv</a>  or <a href="/questions/ask">ask your own question</a>.                            </h2>
-</div>
-</div>
-<div aria-label="sidebar" class="show-votes" id="sidebar" role="complementary">
-<div class="s-sidebarwidget s-sidebarwidget__yellow s-anchors s-anchors__grayscale mb16" data-tracker="cb=1">
-<ul class="d-block p0 m0">
-<div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text fc-light d:fc-black-900 bb bbw1">
-                        The Overflow Blog
-                    </div>
-<li class="s-sidebarwidget--item grid px16">
-<div class="grid--cell1 fl-shrink0">
-<svg aria-hidden="true" class="va-text-top svg-icon iconPencilSm" height="14" viewbox="0 0 14 14" width="14"><path d="M11.1 1.71l1.13 1.12c.2.2.2.51 0 .71L11.1 4.7 9.21 2.86l1.17-1.15c.2-.2.51-.2.71 0zM2 10.12l6.37-6.43 1.88 1.88L3.88 12H2v-1.88z"></path></svg> </div>
-<div class="grid--cell wmn0 ow-break-word">
-<a class="js-gps-track" data-ga='["community bulletin board","The Overflow Blog","https://stackoverflow.blog/2021/03/18/creating-a-good-feedback-loop-between-ops-and-devs-using-documentation/",null,null]' data-gps-track="communitybulletin.click({ priority: 1, position: 0 })" href="https://stackoverflow.blog/2021/03/18/creating-a-good-feedback-loop-between-ops-and-devs-using-documentation/">“This should never happen. If it does, call the developers.”</a>
-</div>
-</li>
-<li class="s-sidebarwidget--item grid px16">
-<div class="grid--cell1 fl-shrink0">
-<svg aria-hidden="true" class="va-text-top svg-icon iconPencilSm" height="14" viewbox="0 0 14 14" width="14"><path d="M11.1 1.71l1.13 1.12c.2.2.2.51 0 .71L11.1 4.7 9.21 2.86l1.17-1.15c.2-.2.51-.2.71 0zM2 10.12l6.37-6.43 1.88 1.88L3.88 12H2v-1.88z"></path></svg> </div>
-<div class="grid--cell wmn0 ow-break-word">
-<a class="js-gps-track" data-ga='["community bulletin board","The Overflow Blog","https://stackoverflow.blog/2021/03/19/podcast-322-getting-dev-and-ops-to-actually-work-together/",null,null]' data-gps-track="communitybulletin.click({ priority: 1, position: 1 })" href="https://stackoverflow.blog/2021/03/19/podcast-322-getting-dev-and-ops-to-actually-work-together/">Podcast 322: Getting Dev and Ops to actually work together</a>
-</div>
-</li>
-<div class="s-sidebarwidget--header s-sidebarwidget__small-bold-text fc-light d:fc-black-900 bb bbw1">
-                        Featured on Meta
-                    </div>
-<li class="s-sidebarwidget--item grid px16">
-<div class="grid--cell1 fl-shrink0">
-<div class="favicon favicon-stackexchangemeta" title="Meta Stack Exchange"></div> </div>
-<div class="grid--cell wmn0 ow-break-word">
-<a class="js-gps-track" data-ga='["community bulletin board","Featured on Meta","https://meta.stackexchange.com/questions/362203/stack-overflow-for-teams-is-now-free-for-up-to-50-users-forever",null,null]' data-gps-track="communitybulletin.click({ priority: 3, position: 2 })" href="https://meta.stackexchange.com/questions/362203/stack-overflow-for-teams-is-now-free-for-up-to-50-users-forever">Stack Overflow for Teams is now free for up to 50 users, forever</a>
-</div>
-</li>
-<li class="s-sidebarwidget--item grid px16">
-<div class="grid--cell1 fl-shrink0">
-<div class="favicon favicon-stackexchangemeta" title="Meta Stack Exchange"></div> </div>
-<div class="grid--cell wmn0 ow-break-word">
-<a class="js-gps-track" data-ga='["community bulletin board","Featured on Meta","https://meta.stackexchange.com/questions/362269/planned-maintenance-scheduled-for-friday-march-26-2021-at-9-pm-us-edt-march-2",null,null]' data-gps-track="communitybulletin.click({ priority: 3, position: 3 })" href="https://meta.stackexchange.com/questions/362269/planned-maintenance-scheduled-for-friday-march-26-2021-at-9-pm-us-edt-march-2" title="Planned maintenance scheduled for Friday, March 26, 2021 at 9 PM US/EDT (March 27 1:00 UTC)">Planned maintenance scheduled for Friday, March 26, 2021 at 9 PM US/EDT…</a>
-</div>
-</li>
-</ul>
-</div>
-<div class="js-zone-container zone-container-sidebar">
-<div class="everyonelovesstackoverflow everyoneloves__top-sidebar" id="dfp-tsb"></div>
-<div class="js-report-ad-button-container" style="width: 300px"></div>
-</div>
-<div class="js-zone-container zone-container-sidebar">
-<div class="everyonelovesstackoverflow everyoneloves__mid-sidebar" id="dfp-msb"></div>
-<div class="js-report-ad-button-container" style="width: 300px"></div>
-</div>
-<div id="hireme"></div> <div class="module sidebar-linked">
-<h4 id="h-linked">Linked</h4>
-<div class="linked" data-tracker="lq=1">
-<div class="spacer js-gps-track" data-gps-track="linkedquestion.click({ source_post_id: 60469202, target_question_id: 36760839, position: 0 })">
-<a href="/q/36760839" title="Vote score (upvotes - downvotes)">
-<div class="answer-votes default">33</div>
-</a>
-<a class="question-hyperlink" href="/questions/36760839/why-my-python-installed-via-home-brew-not-include-tkinter?noredirect=1">Why my Python installed via home brew not include Tkinter</a>
-</div>
-<div class="spacer js-gps-track" data-gps-track="linkedquestion.click({ source_post_id: 60469202, target_question_id: 26357567, position: 1 })">
-<a href="/q/26357567" title="Vote score (upvotes - downvotes)">
-<div class="answer-votes answered-accepted default">9</div>
-</a>
-<a class="question-hyperlink" href="/questions/26357567/cannot-import-tkinter-after-installing-python-3-with-pyenv?noredirect=1">Cannot import tkinter after installing Python 3 with pyenv</a>
-</div>
-<div class="spacer js-gps-track" data-gps-track="linkedquestion.click({ source_post_id: 60469202, target_question_id: 53930597, position: 2 })">
-<a href="/q/53930597" title="Vote score (upvotes - downvotes)">
-<div class="answer-votes answered-accepted default">4</div>
-</a>
-<a class="question-hyperlink" href="/questions/53930597/updating-tcl-tk-version-of-homebrew-python3-on-macos?noredirect=1">Updating tcl/tk version of Homebrew python3 on macOS</a>
-</div>
-</div>
-</div>
-<div class="module sidebar-related">
-<h4 id="h-related">Related</h4>
-<div class="related js-gps-related-questions" data-tracker="rq=1">
-<div class="spacer">
-<a href="/q/1773222" title="Vote score (upvotes - downvotes)">
-<div class="answer-votes default">0</div>
-</a>
-<a class="question-hyperlink" href="/questions/1773222/linking-tcl-tk-to-python-2-5">Linking Tcl/Tk to Python 2.5</a>
-</div>
-<div class="spacer">
-<a href="/q/2247971" title="Vote score (upvotes - downvotes)">
-<div class="answer-votes default">1</div>
-</a>
-<a class="question-hyperlink" href="/questions/2247971/tcl-tk-tkinter-version-8-4-and-8-5-conflict-on-mac-os-x-10-4-11-with-python-2-6">Tcl/Tk Tkinter version 8.4 and 8.5 conflict on Mac Os X 10.4.11 with python 2.6.4</a>
-</div>
-<div class="spacer">
-<a href="/q/10675054" title="Vote score (upvotes - downvotes)">
-<div class="answer-votes answered-accepted default">79</div>
-</a>
-<a class="question-hyperlink" href="/questions/10675054/how-to-import-a-module-in-python-with-importlib-import-module">How to import a module in Python with importlib.import_module</a>
-</div>
-<div class="spacer">
-<a href="/q/17271319" title="Vote score (upvotes - downvotes)">
-<div class="answer-votes extra-large">1673</div>
-</a>
-<a class="question-hyperlink" href="/questions/17271319/how-do-i-install-pip-on-macos-or-os-x">How do I install pip on macOS or OS X?</a>
-</div>
-<div class="spacer">
-<a href="/q/17959307" title="Vote score (upvotes - downvotes)">
-<div class="answer-votes answered-accepted default">0</div>
-</a>
-<a class="question-hyperlink" href="/questions/17959307/how-to-install-graphics-py-on-ubuntu-12-04-for-python3-2">How to install graphics.py on Ubuntu 12.04 for Python3.2</a>
-</div>
-<div class="spacer">
-<a href="/q/20518632" title="Vote score (upvotes - downvotes)">
-<div class="answer-votes large">149</div>
-</a>
-<a class="question-hyperlink" href="/questions/20518632/importerror-numpy-core-multiarray-failed-to-import">ImportError: numpy.core.multiarray failed to import</a>
-</div>
-<div class="spacer">
-<a href="/q/42295171" title="Vote score (upvotes - downvotes)">
-<div class="answer-votes default">3</div>
-</a>
-<a class="question-hyperlink" href="/questions/42295171/how-to-install-tkinter-in-python-3-6-in-centos-release-6-4">How to install tkinter in python 3.6 in CentOS release 6.4</a>
-</div>
-<div class="spacer">
-<a href="/q/52264818" title="Vote score (upvotes - downvotes)">
-<div class="answer-votes default">0</div>
-</a>
-<a class="question-hyperlink" href="/questions/52264818/runtimeerror-unable-to-initialize-secretservice-environment-variable-dbus-sess">RuntimeError: Unable to initialize SecretService: Environment variable DBUS_SESSION_BUS_ADDRESS is unset</a>
-</div>
-<div class="spacer">
-<a href="/q/57951070" title="Vote score (upvotes - downvotes)">
-<div class="answer-votes default">0</div>
-</a>
-<a class="question-hyperlink" href="/questions/57951070/matplotlib-is-not-showing-output-in-simple-tutorial-program">matplotlib is not showing output in simple tutorial program</a>
-</div>
-<div class="spacer">
-<a href="/q/61854597" title="Vote score (upvotes - downvotes)">
-<div class="answer-votes default">2</div>
-</a>
-<a class="question-hyperlink" href="/questions/61854597/python-cannot-see-activetcl-after-installation">python cannot see ActiveTcl after installation</a>
-</div>
-</div>
-</div>
-<div class="module tex2jax_ignore" id="hot-network-questions">
-<h4>
-<a class="js-gps-track s-link s-link__inherit" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })" href="https://stackexchange.com/questions?tab=hot">
-            Hot Network Questions
-        </a>
-</h4>
-<ul>
-<li>
-<div class="favicon favicon-gis" title="Geographic Information Systems Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:79 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://gis.stackexchange.com/questions/390702/what-is-the-difference-between-qgis-file-types">
-                    What is the difference between QGIS file types?
-                </a>
-</li>
-<li>
-<div class="favicon favicon-history" title="History Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:324 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://history.stackexchange.com/questions/63284/what-were-paper-airplanes-called-before-there-were-real-airplanes-i-e-untethe">
-                    What were paper airplanes called before there were real airplanes? (i.e. untethered winged flyers, not kites or balloons)
-                </a>
-</li>
-<li>
-<div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://electronics.stackexchange.com/questions/554441/why-do-consumer-ovens-use-thermostats-instead-of-pid-pwm">
-                    Why do consumer ovens use thermostats instead of PID + PWM?
-                </a>
-</li>
-<li>
-<div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://codereview.stackexchange.com/questions/257476/generating-passwords">
-                    Generating passwords
-                </a>
-</li>
-<li>
-<div class="favicon favicon-latin" title="Latin Language Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:644 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://latin.stackexchange.com/questions/15628/quem-quaeritis">
-                    Quem quaeritis?
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-gis" title="Geographic Information Systems Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:79 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://gis.stackexchange.com/questions/390671/extracting-polygons-from-layer-crossed-by-lines-layer">
-                    Extracting polygons from layer crossed by lines layer
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-quantumcomputing" title="Quantum Computing Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:694 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://quantumcomputing.stackexchange.com/questions/16614/are-entangled-and-bell-states-the-same-thing">
-                    Are entangled and Bell states the same thing?
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-law" title="Law Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:617 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://law.stackexchange.com/questions/62370/do-changing-social-norms-change-the-definition-of-defamation">
-                    Do changing social norms change the definition of "defamation?"
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://academia.stackexchange.com/questions/164241/does-arxiv-keep-off-their-activity-during-sundays">
-                    Does arxiv keep off their activity during Sundays?
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-serverfault" title="Server Fault"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:2 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://serverfault.com/questions/1057780/dns-mx-spf-dmarc-records-without-actuall-emails-on-domain">
-                    DNS MX/SPF/DMARC records without actuall emails on domain
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-codegolf" title="Code Golf Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://codegolf.stackexchange.com/questions/220925/count-all-possible-tweets">
-                    Count all possible Tweets
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://electronics.stackexchange.com/questions/554561/how-close-should-the-diode-be-to-a-solenoid">
-                    How close should the diode be to a solenoid?
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://unix.stackexchange.com/questions/640343/accidentally-ran-sudo-rm-on-my-arch-linux-installation">
-                    Accidentally ran sudo rm /* on my Arch Linux installation
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://academia.stackexchange.com/questions/164242/when-should-one-publish-code-publicly-on-github-during-or-after-journal-review">
-                    When should one publish code publicly on GitHub: during or after journal review?
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-dba" title="Database Administrators Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:182 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://dba.stackexchange.com/questions/287454/in-the-same-query-insert-can-two-values-being-now-return-a-different-time">
-                    In the same query INSERT, can two VALUES being NOW() return a different time?
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-chess" title="Chess Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:435 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://chess.stackexchange.com/questions/34546/are-chess-players-getting-better-given-the-same-rating">
-                    Are chess players getting better, given the same rating?
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-literature" title="Literature Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:668 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://literature.stackexchange.com/questions/18075/is-im-glad-you-think-its-funny-meant-sarcastically-or-literally">
-                    Is "I'm glad you think it's funny" meant sarcastically or literally?
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://mathematica.stackexchange.com/questions/242261/construct-1-variable-function-from-given-2-variable-function">
-                    Construct 1 variable function from given 2 variable function
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://tex.stackexchange.com/questions/588425/pgfkeys-error-i-do-not-know-the-key-tikz-green">
-                    pgfkeys Error: I do not know the key '/tikz/green '
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://aviation.stackexchange.com/questions/84997/is-it-dangerous-for-a-supersonic-aircraft-to-fly-at-exactly-mach-1">
-                    Is it dangerous for a supersonic aircraft to fly at exactly Mach 1?
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-judaism" title="Mi Yodeya"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:248 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://judaism.stackexchange.com/questions/121196/is-there-a-jewish-way-of-war">
-                    Is there a Jewish way of war?
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-music" title="Music: Practice &amp; Theory Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:240 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://music.stackexchange.com/questions/112056/if-a-piece-classical-or-otherwise-has-multiple-sections-with-different-keys-i">
-                    If a piece (classical or otherwise) has multiple sections with different keys, is "this piece is in key X" a valid statement? Why?
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-politics" title="Politics Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:475 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://politics.stackexchange.com/questions/63143/constitutionally-what-would-happen-if-the-icelandic-president-is-convicted-of-a">
-                    Constitutionally, what would happen if the Icelandic President is convicted of a criminal offense?
-                </a>
-</li>
-<li class="dno js-hidden">
-<div class="favicon favicon-android" title="Android Enthusiasts Stack Exchange"></div><a class="js-gps-track question-hyperlink mb0" data-gps-track="site.switch({ item_type:11, target_site:139 }); posts_hot_network.click({ item_type:2, location:11 })" href="https://android.stackexchange.com/questions/234803/toggle-between-dark-and-light-theme-in-google-maps">
-                    Toggle between dark and light theme in Google Maps
-                </a>
-</li>
-</ul>
-<a class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })" href="#">
-            more hot questions
-        </a>
-</div>
-<div class="js-feed-link" id="feed-link">
-<a href="/feeds/question/60469202" title="Feed of this question and its answers">
-<svg aria-hidden="true" class="fc-orange-400 svg-icon iconRss" height="18" viewbox="0 0 18 18" width="18"><path d="M1 3c0-1.1.9-2 2-2h12a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V3zm14.5 12C15.5 8.1 9.9 2.5 3 2.5V5a10 10 0 0110 10h2.5zm-5 0A7.5 7.5 0 003 7.5V10a5 5 0 015 5h2.5zm-5 0A2.5 2.5 0 003 12.5V15h2.5z"></path></svg>
-            Question feed
-        </a>
-</div>
-<aside aria-describedby="feed-modal-description" aria-hidden="true" aria-labelledby="feed-modal-title" class="s-modal js-feed-link-modal" role="dialog" tabindex="-1">
-<div class="s-modal--dialog js-modal-dialog wmx4" data-controller="se-draggable" role="document">
-<h1 class="s-modal--header fw-bold js-first-tabbable" data-target="se-draggable.handle" id="feed-modal-title" tabindex="0">
-                Subscribe to RSS
-            </h1>
-<div class="grid gs4 gsy fd-column">
-<div class="grid--cell">
-<label class="d-block s-label c-default" for="feed-url">
-                        Question feed
-                        <p class="s-description mt2" id="feed-modal-description">To subscribe to this RSS feed, copy and paste this URL into your RSS reader.</p>
-</label>
-</div>
-<div class="grid ps-relative">
-<input class="s-input" id="feed-url" name="feed-url" readonly="readonly" type="text" value="https://stackoverflow.com/feeds/question/60469202"/>
-<svg aria-hidden="true" class="s-input-icon fc-orange-400 svg-icon iconRss" height="18" viewbox="0 0 18 18" width="18"><path d="M1 3c0-1.1.9-2 2-2h12a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V3zm14.5 12C15.5 8.1 9.9 2.5 3 2.5V5a10 10 0 0110 10h2.5zm-5 0A7.5 7.5 0 003 7.5V10a5 5 0 015 5h2.5zm-5 0A2.5 2.5 0 003 12.5V15h2.5z"></path></svg>
-</div>
-</div>
-<a aria-label="Close" class="s-modal--close s-btn s-btn__muted js-modal-close js-last-tabbable" href="#">
-<svg aria-hidden="true" class="svg-icon iconClearSm" height="14" viewbox="0 0 14 14" width="14"><path d="M12 3.41L10.59 2 7 5.59 3.41 2 2 3.41 5.59 7 2 10.59 3.41 12 7 8.41 10.59 12 12 10.59 8.41 7 12 3.41z"></path></svg>
-</a>
-</div>
-</aside>
-</div>
-</div>
-<script>StackExchange.ready(function(){$.get('/posts/60469202/ivc/d5d8');});</script>
-<noscript><div><img alt="" class="dno" height="0" src="/posts/60469202/ivc/d5d8" width="0"/></div></noscript><div id="js-codeblock-lang" style="display:none">lang-py</div></div>
-</div>
-</div>
-<script>;try{(function(a){function b(a){return'string'==typeof a?document.getElementById(a):a}function c(a){return a=b(a),!!a&&'none'===getComputedStyle(a).display}function d(a){return!c(a)}function e(a){return!!a}function f(a){return /^\s*$/.test(b(a).innerHTML)}function g(a){var b=a.style;b.height=b.maxHeight=b.minHeight='auto',b.display='none'}function h(a){var b=a.style;b.height=b.maxHeight=b.minHeight='auto',b.display='none',[].forEach.call(a.children,h)}function i(a){var b=a.style;b.height=b.maxHeight=b.minHeight='auto',b.removeProperty('display')}function j(a,b){var c;return function(){return a&&(c=a.call(b||this,arguments),a=null),c}}function k(a){var b=document.createElement('script');b.src=a,document.body.appendChild(b)}function l(a){return m([],a)}function m(a,b){return a.push=function(a){return b(),delete this.push,this.push(a)},a}function n(){try{return!new Function('return async()=>{};')}catch(a){return!0}}function o(){return'undefined'!=typeof googletag&&!!googletag.apiReady}function p(){o()||(googletag={cmd:l(B)})}function q(){var a=document.createElement('div');a.className='adsbox',a.id='clc-abd',a.style.position='absolute',a.style.pointerEvents='none',a.innerHTML='&nbsp;',document.body.appendChild(a)}function r(){return Object.keys(F.ids).filter(function(a){return'clc-cpa'!=a})}function s(a){var b=a.split('_')[0],c=F.ids[b],d=F.slots[c];'function'==typeof d&&(d=d(b));return{path:'/'+C+'/'+E+'/'+c+'/'+D,sizes:d,zone:c}}function t(a){try{Array.isArray(clc.dfp.slotsRenderedEvents)||(clc.dfp.slotsRenderedEvents=[]),clc.dfp.slotsRenderedEvents.push(a);var b=a.slot.getSlotElementId(),c=[];b||c.push('id=0');var d=document.getElementById(b);if(!b||d?d.hasAttribute('data-clc-stalled')&&c.push('st=1'):c.push('el=0'),0!==c.length)return void G(c.join('&'));var e=s(b),f=e.zone;if(clc.collapse&&clc.collapse[f]&&a.isEmpty)return h(d),void d.setAttribute('data-clc-ready','true');if(-1!==y.dh.indexOf(a.lineItemId))h(d);else if(a.lineItemId){d.setAttribute('data-clc-prefilled','true');var j=d.parentElement;if(j.classList.contains('js-zone-container')){g(j);var k=j.querySelectorAll('.js-report-ad-button-container'),l=k[0];switch(l.style.height='24px',b){case'dfp-tlb':case'dfp-tag':{j.classList.add('mb8');break}case'dfp-mlb':case'dfp-smlb':case'dfp-bmlb':{j.classList.add('my8');break}case'dfp-isb':{j.classList.add('mt24');break}case'dfp-m-aq':{j.classList.add('my12'),j.classList.add('mx-auto');break}default:}i(j),i(d)}else i(d);if('dfp-msb'==b){var m=document.getElementById('hireme');h(m)}}d.setAttribute('data-clc-ready','true')}catch(a){var n=document.querySelector('#dfp-tsb, #dfp-isb, #clc-tsb');n&&n.setAttribute('data-clc-ready','true'),G('e=1')}}function u(a,b){'dfp-isb'===a&&b.setTargeting('Sidebar',['Inline']),'dfp-tsb'===a&&b.setTargeting('Sidebar',['Right']);var c=s(a),d=c.path,e=c.sizes,f=c.zone,g=googletag.defineSlot(d,e,a);g.addService(b),!1;var h=a.split('_');if('clc-cpa'==h[0]&&h[1]){var i=h[1];g.setTargeting('talent-company-id',i)}}function v(b){var c=a.dfp&&a.dfp.targeting||{};'SystemDefault'===c.ProductVariant&&(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?c.ProductVariant='Dark':c.ProductVariant='Light'),Object.keys(c).forEach(function(a){b.setTargeting(a,c[a])})}function w(a){var g=a.map(b).filter(e);return{eligible:g.filter(f).filter(d),ineligible:g.filter(c)}}function x(b){void 0===b&&(b=r());var c=['dfp-mlb','dfp-smlb'];if(!o())return p(),void googletag.cmd.push(function(){return x(b)});var d=w(b),e=d.eligible,f=d.ineligible;if(e.forEach(function(a){g(a)}),f.forEach(h),0!==e.length){y.abd&&q();var i=googletag.pubads().getSlots(),j=i.filter(function(a){return 0<=b.indexOf(a.getSlotElementId())});googletag.destroySlots(j);var k=googletag.pubads();y.sf&&(k.setForceSafeFrame(!0),k.setSafeFrameConfig({allowOverlayExpansion:!0,allowPushExpansion:!0,sandbox:!0})),'undefined'!=typeof y.targeting_consent&&(k.setRequestNonPersonalizedAds(y.targeting_consent?0:1),!y.targeting_consent&&k.setPrivacySettings({limitedAds:!0})),y.ll||k.enableSingleRequest(),a.sreEvent||(k.addEventListener('slotRenderEnded',t),a.sreEvent=!0),v(k);var l=e.filter(function(a){return!y.ll||0>c.indexOf(a.id)}),m=e.filter(function(a){return!!y.ll&&0<=c.indexOf(a.id)});l.forEach(function(a){u(a.id,k),a.setAttribute('data-dfp-zone','true')}),googletag.enableServices(),l.forEach(function(a){googletag.display(a.id)}),y.ll&&(k.enableLazyLoad({fetchMarginPercent:0,renderMarginPercent:0}),m.forEach(function(a){u(a.id,k),a.setAttribute('data-clc-prefilled','true')}),m.forEach(function(a){googletag.display(a.id)}))}}var y=function(a){for(var b=[],c=1;c<arguments.length;c++)b[c-1]=arguments[c];for(var d,e=0,f=b;e<f.length;e++)for(var g in d=f[e],d)a[g]=d[g];return a}({"lib":"https://cdn.sstatic.net/clc/clc.min.js?v=0e634710bdce","style":"https://cdn.sstatic.net/clc/styles/clc.min.css?v=69a63cb1f209","u":"https://clc.stackoverflow.com/markup.js","wa":true,"kt":2000,"tto":true,"h":"clc.stackoverflow.com","allowed":"^(((talent\\.)?stackoverflow)|(blog\\.codinghorror)|(serverfault|askubuntu)|([^\\.]+\\.stackexchange))\\.com$","wv":true,"al":false,"dh":[5171832659],"abd":true},a.options||{}),z=j(function(){var a=y.lib;n()&&(a=a.replace(/(\.min)?\.js(\?v=[0-9a-fA-F]+)?$/,'.ie$1.js$2')),k(a)}),A=a.cmd||[];Array.isArray(A)&&(0<A.length?z():m(A,z));var B=j(function(){y.targeting_consent||'undefined'==typeof y.targeting_consent?k('https://securepubads.g.doubleclick.net/tag/js/gpt.js'):k('https://pagead2.googlesyndication.com/tag/js/gpt.js')}),C='248424177',D=/^\/tags\//.test(location.pathname)||/^\/questions\/tagged\//.test(location.pathname)?'tag-pages':/^\/$/.test(location.pathname)||/^\/home/.test(location.pathname)?'home-page':'question-pages',E=location.hostname;var F={slots:{lb:[[728,90]],mlb:[[728,90]],smlb:[[728,90]],bmlb:[[728,90]],sb:function(a){return'dfp-tsb'===a?[[300,250],[300,600]]:[[300,250]]},"tag-sponsorship":[[730,135]],"mobile-below-question":[[320,50],[300,250]],msb:[[300,250],[300,600]],"talent-conversion-tracking":[[1,1]]},ids:{"dfp-tlb":'lb',"dfp-mlb":'mlb',"dfp-smlb":'smlb',"dfp-bmlb":'bmlb',"dfp-tsb":'sb',"dfp-isb":'sb',"dfp-tag":'tag-sponsorship',"dfp-msb":'msb',"dfp-m-aq":'mobile-below-question',"clc-tlb":'lb',"clc-mlb":'mlb',"clc-tsb":'sb',"clc-cpa":'talent-conversion-tracking'}},G=function(a){new Image().src='https://'+y.h+'/stalled.gif?'+a};(function(){var b=y.al;b&&A.push(function(){return a.load()})})(),p(),a.dfp={load:x},a.options=y,a.cmd=A})(this.clc=this.clc||{})}catch(a){window.console.error(a)}</script><script>
-    var clc = clc || {};
-    clc.collapse = { sb: !0, 'tag-sponsorship': !0, lb: !0, mlb: !0, smlb: !0, bmlb: !0, 'mobile-below-question': !0 };
-    clc.options = clc.options || {};
-    clc.options.sf = !0;
-    clc.options.hb = !1;
-    clc.options.ll = !0;
-    clc.options.targeting_consent = !0;
-    clc.options.performance_consent = !0;
-        clc.cmd = clc.cmd || [];
-        clc.cmd.push(function () { window.clc_request='Azrboshz7dgIAAAAANKvmgMCAAAAAgAAAAABHAAAAHxweXRob258bWFjb3N8dGtpbnRlcnxweWVudnwAeKwWAMXAlDxEtw'; clc.load(); });
-        clc.dfp = clc.dfp || {};
-        clc.dfp.targeting = {Registered:['false'],'so-tag':['python','macos','tkinter','pyenv'],'tag-reportable':['python','macos','tkinter','pyenv'],'tag-non-reportable':['python','macos','tkinter','pyenv'],Industry:['Insurance'],CompanySize:['large'],Company:['Mutual of Omaha Insurance Company'],NumberOfAnswers:['3']};
-        clc.dfp.targeting.TargetingConsent = ['true'];
-
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has('dfptestads')) {
-            const dfptestads = urlParams.get('dfptestads');
-            clc.dfp.targeting.DfpTestAds = dfptestads;
+    @media (max-width: 768px) {
+        .photo {
+            background-position: 66% top;
+            background-repeat: no-repeat;
+            background-image: url(//cdn.mutualofomaha.com/mutualofomaha/images/heroes/walking-down-a-fallen-tree-sm.jpg);
+            background-size: cover;
         }
-        
-        var googletag = googletag || {};
-        googletag.cmd = googletag.cmd || [];
-        googletag.cmd.push(function () { clc.dfp.load(); });
-        StackExchange.ready(function () { googletag.cmd.push(function () { StackExchange.ads.init(googletag, '/ads/report-ad', 'Report this ad') }) });
-</script>
+    }
 
-<script>StackExchange.ready(function () { StackExchange.responsiveness.addSwitcher(); })</script>
-<noscript>
-<div id="noscript-warning">Stack Overflow works best with JavaScript enabled
-            <img alt="" class="dno" src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif"/>
+    @media (min-width: 767px) {
+        .photo {
+            background: 43% top;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url(//cdn.mutualofomaha.com/mutualofomaha/images/heroes/walking-down-a-fallen-tree.jpg);
+        }
+    }
+
+    </style>
+<div class="NotchedHero">
+<div class="NotchedHero-emptyBackground">
+<div class="NotchedHero-mobileHeader">
+<h1>Medicare 101: Medicare Basics</h1>
 </div>
-</noscript>
-<script>
-(function(i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
-            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+<div class="NotchedHero-Intro">
+<h1>Medicare 101: Medicare Basics</h1>
+<div class="Intro-Subtitle"><p>To choose the right coverage, you need to know the basics about Medicare. We’ve collected everything you need to know about Medicare, so you can pick the plan that best fits your needs.</p></div>
+</div>
+<div class="Image-bottom">
+<div class="photo"></div>
+</div>
+</div>
+</div>
+<!-- Error messaging will go here -->
+<!-- The mainContent id is a target for Skip to Main Content anchor for screen readers -->
+<div class="Main" id="mainContent" role="main">
+<div class="Container">
+<section class="Block-originalMedicare">
+<div class="Grid">
+<div class="Grid-cell Medicare-wrapper">
+<div class="Headline">
+<h2>Original Medicare</h2>
+</div>
+<div class="Text-center Subhead-padding"><h3>Parts A and B offered by the federal government</h3></div>
+<div class="Flex-wrapper">
+<div class="Flex-item">
+<div class="Flex-left">
+<div class="Text-center">
+<img alt="hospital" class="Img-rounded Icon-container" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/part-a-hospitals.svg"/>
+</div>
+<h3 class="Text-center">Hospitals</h3>
+<p class="Text-boldCenter">This is called Part A.</p>
+<div>
+<p>Part A covers inpatient hospital care. While you are in the hospital, it covers everything that is crucial for your treatment. Like your medications, X-rays, lab tests, operations, and meals. It can also pay for necessary follow-ups to inpatient care like physical therapy or skilled home nurse care. And, it covers hospice services for the terminally ill.</p><p>The federal government provides Part A, and most people don't pay a monthly premium. If you're admitted to a hospital, there's a deductible and some further cost sharing that you pay.</p>
+</div>
+</div>
+</div>
+<div class="Flex-item Addition-svg">
+<div>
+<img alt="addition symbol" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/plus-sign.svg"/>
+</div>
+</div>
+<div class="Flex-item">
+<div class="Flex-right">
+<div class="Text-center">
+<img alt="stethoscope" class="Img-rounded Icon-container" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/part-b-doctors.svg"/>
+</div>
+<h3 class="Text-center">Doctors</h3>
+<p class="Text-boldCenter">This is called Part B.</p>
+<div>
+<p>Part B covers doctor’s care when you’re sick or have a medical condition. It pays for outpatient hospital and clinic care, lab tests, and some nursing care at home if you’re homebound. Part B generally makes it easier to get preventative care, including things like your annual wellness exam, preventative screenings, and yearly flu shots.  It can cover the medical equipment you need for your home. And it can cover you if you have to go to the Emergency Room. It also covers most doctor services while you’re in the hospital.</p><p>The federal government provides Part B, and you’ll have to pay a monthly premium. For visits to the doctor, part B has a deductible and some cost sharing that you pay.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="Block-optionsBeyond">
+<div class="Grid">
+<div class="Grid-cell Beyond-wrapper">
+<div class="Headline">
+<h2>Your options beyond Parts A and B</h2>
+</div>
+<div class="Text-center Subhead-padding"><h3>These are your options offered by Private Insurance Companies</h3></div>
+<div class="Outer-flexWrapper">
+<div class="Outer-flexItem">
+<p class="Text-boldCenter Text-boldCenterPaddingBottom">An All-in-One option you can purchase to replace Part A and B</p>
+<div class="Text-center">
+<img alt="hospital, glasses, pill bottle, and stethoscope" class="Img-rounded Icon-container" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/part-c-medicare-advantage.svg"/>
+</div>
+<h3 class="Text-center">Medicare Advantage</h3>
+<p class="Text-boldCenter">This is called Part C.</p>
+<div>
+<p>Medicare Advantage combines the coverage of Part A and B – Original Medicare, plus extra benefits. Many plans include prescription drug coverage as well as dental and vision care. Some plans have no copays for most labs or tests. And some even have extra benefits like gym memberships and transportation.</p><p>Most plans offer $0 premiums, but you do have to pay your Part B premium. Most plans have copays for treatment. And you’ll continue to pay your Part B premium. Medicare Advantage plans have a yearly limit for out-of-pocket costs you have to pay. Once you reach that amount, you won’t pay more for any of your Medicare costs, your plan will cover it. Different plans have different maximums.</p><p>Medicare Advantage plans work all by themselves. They replace Medicare Parts A and B and because of this all-in-one approach, you don't pair them with Medicare Supplement policies.</p>
+</div>
+</div>
+<div class="Outer-flexItem">
+<div class="Text-boldCenter Text-boldCenterPaddingBottom Horizontal-padding Top-paddingMobile Text-marginBottomMobile">These Policies are often purchased separately to supplement Part A and B</div>
+<div class="Inner-flexWrapper">
+<div class="Inner-flexItem">
+<div class="Text-center">
+<img alt="pill bottle" class="Img-rounded Icon-container" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/part-d-rx.svg"/>
+</div>
+<h3 class="Text-center">Prescription Drug Plan</h3>
+<p class="Text-boldCenter">This is called Part D.</p>
+<div>
+<p>Part D covers your prescription drugs and is a great addition to pair with Medicare supplement insurance. You probably won’t need it if you get Medicare Advantage since most Medicare Advantage plans include it. Remember what prescriptions are covered depends on which plan you get.  But you most likely won’t need it if you choose Medicare Advantage instead. You can also pair it with Medicare supplement insurance for even more coverage. Just remember: which prescriptions are covered depends on which plan you get.</p><p>You have to get your Prescription Drug Plan through a private insurer, like Mutual of Omaha.  You’ll pay a monthly premium and a yearly deductible. You'll also pay a coinsurance (a percentage of the cost for your prescriptions) or a copay (a flat fee for some of your prescriptions’ cost).</p>
+</div>
+</div>
+<div class="Inner-flexItem">
+<div class="Text-center">
+<img alt="venn plan diagram" class="Img-rounded Icon-container" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/med-supp-plans-n-g-f.svg"/>
+</div>
+<h3 class="Text-center">Medicare Supplement Insurance</h3>
+<p class="Text-boldCenter">This is also called Medigap.</p>
+<div>
+<p>Medicare Supplement (also known as Medigap) covers things that Original Medicare doesn’t, like copays, deductibles, and coinsurance. It does all this with a steady, predictable, monthly bill you can budget for. And it can’t be cancelled. It will be renewed for as long as you pay your premium on time.</p><p>You can add a Prescription Drug Plan and a Dental plan to Medicare supplement insurance to get even more coverage.</p><p>You have to get Medicare supplement insurance through a private insurer, like Mutual of Omaha.  You’ll have to pay a monthly premium and depending on the plan you may also have copays.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="Block-coverageOptions">
+<div class="Grid">
+<div class="Grid-cell Headline-wrapper">
+<h2>Two Different Options for Comprehensive Medicare Coverage</h2>
+</div>
+<div class="Options">
+<div class="Grid-cell Option">
+<div class="Text-center">
+<h3>Medicare Advantage</h3>
+</div>
+<div class="Text-center Image-margin">
+<img alt="med advantage icon group" class="Img-rounded Image-width" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/part-c-medicare-advantage.svg"/>
+</div>
+<div class="Content-margin">
+<p>Sign up for an all-in-one plan that provides the coverage of Part A, Part B, and Part D. This plan also covers extra benefits like dental, hearing, and transportation.</p>
+</div>
+</div>
+<div class="Grid-cell Option">
+<div class="Text-center">
+<h3>Original Medicare + Medicare Supplement Insurance + Part D</h3>
+</div>
+<div class="Text-center Image-margin">
+<img alt="med supp venn diagram" class="Img-rounded Image-width" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/med-supp-circles.svg"/>
+</div>
+<div class="Content-margin">
+<p>Put the pieces together to build the coverage that’s right for your health and wallet. Enjoy the flexibility of choosing just the benefits you want.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="Block-planComparisonTable">
+<div class="Grid">
+<div class="Grid-cell PlanComparison">
+<div>
+<h3 class="Headline-text">How do these plans compare?</h3>
+</div>
+<table class="Table">
+<thead>
+<tr>
+<th>Medicare Advantage</th>
+<th>Original Medicare + Medicare Supplement Insurance + Part D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="Question" colspan="2">How do these plan types differ?</td>
+</tr>
+<tr>
+<td class="Answers">There are many ways a Medicare Advantage plan differs from Medicare Supplement. With Medicare Advantage, you will have an all-in-one plan with low or no monthly premiums, but you'll have higher out-of-pocket payments when you do use your health plan, though there are limits to how much you have to pay. Medicare Advantage plans are also affiliated with specific health provider networks, so you will be limited to doctors in these plans.</td>
+<td class="Answers">There are many ways a Medicare Supplement plan differs from a Medicare Advantage one. With Medicare Supplement, you will pay higher monthly premiums but will have fewer out of pocket costs when you do use your health plan. Also, you are permitted to see any doctor who accepts Medicare.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Do I Have My Choice of Doctors?</td>
+</tr>
+<tr>
+<td class="Answers">Doctors in your approved network.</td>
+<td class="Answers">Any doctor who accepts Medicare.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Will I Need A Referral To See A Specialist?</td>
+</tr>
+<tr>
+<td class="Answers">You may need a referral and be limited to a specialist in your network.</td>
+<td class="Answers">No. You can see specialists without referrals.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Is the Plan Offered Where I Live?</td>
+</tr>
+<tr>
+<td class="Answers">It depends. Since not every insurance company offers plans in each area, you’ll need to choose from a company that offers it where you live.  And in some cases, there may not be a plan available at all.</td>
+<td class="Answers">Yes - a plan is available in your area. Since not every insurance company offers plans in each state, you’ll need to choose from a company that offers it in your area. And plans are standardized differently in Massachusetts, Minnesota, and Wisconsin.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">I Live in a Rural Area, Will There Be a Doctor Close to Me I Can See?</td>
+</tr>
+<tr>
+<td class="Answers">It depends. Most plans center around a specific hospital, so there may not be a doctor in your network close to where you live.</td>
+<td class="Answers">Most likely. You can see any doctor that accepts Medicare, and there are doctors in most rural areas that do.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Will I be covered if I travel across the United States?</td>
+</tr>
+<tr>
+<td class="Answers">Yes, you will be covered for any urgent or emergency care while traveling, however, routine care outside of the plan's network is not covered.</td>
+<td class="Answers">Yes. Just like with Medicare, you can travel the country and see any doctor that accepts Medicare.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Will I be covered if I travel across the world?</td>
+</tr>
+<tr>
+<td class="Answers">For most plans, only emergency services are covered outside of where you live.</td>
+<td class="Answers">Plans F, G, and N cover it.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Are prescriptions covered?</td>
+</tr>
+<tr>
+<td class="Answers">Most Medicare Advantage plans include prescription drug coverage, but all plans have rules for which drugs are covered.</td>
+<td class="Answers">When you get a separate Prescription Drug Plan that complements Medicare Supplement Insurance, you're covered. But all plans have rules for which drugs are covered.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Is Dental Included?</td>
+</tr>
+<tr>
+<td class="Answers">Most plans include it.</td>
+<td class="Answers">No, but a separate Dental Plan pairs well with Medicare Supplement Insurance.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Is Vision Included?</td>
+</tr>
+<tr>
+<td class="Answers">Most plans include it.</td>
+<td class="Answers">No, but a separate Vision Plan pairs well with Medicare Supplement Insurance.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Are There Extra Benefits?</td>
+</tr>
+<tr>
+<td class="Answers">Yes. There are benefits like hearing, fitness memberships, and transportation.</td>
+<td class="Answers">Some insurance companies offer extra benefits.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">What is the Stability of the Benefits?</td>
+</tr>
+<tr>
+<td class="Answers">Benefits may change from year to year. Most plans only have slight changes though.</td>
+<td class="Answers">Your Medicare Supplement Insurance benefits will always stay the same.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Can my plan be canceled?</td>
+</tr>
+<tr>
+<td class="Answers">Plans can be canceled at the end of the calendar year. Most choose to renew though.</td>
+<td class="Answers">No. As long as you pay your premiums, your plan can't be canceled.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Will I need to pay copays or coinsurance?</td>
+</tr>
+<tr>
+<td class="Answers">Yes. <a href="/medicare-solutions/questions/whats-the-difference-between-premiums-deductible-copays-and-coinsurance">Learn more about copays and coinsurance</a>.</td>
+<td class="Answers">It depends on the plan. <a href="/medicare-solutions/questions/whats-the-difference-between-premiums-deductible-copays-and-coinsurance">Learn more about copays and coinsurance</a>.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Will I need to pay a premium?</td>
+</tr>
+<tr>
+<td class="Answers">Yes, but most plans have a low or $0 monthly premium. You'll also need to pay your Part B premium.</td>
+<td class="Answers">Yes. You'll pay a monthly premium in addition to your Part B premium.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="Block-planCrossSell">
+<div class="Grid">
+<div class="Grid-cell CrossSell-alignment">
+<div class="Text-boldCenter">
+<div class="Headline-container">
+                                    Explore the Medicare Advantage Plans in your county
+                                </div>
+</div>
+<div>
+<a class="" href="https://www.seniorsresourceguide.com/directories/National/SHIP/" target="_blank">Learn more about Medicare Advantage Insurance</a>
+</div>
+</div>
+<div class="Grid-cell CrossSell-alignment">
+<div class="Text-boldCenter">
+<div class="Headline-container">
+                                    See the Medicare Supplement Plans Available in your state
+                                </div>
+</div>
+<div>
+<a class="" href="/medicare-supplement-insurance/quote" target="">Get A Medicare Supplement Quote</a>
+</div>
+</div>
+</div>
+</section>
+<section class="Block-additionalInfo">
+<div class="Grid">
+<div class="Grid-cell Headline-text">
+<h2>Additional information</h2>
+</div>
+</div>
+<div class="Flex-wrapper">
+<div class="Flex-item">
+<h3>How do I apply for Medicare?</h3>
+<p>For Medicare Part A and Part B, some people get them automatically while others have to sign up. Whether you have Social Security and how long you've worked and paid into Medicare play a big role in how and if you need to apply. If you are someone who is automatically enrolled, you'll receive your Medicare Card in the mail 3 months before your 65th birthday. <a href="/medicare-solutions/questions/how-do-i-enroll-in-medicare">Learn more about signing up for Medicare in our questions section</a>.</p><p>If you don't know which bucket you fall into, contact a <a href="/support/contact-me">Mutual of Omaha agent</a> for more information about what to expect and plan for.</p>
+</div>
+<div class="Flex-item">
+<h3>When can I apply for Medicare?</h3>
+<p>You can enroll in Medicare starting three months prior to the month of your 65th birthday and extending for three months after the month of your birthday. (If your birthday is on the first of the month, you can enroll beginning four months prior to the month of your 65th birthday but only two months after the month of your birthday). <a href="/medicare-solutions/questions/when-can-i-sign-up">Learn more about when you can apply in our Medicare questions section</a>.</p><p>You apply at your local Social Security Office, either <a href="https://www.ssa.gov/benefits/retirement/" rel="noopener noreferrer" target="_blank">online</a>, by phone, or in-person.</p>
+</div>
+<div class="Flex-item">
+<h3>How do I switch plans or add more coverage to my Medicare solution?</h3>
+<p>You can apply for a new Medicare supplement insurance plan at any time. However, you could be denied due to health conditions. If you want to switch between a Medicare Supplement plan and a Medicare Advantage plan, you need to switch during certain periods of time and depends on your current health conditions. Whether it's a Medicare Advantage plan or a Medicare supplement insurance policy you can apply during the Annual Enrollment Period from October 15 to December 7 of each year. You cannot be denied this coverage, and it will be effective the following January 1.</p><p><a href="/medicare-solutions/questions/can-i-switch-between-medicare-supplement-insurance-and-medicare-advantage">Learn more about switching in our Medicare questions section</a>.</p>
+</div>
+</div>
+</section>
+<section class="Block-moreQuestions">
+<div class="Grid">
+<div class="Grid-cell Contact-alignment">
+<h3>Have more questions?</h3>
+<div>
+<a class="Button Button--outline" href="/medicare-solutions/questions/what-is-medicare">Get Answers</a>
+</div>
+</div>
+</div>
+</section>
+<section class="Block-dualCTA">
+<div class="Text-center">
+<h2>Want help finding a plan just suited for you?</h2>
+</div>
+<div class="DualCTA">
+<div class="DualCTA-Parent">
+<div class="DualCTA-Container">
+<img alt="advice flag" class="DualCTA-Image" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/advice-engine/icon-personalized.svg"/>
+<h3 class="Subhead">Medicare Advice Center</h3>
+<p><p>Want help finding a plan just suited for you?</p></p>
+<a class="Button Button--outline DualCTA-button" href="/medicare-solutions/recommendation">Start Now</a>
+</div>
+</div>
+<div class="DualCTA-Parent">
+<div class="DualCTA-Container">
+<img alt="chat bubbles" class="DualCTA-Image" src="https://cdn.mutualofomaha.com/mutualofomaha/images/illustrations/you-may-experience.svg"/>
+<h3 class="Subhead">Speak with an Agent</h3>
+<p>Our advisors are ready to answer any question you may have to help you pick your perfect plan.</p>
+<a class="Button Button--outline DualCTA-button" href="/support/contact-me">Contact an Agent</a>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="Block-backToTop">
+<div class="Grid Grid--alignCenter no-print">
+<div class="Grid-cell Block-wrapper">
+<a class="BackToTop" href="#top">Back to top</a>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-            StackExchange.ready(function () {
-
-                StackExchange.ga.init({
-                    autoLink: ["stackoverflow.blog","info.stackoverflowsolutions.com","stackoverflowsolutions.com"],
-                    sendTitles: true,
-                    tracker: window.ga,
-                    trackingCodes: [
-                        'UA-108242619-1'
-                    ],
-                        checkDimension: 'dimension42'
-                });
-
-
-
-                    StackExchange.ga.setDimension('dimension2', '|python|macos|tkinter|pyenv|');
-
-
-                    StackExchange.ga.setDimension('dimension3', 'Questions/Show');
-
-
-                StackExchange.ga.trackPageView();
-            });
-            
-            var _qevents = _qevents || [],
-            _comscore = _comscore || [];
-            (function() {
-                var s = document.getElementsByTagName('script')[0],
-                    qc = document.createElement('script');
- qc.async = true;
-                    qc.src = 'https://secure.quantserve.com/quant.js';
-                    s.parentNode.insertBefore(qc, s);
-                    _qevents.push({ qacct: "p-c1rF4kxgLUzNc" }); var sc = document.createElement('script');
-                    sc.async = true;
-                    sc.src = 'https://sb.scorecardresearch.com/beacon.js';
-                    s.parentNode.insertBefore(sc, s);
-                    _comscore.push({ c1: "2", c2: "17440561" });            })();
-                </script>
-<style>#consent-footer-link { display: none; visibility: hidden; }</style>
+<script defer="" src="/js/0.be4b9c2155e6775629d3.chunk.js" type="text/javascript"></script>
+<script defer="" src="/js/1.d60d93ea15ad6adc5cf8.chunk.js" type="text/javascript"></script>
+<script defer="" src="/js/3.f67450e4d8c5ce4f19b1.chunk.js" type="text/javascript"></script>
+<script defer="" src="/js/2.dfd5a27fb8d1fd8c40ee.chunk.js" type="text/javascript"></script>
+<script defer="" src="/js/package-medicare-solutions--entry-med_solutions_medicare_basics.b3abeb8b6dbeccb0cf4a.bundle.js" type="text/javascript"></script>
 </body>

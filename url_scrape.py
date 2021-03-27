@@ -1,16 +1,14 @@
 #!/usr/bin/python3
+import sys
 import os
 from os.path import expanduser
-import sys
 import json
 from bs4 import BeautifulSoup
 import requests
-from tkinter import Tk, Text, Label, BooleanVar, E, W, S, N, Toplevel
+from tkinter import Tk, Text, Label, BooleanVar, E, W, S, N, Toplevel, RAISED, LEFT, filedialog
 import tkinter.font as font
-from tkinter import filedialog
 import tkinter.ttk as ttk
 from PIL import Image, ImageTk
-#import urllib3
 import shutil
 import time
 from threading import Thread
@@ -18,7 +16,6 @@ from queue import Queue
 from random import random
 import re
 from collections import Counter
-
 
 """
 Screen Scrape Websites and Check For Keywords in Paragraph Text
@@ -28,8 +25,6 @@ https://docs.python.org/3.7/library/tkinter.html
 https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 """
 
-
-# Start tkinter.Tk()
 engine = Tk()
 
 class WindowSetup(object):
@@ -47,6 +42,7 @@ class WindowSetup(object):
         # window position
         self.parent.eval('tk::PlaceWindow %s center' % self.parent.winfo_pathname(self.parent.winfo_id()))
         self.parent.geometry("420x315") 
+        self.parent.resizable(width=False, height=False)
 
         # window title
         self.parent.title("Website Parser Comparision Tool - (WPCT)")
@@ -82,6 +78,7 @@ class WindowSetup(object):
         self.quit_Button = ttk.Button(self.parent, width=5, text="Quit ", command=self.parent.quit)
         self.start_Button = ttk.Button(self.f1, width=5, text="Start", command=self.get_entries)
         self.clear_Button = ttk.Button(self.parent, width=5, text="Clear", command=self.destroy_f1_frame)
+        self.help_Button = ttk.Button(self.parent, width=5, text="Help", command=self.help_screen)
 
         # logo image
         self.image = Image.open('assets/ezgif-2-18770de0fea5.gif')
@@ -148,12 +145,64 @@ class WindowSetup(object):
         # quit button grid
         self.quit_Button.grid(column=2, row=0, sticky=(S), pady=(1,10), padx=(1,1))
         self.clear_Button.grid(column=2, row=0, sticky=(S), pady=(1,40), padx=(1,1))
+        self.help_Button.grid(column=2, row=0, sticky=(S), pady=(1,70), padx=(1,1))
 
         # need to check what these do
         self.parent.columnconfigure(0, weight=1)# weight determines how much of the available space a row or column should occupy relative to the other rows or columns
         self.parent.rowconfigure(0, weight=1)
         self.f1.columnconfigure(0, weight=2)# weight determines how much of the available space a row or column should occupy relative to the other rows or columns
         self.f1.rowconfigure(0, weight=2)
+
+
+    # second screen - load screen
+    def help_screen(self):
+        """
+        This is the initial load window --- maybe separate this and put a load bar in the future
+        """
+        # init top level frame/window
+        self.help = Toplevel(self.parent) 
+        # frame/window size
+        self.help.geometry("420x420")
+        # get frame/window width/height
+        windowWidth = self.help.winfo_reqwidth()
+        windowHeight = self.help.winfo_reqheight()
+        # confirm frame/window width/height
+        print("Width",windowWidth,"Height",windowHeight)
+        # calculate center of frame/window width/height
+        positionRight = int(self.help.winfo_screenwidth()/2 - windowWidth/2)
+        positionDown = int(self.help.winfo_screenheight()/2 - windowHeight/2)
+        # positions frame/window
+        self.help.geometry("+{}+{}".format(positionRight, positionDown))
+        # init percentage of load value
+        self.percentage = 0
+        # load screen text
+        self.title2 = Label(self.help, text=f"How do you use this URL scraper?", foreground="black",pady=10, padx=1)    
+        self.title2.pack()
+        self.text1 = Label(self.help, text=f"\
+        1. Copy a URL from any site you are interested in and paste  \n\
+        it into the ~Enter URL To Parse~ input box.\n\n\
+        2. Make sure the Full HTML checkbox is selected. This will \n\
+        search each site from the opening body tag to the opening \n\
+        footer tag \n\n\
+        3. Upload the .txt data file. This needs to be a list of \n\
+        words with a space between each word. \n\n\
+        * Important * \n\
+        -------------\n\
+        The clear button will clear the URL entered and \n\
+        the last .txt file uploaded\n\n\
+        ** What can this tool do? ** \n\
+        -----------------------------\n\
+        This tool will request the html from the url \n\
+        you entered and search for the keywords from \n\
+        the .txt file that you uploaded in the requested html\n", foreground="black", width=70, anchor="w", justify=LEFT)
+        self.text1.pack()
+        self.button1 = ttk.Button(self.help, text="Close", command=self.close_help)
+        self.button1.pack()
+        
+    
+    def close_help(self):
+        self.help.destroy()
+        
 
     # second screen - load screen
     def load_screen(self):
@@ -178,7 +227,7 @@ class WindowSetup(object):
         # init percentage of load value
         self.percentage = 0
         # load screen text
-        self.title = Label(self.a, text=f"Loading...{self.percentage}", background="#013A70", foreground="white", pady=200)
+        self.title = Label(self.a, text=f"Loading...{self.percentage}", background="#013A70", foreground="white", pady=200, padx=200)
         self.title.pack()
         # call loading function
         self.loading()
@@ -189,10 +238,9 @@ class WindowSetup(object):
         Length of time load shall last
         """
         self.percentage += 10
-        self.title.config(text=f"Loading... ", background="#013A70")
+        self.title.config(text=f"Loading... {self.percentage}", background="#013A70")
         if self.percentage == 100:
             self.a.destroy()
-            engine.deiconify()
             return
         else:
             engine.after(100,self.loading)  
@@ -205,7 +253,6 @@ class WindowSetup(object):
         print('CLEARED ALL VALUES!!!')
         if self.url_Entry:
             self.setup()
-
 
     def check_for_upload(self):
         """
@@ -258,7 +305,6 @@ class WindowSetup(object):
             print('No file selected... ')
         return self.filename
 
-    
     def delete_last_upload(self, current, target):
         """
         deletes the last known uploaded data file
@@ -602,7 +648,6 @@ class ComparisonTool(object):
                     #This will grab all matches and capitalize them
                     matched_words.append(r[0].capitalize())
 
-
         if not matched_words:
             print('There were no matched words')
             self.create_final_report(None, urls)
@@ -643,7 +688,6 @@ class ComparisonTool(object):
         src = 'final-report/report.txt'
         shutil.copy(src, home+'/Desktop')
     
-
     def check_filesize(self, file_val): 
         """
         Check stats of the scrape data file
