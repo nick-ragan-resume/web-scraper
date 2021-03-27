@@ -1,6 +1,6 @@
 Page URL: 
 ---------
-https://stackoverflow.com/questions/30005672/passing-a-class-to-another-class-python                        
+https://stackoverflow.com/questions/19993795/how-would-i-access-variables-from-one-class-to-another                        
 
 
 

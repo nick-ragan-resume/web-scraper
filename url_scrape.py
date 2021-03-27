@@ -82,8 +82,8 @@ class SetUp():
         # styles/config buttons
         self.f1_style.configure('TButton', foreground='#013A70', font=('Helvetica', 15))
         self.quit_Button = ttk.Button(self.parent, width=5, text="Quit ", command=self.parent.quit)
-        self.start_Button = ttk.Button(self.f1, width=5, text="Start", command=self.get_entries)
-        self.clear_Button = ttk.Button(self.parent, width=5, text="Clear", command=self.destroy_f1_frame)
+        self.start_Button = ttk.Button(self.f1, width=5, text="Start", command=ValidationStuff(self).get_entries)
+        self.clear_Button = ttk.Button(self.parent, width=5, text="Clear", command=ValidationStuff(self).destroy_f1_frame)
         self.help_Button = ttk.Button(self.parent, width=5, text="Help", command=Factory("HelpScreen")(self.parent).help_screen)
 
         # logo image
@@ -100,7 +100,7 @@ class SetUp():
         self.parse_data_Label['font'] = self.myFont
         self.upload_File = ttk.Label(self.f1, text="Upload Data File")
         self.upload_File['font'] = self.myFont
-        self.upload_Button = ttk.Button(self.f1, text="Upload", command=self.uploadAction)
+        self.upload_Button = ttk.Button(self.f1, text="Upload", command=ValidationStuff(self).uploadAction)
         self.error_message = ttk.Label(self.f1, foreground="red", text="Please complete all fields... ")
         self.go_message = ttk.Label(self.f1, foreground="blue", text="Working on parsing... ")
         self.done_message = ttk.Label(self.f1, foreground="#006400", text="Finished parsing this page... ")        
@@ -158,9 +158,14 @@ class SetUp():
         self.parent.rowconfigure(0, weight=1)
         self.f1.columnconfigure(0, weight=2)# weight determines how much of the available space a row or column should occupy relative to the other rows or columns
         self.f1.rowconfigure(0, weight=2)
+
+        ValidationStuff(self)
         
     
 
+class ValidationStuff():
+    def __init__(self, setup):
+        self.setup = setup
 
     # clear url value
     def destroy_f1_frame(self):
@@ -168,8 +173,8 @@ class SetUp():
         resets setup to clear all values
         """
         print('CLEARED ALL VALUES!!!')
-        if self.url_Entry:
-            self.setup()
+        if self.setup.url_Entry:
+            self.setup.setup()
 
     def check_for_upload(self):
         """
@@ -206,22 +211,22 @@ class SetUp():
         """
         self.check_for_upload()
         # open a txt file
-        self.filename = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
-        print('\nselect:', self.filename)
+        self.setup.filename = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
+        print('\nselect:', self.setup.filename)
         # get current directory and name target directory
         current_dir = os.path.abspath(os.getcwd())
         target = current_dir + '/import-file'
         
-        if self.filename:
+        if self.setup.filename:
             # delete file contents
             self.delete_last_upload(current_dir, target)
             # move uploaded file to target
-            dest = shutil.copy(self.filename, target)
+            dest = shutil.copy(self.setup.filename, target)
             print('destination path... ', dest)
             self.rename_upload()
         else:
             print('No file selected... ')
-        return self.filename
+        return self.setup.filename
 
     def delete_last_upload(self, current, target):
         """
@@ -245,21 +250,21 @@ class SetUp():
         """
         # grab entry values
         try:
-            self.url_Entry_Val = self.url_Entry.get()
-            self.body_Entry_Val = self.body_Var.get()
+            self.url_Entry_Val = self.setup.url_Entry.get()
+            self.body_Entry_Val = self.setup.body_Var.get()
             self.clear_lists()
             self.input_entries()
         except:
-            self.error_message.grid()
+            self.setup.error_message.grid()
 
     def clear_lists(self):
         """
         Clear prior lists of data bool vals
         """
         # clear url list values
-        self.urls.clear()
+        self.setup.urls.clear()
         # clear checkboxes list values
-        self.checkboxes.clear()
+        self.setup.checkboxes.clear()
 
     # organize entries
     def input_entries(self):
@@ -269,19 +274,19 @@ class SetUp():
         print('input_entries method... \n')
         # [0] - array position
         if self.url_Entry_Val:
-            self.urls.append(self.url_Entry_Val)
+            self.setup.urls.append(self.url_Entry_Val)
         else:
-            self.urls.append(False)
+            self.setup.urls.append(False)
         # [0] - array position
         if self.body_Entry_Val:
-            self.checkboxes.append(self.body_Entry_Val)
+            self.setup.checkboxes.append(self.body_Entry_Val)
         else:
-            self.checkboxes.append(False)
+            self.setup.checkboxes.append(False)
         # print results to terminal
-        print('I am printing the urls... ', self.urls)
-        print('I am printing the checkboxes... ', self.checkboxes)
+        print('I am printing the urls... ', self.setup.urls)
+        print('I am printing the checkboxes... ', self.setup.checkboxes)
         # call validation methods - validate: url, checkboxes, upload
-        self.validate_url_entry(self.urls), self.validate_checkboxes(self.checkboxes), self.validate_upload(self.filename)
+        self.validate_url_entry(self.setup.urls), self.validate_checkboxes(self.setup.checkboxes), self.validate_upload(self.setup.filename)
         self.validate_all()
 
     # validate url entries
@@ -290,7 +295,7 @@ class SetUp():
         validate that a url was entered
         """
         print('validate url entry method... \n')
-        for u in self.urls:
+        for u in urls:
             if u:
                 print('URL to parse... ', urls)
                 self.url_data = True
@@ -307,12 +312,12 @@ class SetUp():
         for c in checkboxes:
             if c == True:
                 print('Checkbox value found...  ', c)
-                self.checkboxes_val = True
+                self.setup.checkboxes_val = True
                 break
             else:
                 print('No checkbox value... ', c)
-                self.checkboxes_val = False
-        return self.checkboxes_val
+                self.setup.checkboxes_val = False
+        return self.setup.checkboxes_val
 
     # validate uploads 
     def validate_upload(self, upload_item):
@@ -320,29 +325,29 @@ class SetUp():
         validate that a file was uploaded
         """
         print('validate upload method... \n')
-        if self.filename:
-            self.upload_val = True
+        if self.setup.filename:
+            self.setup.upload_val = True
             print("File that you uploaded", upload_item)
         else:
-            self.upload_val = False
-        return self.upload_val
+            self.setup.upload_val = False
+        return self.setup.upload_val
 
     # check to see if there is at least one entry per selection
     def validate_all(self):
         """
         This will confirm we have at least one value per entry item
         """
-        message = Messaging(self.error_message, self.go_message, self.done_message, self.f1)
+        message = Messaging(self.setup.error_message, self.setup.go_message, self.setup.done_message, self.setup.f1)
         print('validating all method... \n')
-        if self.url_data and self.checkboxes_val and self.upload_val:
+        if self.url_data and self.setup.checkboxes_val and self.setup.upload_val:
             print('We have all data')
             # queue messaging jobs
             MessageTaskProcessor(message, self.run_parser)
         else:
             print('We are missing some stuff!!!! ')
             print('printing the val of the url... ', self.url_data)
-            print('printing the val of the checkbox... ',self.checkboxes_val)
-            print('printing the val of the upload... ',self.upload_val)
+            print('printing the val of the checkbox... ',self.setup.checkboxes_val)
+            print('printing the val of the upload... ',self.setup.upload_val)
             message.supply_err_message()
 
     ################### start parsing urls
@@ -350,8 +355,8 @@ class SetUp():
         self.start_url_parsers()
         
     def start_url_parsers(self):
-        print('ARRAY OF CHECKBOXES... ', self.checkboxes, '\n')
-        parse = Parser(self.urls[0], self.checkboxes)
+        print('ARRAY OF CHECKBOXES... ', self.setup.checkboxes, '\n')
+        parse = Parser(self.setup.urls[0], self.setup.checkboxes)
         return parse.parse_web()
 
 
