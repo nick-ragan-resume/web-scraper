@@ -6,6 +6,7 @@ Clone the setup repository:
 Simply download and run the init-scraper.sh:
 2. ./init-scraper.sh
 
+# Notes about files in this repo:
 - You will find an upload_list.txt file within this repository
 - That file contains a list of all of the definition items
 
@@ -19,7 +20,7 @@ Open a new terminal session and follow these commands:
 4. pip3 install -r requirements.txt
 5. python3 url_scrape.py
 
-# Notes about files in this repo
+# Notes about files in this repo:
   - The main directory is called web-scraper 
   - The main file is url_scrape.py
 
