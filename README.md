@@ -22,8 +22,7 @@ Open a new terminal session and follow these commands:
 
 
 
-### How do I use this too? 
-
+# How do I use this too? 
 1. Enter a url that you would like to parse
 2. Keep the 'Data To Parse' checkbox selected
 3. Upload your data file - this needs to be a text file of all the words you would like to search for
