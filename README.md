@@ -1,9 +1,13 @@
 #### To use the URL-SCRAPE tool
 
 # First time user?
-Simply download and run the init-scraper.sh
-    ./init-scraper.sh
+Clone the setup repository:
+1. git clone https://github.com/nragan34/web-scraper-setup.git
+Simply download and run the init-scraper.sh:
+2. ./init-scraper.sh
 
+- You will find an upload_list.txt file within this repository
+- That file contains a list of all of the definition items
 
 
 
