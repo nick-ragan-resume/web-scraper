@@ -1,24 +1,28 @@
 #### To use the URL-SCRAPE tool
 
-1. open a new terminal session
-2. cd into the web-scraper directory
-3. run the setup.py file  -  command:  . /setup.py
-
-What this setup script does
-    # This will check for and create an isolated python virtual environment (venv) if one is not found.
-    # The script will then activate the virtual environment
-    # Then it will check to see if the dependencies listed in requirements.txt are installed on the virtual environment
-    # If they are installed it will start the program. 
-    # If they are not installed this script will install all dependencies
-    # These dependencies will be isolated from your main system so you can delete this tool directory and
-    # Once the dependencies are installed on the virtual environment the tool will open 
+# First time user?
+Simply download and run the init-scraper.sh
+    ./init-scraper.sh
 
 
-### The main directory is called web-scraper 
-### The main script is url_scrape.py
 
 
-### To use the tool follow the directions:
+# Already have the virtual environment and dependencies installed?
+Open a new terminal session and follow these commands:
+1. git clone https://github.com/nick-ragan-resume/web-scraper.git
+2. cd web-scraper
+3. python3 -m venv venv
+4. pip3 install -r requirements.txt
+5. python3 url_scrape.py
+
+# Notes about files in this repo
+  - The main directory is called web-scraper 
+  - The main file is url_scrape.py
+
+
+
+
+### How do I use this too? 
 
 1. Enter a url that you would like to parse
 2. Keep the 'Data To Parse' checkbox selected
