@@ -1,5 +1,3 @@
-#### To use the URL-SCRAPE tool
-
 # First time user?
 Clone the setup repository:
 1. git clone https://github.com/nragan34/web-scraper-setup.git
