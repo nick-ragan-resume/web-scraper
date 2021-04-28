@@ -10,7 +10,10 @@ Simply download and run the init-scraper.sh:
 - You will find an upload_list.txt file within this repository
 - That file contains a list of all of the definition items
 
-_--_--_--_--_--_--_--_--_--_--_--_--_--_--_--_--_--_--_--_--_--
+---------------------------------------------------------------
+---------------------------------------------------------------
+---------------------------------------------------------------
+---------------------------------------------------------------
 
 # Already have the virtual environment and dependencies installed?
 Open a new terminal session and follow these commands:
