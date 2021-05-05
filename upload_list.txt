@@ -1,27 +1,27 @@
-Developers
-Additional benefits
-Advance Beneficiary Notice of Noncoverage (ABN)
+Additional Benefits
+Advance Beneficiary Notice of Noncoverage 
+ABN
 Advance Directive 
-Age-attained pricing
-Annual high deductible 
+Age-Attained Pricing
+Annual High Deductible 
 Appeal
 Assignment
 Audiologist
 Benefit Period
-Catastrophic coverage
+Catastrophic Coverage
 CMS
 Coinsurance
-Community-rated pricing
+Community Rated Pricing
 Copayment
-Coverage Determination (Part D)
+Coverage Determination
 Coverage Gap
-Creditable Coverage (Medigap/Med Supp)
-Creditable prescription drug coverage
+Creditable Coverage 
+Creditable Prescription Drug Coverage
 Deductible
 DME
 Donut Hole
 Durable Medical Equipment 
-Effective date
+Effective Date
 Emergency Care 
 EOB
 Exception
@@ -31,55 +31,57 @@ Extra Help (Part D)
 Formulary
 Grievance
 Guaranteed Issue Rights
-Guaranteed Issue Rights
 Guaranteed Renewable Policy
 Home Health Care 
-Home health provider
-Hospital Policy definition 
-Household premium discount
-initial coverage limit
-Issue-age pricing
-Low-Income Subsidy
-Material Misrepresentation 
-Policy Language
+Home Health Provider
+Hospital Policy Definition 
+Household Premium Discount
+Initial Coverage Limit
+Issue-Age Pricing
+"Material Misrepresentation 
+Policy Language "
 Medicaid
-Medical underwriting 
-medically necessary 
+Medical Underwriting 
+Medically Necessary 
 Medicare
-Medicare Advantage Plan (Part C)
-Medicare Drug Plan (Part D)
-Medicare Part A (Hospital Insurance)
-Medicare Part B (Medical Insurance)
+Medicare Advantage Plan 
+Part C
+Medicare Drug Plan 
+Part D
+Medicare Part A
+Medicare Part B 
 Medicare Part C
+Part A
+Part B
+Part C
 Medicare Plan
 Medicare Supplement Insurance
-Medicare-approved amount 
-Medicare-certified provider 
-Medicare-eligible expenses
+Medicare-Approved Amount 
+Medicare-Certified Provider 
 Medigap Open Enrollment Period
 Medigap Policy
 Newly Eligible
-Open Enrollment Perid 
+Open Enrollment Period 
 Original Medicare
-Out-of-pocket costs
+Out-of-Pocket Costs
 Penalty 
 Policy Date
-Policy renewal date 
-Power of attorney 
-pre-existing condition
+Policy Renewal Date 
+Power of Attorney 
+Pre-Existing Condition
 Premium
 Preventive Services
-Primary care doctor
-Prior authorization
-Rehabilitation services
-secondary payer
+Primary Care Doctor
+Prior Authorization
+Rehabilitation Services
+Secondary Payer
 Skilled Nursing Facility 
-skilled nursing facility care 
+Skilled Nursing Facility Care 
 Special Enrollment Periods 
-State Health Insurance Assistance Program (SHIP)
+State Health Insurance Assistance Program
 State Insurance Department
-Step therapy
-Supplemental Security Income (SSI)
+Step Therapy
+Supplemental Security Income
 Telemedicine 
 Tiers
 Yearly "Wellness" Visit 
