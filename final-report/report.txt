@@ -1,6 +1,6 @@
 Page URL: 
 ---------
-https://stackoverflow.com/questions/19993795/how-would-i-access-variables-from-one-class-to-another                        
+https://mooitg.mutualofomaha.com/medicare-solutions/glossary                        
 
 
 
@@ -8,7 +8,34 @@ Matched Word
 --------------------------------------------------  
 
 {
-  "Developers": 1
+  "Medicare": 216,
+  "Medicare supplement insurance": 11,
+  "Additional benefits": 2,
+  "Appeal": 10,
+  "Assignment": 2,
+  "Audiologist": 2,
+  "Benefit period": 10,
+  "Catastrophic coverage": 2,
+  "Coinsurance": 10,
+  "Copayment": 4,
+  "Coverage gap": 6,
+  "Deductible": 12,
+  "Effective date": 2,
+  "Exception": 10,
+  "Formulary": 2,
+  "Grievance": 2,
+  "Initial coverage limit": 2,
+  "Medicaid": 8,
+  "Medigap policy": 18,
+  "Original medicare": 19,
+  "Pre-existing condition": 2,
+  "Premium": 18,
+  "Preventive services": 4,
+  "Primary care doctor": 2,
+  "Prior authorization": 2,
+  "Rehabilitation services": 4,
+  "Tiers": 2,
+  "Newly eligible": 1
 }                        
 
 
