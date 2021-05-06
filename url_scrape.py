@@ -704,7 +704,7 @@ class ComparisonTool(object):
                 file.write('                        \n\n\n\n')
                 file.write('DISCLAIMER\n')
                 file.write('-------------')
-                file.write('\n***\n\nThese words are matches within the body copy of the web-page excluding \nanything in <header></header> and <footer></footer> tags.\n\n\n Also, depending upon how the web-page is developed, the number of times a word appears may be greater in the code than what is visible on the web-page. This will result in a larger total for the number of times some words appear! \n\n ***')
+                file.write('\n***\n\nThese words are matches within the body copy of the web-page excluding \nanything in <header></header> and <footer></footer> tags.\n\n\nAlso, depending upon how the web-page is developed, the number of times a word appears may be greater in the code than what is visible on the web-page. This will result in a larger total for the number of times some words appear! \n\n ***')
                 file.write('\n\n')
                 file.close()
         elif not duplicate_dict:

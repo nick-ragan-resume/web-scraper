@@ -43,7 +43,12 @@ Matched Word
 DISCLAIMER
 -------------
 ***
+
 These words are matches within the body copy of the web-page excluding 
 anything in <header></header> and <footer></footer> tags.
-***
+
+
+ Also, depending upon how the web-page is developed, the number of times a word appears may be greater in the code than what is visible on the web-page. This will result in a larger total for the number of times some words appear! 
+
+ ***
 
