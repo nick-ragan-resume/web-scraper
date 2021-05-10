@@ -683,7 +683,7 @@ class ComparisonTool(object):
         for key_data in keywords:
             for scrape_data in scraped_words:
                 #finditer will find every occurance of the word. The lookahead will require one of the set characters to be behind the word
-                results = re.finditer(rf"(?<=[ >]){key_data}(?=[ !?.,<])", scrape_data, re.IGNORECASE)
+                results = re.finditer(rf"(?<=[ >]){key_data}(?=[ !?.,<>])", scrape_data, re.IGNORECASE)
                 for r in results:
                     #This will grab all matches and capitalize them
                     matched_words.append(r[0].capitalize())

@@ -1,6 +1,6 @@
 Page URL: 
 ---------
-https://www.mutualofomaha.com/medicare-solutions/medicare-basics                        
+https://www.mutualofomaha.com/dental-insurance/quote                        
 
 
 
@@ -8,15 +8,8 @@ Matched Word
 --------------------------------------------------  
 
 {
-  "Coinsurance": 5,
-  "Deductible": 3,
-  "Part d": 5,
-  "Medicare": 76,
-  "Part c": 1,
-  "Medicare supplement insurance": 14,
-  "Original medicare": 5,
-  "Out-of-pocket costs": 1,
-  "Premium": 12
+  "Medicare": 6,
+  "Medicare supplement insurance": 5
 }                        
 
 

@@ -1,9 +1,9 @@
 Additional Benefits
-Advance Beneficiary Notice of Noncoverage 
-ABN
-Advance Directive 
+Advance Beneficiary Notice of Noncoverage
+(ABN)
+Advance Directive
 Age-Attained Pricing
-Annual High Deductible 
+Annual High Deductible
 Appeal
 Assignment
 Audiologist
@@ -15,59 +15,60 @@ Community Rated Pricing
 Copayment
 Coverage Determination
 Coverage Gap
-Creditable Coverage 
+Creditable Coverage
+Medigap
+(Medigap/Med Supp)
 Creditable Prescription Drug Coverage
 Deductible
 DME
 Donut Hole
-Durable Medical Equipment 
+Durable Medical Equipment
 Effective Date
-Emergency Care 
+Emergency Care
 EOB
 Exception
-Excess Charge 
+Excess Charge
 Explanation of Benefit
-Extra Help (Part D)
+Extra Help
+(Part D)
 Formulary
 Grievance
 Guaranteed Issue Rights
 Guaranteed Renewable Policy
-Home Health Care 
+Home Health Care
 Home Health Provider
-Hospital Policy Definition 
+Hospital Policy Definition
 Household Premium Discount
 Initial Coverage Limit
 Issue-Age Pricing
-"Material Misrepresentation 
-Policy Language "
+Material Misrepresentation
+Policy Language
 Medicaid
-Medical Underwriting 
-Medically Necessary 
+Medical Underwriting
+Medically Necessary
 Medicare
-Medicare Advantage Plan 
-Part C
-Medicare Drug Plan 
-Part D
+Medicare Advantage Plan
+(Part C)
+Medicare Drug Plan
 Medicare Part A
-Medicare Part B 
+(Hospital Insurance)
+Medicare Part B
+(Medical Insurance)
 Medicare Part C
-Part A
-Part B
-Part C
 Medicare Plan
 Medicare Supplement Insurance
-Medicare-Approved Amount 
-Medicare-Certified Provider 
+Medicare-Approved Amount
+Medicare-Certified Provider
 Medigap Open Enrollment Period
 Medigap Policy
 Newly Eligible
-Open Enrollment Period 
+Open Enrollment Period
 Original Medicare
 Out-of-Pocket Costs
-Penalty 
+Penalty
 Policy Date
-Policy Renewal Date 
-Power of Attorney 
+Policy Renewal Date
+Power of Attorney
 Pre-Existing Condition
 Premium
 Preventive Services
@@ -75,13 +76,15 @@ Primary Care Doctor
 Prior Authorization
 Rehabilitation Services
 Secondary Payer
-Skilled Nursing Facility 
-Skilled Nursing Facility Care 
-Special Enrollment Periods 
+Skilled Nursing Facility
+Skilled Nursing Facility Care
+Special Enrollment Periods
 State Health Insurance Assistance Program
+(SHIP)
 State Insurance Department
 Step Therapy
 Supplemental Security Income
-Telemedicine 
+(SSI)
+Telemedicine
 Tiers
-Yearly "Wellness" Visit 
+Yearly "Wellness" Visit
