@@ -1,6 +1,6 @@
 Page URL: 
 ---------
-https://www.mutualofomaha.com/dental-insurance/quote                        
+https://www.mutualofomaha.com/dental-insurance                        
 
 
 
@@ -8,8 +8,9 @@ Matched Word
 --------------------------------------------------  
 
 {
-  "Medicare": 6,
-  "Medicare supplement insurance": 5
+  "Deductible": 1,
+  "Medicare": 3,
+  "Medicare supplement insurance": 2
 }                        
 
 

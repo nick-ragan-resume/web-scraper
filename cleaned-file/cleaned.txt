@@ -1,4 +1,4 @@
-<body class="u-bgWhite Section-dentalInsurance Page-dentalInsurance-quote browser-webp--no">
+<body class="u-bgWhite Section-dentalInsurance Page-dentalInsurance browser-webp--no">
 <div id="top"></div>
 <noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-NTQLMT" style="display:none;visibility:hidden" width="0"></iframe></noscript>
 <div class="SkipLink"><a href="#mainContent">Skip to Main Content</a></div>
@@ -54,7 +54,7 @@
 <div class="SectionNav-label" data-openable="" href="#sectionNav">
             Dental Solutions        </div>
 <ul class="SectionNav-menu SectionNav-menu--flex">
-<li class="SectionNav-item" id="sectionsubmenu-1">
+<li class="SectionNav-item is-active" id="sectionsubmenu-1">
 <a class="SectionNav-itemLink" href="/dental-insurance">
                 The Basics
             </a>
@@ -85,7 +85,7 @@
 </li>
 </ul>
 </li>
-<li class="SectionNav-item is-active" id="sectionsubmenu-4">
+<li class="SectionNav-item" id="sectionsubmenu-4">
 <a class="SectionNav-itemLink" href="/dental-insurance/quote">
                 Get a Quote
             </a>
@@ -107,65 +107,88 @@
 </div>
 <style>
     @media (max-width: 768px) {
-        .photo {
-            background-position: top left;
+        .NotchedHero-smallBackgroundImage {
+            background-position: 31% top;
             background-repeat: no-repeat;
-            background-image: url(//cdn.mutualofomaha.com/-sm.jpg);
+            background-image: url(//cdn.mutualofomaha.com/mutualofomaha/images/heroes/couple-hiking-sm.jpg);
             background-size: cover;
         }
     }
 
     @media (min-width: 767px) {
-        .photo {
-            background: top left;
+        .NotchedHero-image {
+            background: 31% center;
             background-size: cover;
             background-repeat: no-repeat;
-            background-image: url(//cdn.mutualofomaha.com/.jpg);
+            background-image: url(//cdn.mutualofomaha.com/mutualofomaha/images/heroes/couple-hiking.jpg);
         }
     }
 
     </style>
 <div class="NotchedHero">
-<div class="NotchedHero-emptyBackground">
 <div class="NotchedHero-mobileHeader">
-<h1>Get a Quote</h1>
+<h1>The Basics of Dental Health</h1>
 </div>
+<div class="NotchedHero-image NotchedHero-smallBackgroundImage"></div>
+<div class="NotchedHero-box">
 <div class="NotchedHero-Intro">
-<h1>Get a Quote</h1>
-<div class="Intro-Subtitle"><p>Rates for our dental plans are based on where you live. That’s it. Just enter your ZIP code and we’ll show you what you can expect to pay.</p></div>
-</div>
-<div class="Image-bottom">
-<img alt="dental quote" class="illustration" src="https://cdn.mutualofomaha.com/mutualofomaha/images/illustrations/dental-quote.svg"/>
+<h1>The Basics of Dental Health</h1>
+<div class="Intro-Subtitle"><div class="Subtitle-Content"><p>We offer both dental insurance and dental savings plan options so you can find the right solution to fit your budget and health care needs</p><a class="Link" href="/dental-insurance/quote">Compare our coverage options</a></div></div>
 </div>
 </div>
 </div>
 <!-- Error messaging will go here -->
 <!-- The mainContent id is a target for Skip to Main Content anchor for screen readers -->
 <div class="Main" id="mainContent" role="main">
-<div class="dental_comparison_table_block">
-<dental-comp-wrapper :app-data="{&quot;disallowedDentalSavings&quot;:[&quot;WA&quot;,&quot;VT&quot;],&quot;disallowedEntireExperience&quot;:[&quot;NY&quot;,&quot;MA&quot;,&quot;PR&quot;,&quot;VI&quot;,&quot;NM&quot;],&quot;disallowedContent&quot;:{&quot;headline&quot;:&quot;Sorry! A quote is not yet available in your state.&quot;,&quot;link&quot;:{&quot;copy&quot;:&quot;Contact an agent for more information&quot;,&quot;url&quot;:&quot;\/dental-insurance\/contact&quot;}},&quot;afterTableDisclosure&quot;:&quot;&lt;p&gt;**These rates are for illustrative purposes only. Send no money now. You cannot obtain coverage until you complete the application process.&lt;\/p&gt;&lt;p&gt;This insurance has exclusions, limitations and terms under which the insurance policy may be continued in force or discontinued.&lt;\/p&gt;&quot;,&quot;tableData&quot;:{&quot;applyButtonText&quot;:{&quot;account&quot;:&quot;Create Account &amp; Apply&quot;,&quot;guest&quot;:&quot;Apply with Guest Checkout&quot;},&quot;fields&quot;:[{&quot;id&quot;:&quot;name&quot;,&quot;mobileCompare&quot;:true},{&quot;id&quot;:&quot;price&quot;},{&quot;id&quot;:&quot;howItWorks&quot;},{&quot;id&quot;:&quot;insurance&quot;,&quot;backgroundColor&quot;:true,&quot;mobileCompare&quot;:true},{&quot;id&quot;:&quot;planOptions&quot;,&quot;backgroundColor&quot;:false,&quot;mobileCompare&quot;:true},{&quot;id&quot;:&quot;deductible&quot;,&quot;backgroundColor&quot;:true,&quot;mobileCompare&quot;:true},{&quot;id&quot;:&quot;preventativeServices&quot;,&quot;backgroundColor&quot;:false,&quot;mobileCompare&quot;:true},{&quot;id&quot;:&quot;basicServices&quot;,&quot;backgroundColor&quot;:true,&quot;mobileCompare&quot;:true},{&quot;id&quot;:&quot;majorServices&quot;,&quot;backgroundColor&quot;:false,&quot;mobileCompare&quot;:true},{&quot;id&quot;:&quot;calendarYearBenefits&quot;,&quot;backgroundColor&quot;:true,&quot;mobileCompare&quot;:true},{&quot;id&quot;:&quot;lifetimeMaximum&quot;,&quot;backgroundColor&quot;:false,&quot;mobileCompare&quot;:true},{&quot;id&quot;:&quot;apply&quot;}],&quot;headers&quot;:{&quot;name&quot;:{&quot;component&quot;:&quot;NumberOfPlansComponent&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;Plans In Your Area&quot;}},&quot;price&quot;:{&quot;component&quot;:&quot;PriceToggleComponent&quot;,&quot;data&quot;:{&quot;text&quot;:&quot;Price&quot;}},&quot;howItWorks&quot;:{&quot;component&quot;:&quot;SideBarComponent&quot;,&quot;data&quot;:{&quot;text&quot;:&quot;&lt;h4&gt;How this plan works&lt;\/h4&gt;&quot;,&quot;borderTop&quot;:true}},&quot;insurance&quot;:{&quot;component&quot;:&quot;SideBarComponent&quot;,&quot;data&quot;:{&quot;text&quot;:&quot;Insurance&quot;,&quot;borderTop&quot;:false}},&quot;planOptions&quot;:{&quot;component&quot;:&quot;SideBarComponent&quot;,&quot;data&quot;:{&quot;text&quot;:&quot;Plan Options&quot;}},&quot;deductible&quot;:{&quot;component&quot;:&quot;SideBarComponent&quot;,&quot;data&quot;:{&quot;text&quot;:&quot;Deductible&quot;,&quot;subHeadline&quot;:&quot;&lt;div&gt;Amounts per calendar year&lt;\/span&gt;&quot;}},&quot;preventativeServices&quot;:{&quot;component&quot;:&quot;SideBarComponent&quot;,&quot;data&quot;:{&quot;text&quot;:&quot;Preventative Services&quot;}},&quot;basicServices&quot;:{&quot;component&quot;:&quot;SideBarComponent&quot;,&quot;data&quot;:{&quot;text&quot;:&quot;Basic Services&quot;}},&quot;majorServices&quot;:{&quot;component&quot;:&quot;SideBarComponent&quot;,&quot;data&quot;:{&quot;text&quot;:&quot;Major Services&quot;}},&quot;calendarYearBenefits&quot;:{&quot;component&quot;:&quot;SideBarComponent&quot;,&quot;data&quot;:{&quot;text&quot;:&quot;Calendar Year Benefit&quot;}},&quot;lifetimeMaximum&quot;:{&quot;component&quot;:&quot;SideBarComponent&quot;,&quot;data&quot;:{&quot;text&quot;:&quot;Lifetime Maximum Benefit on Implants&quot;}},&quot;apply&quot;:{&quot;component&quot;:&quot;PriceToggleComponent&quot;,&quot;data&quot;:{&quot;applyText&quot;:&quot;Price&quot;,&quot;toolTip&quot;:&quot;&quot;}}},&quot;plans&quot;:{&quot;DNT2&quot;:{&quot;name&quot;:{&quot;component&quot;:&quot;DentalTableHeaderComponent&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class='u-h4--gray'&gt;Mutual Dental Preferred &lt;sup&gt;SM&lt;\/sup&gt;&lt;\/div&gt;&lt;span class='icon-shield'&gt;Insurance Policy&lt;\/spanMutual&gt;&quot;}},&quot;price&quot;:{&quot;component&quot;:&quot;DentalPriceComponent&quot;,&quot;data&quot;:{&quot;price&quot;:&quot;&quot;}},&quot;apply&quot;:{&quot;component&quot;:&quot;DentalPriceComponent&quot;,&quot;data&quot;:{&quot;plan&quot;:&quot;Mutual Dental Preferred &lt;sup&gt;SM&lt;\/sup&gt;&lt;br \/&gt;&lt;span class='icon-shield'&gt;Insurance Policy&lt;\/span&gt;&quot;,&quot;planCode&quot;:&quot;DNT2&quot;,&quot;price&quot;:&quot;&quot;,&quot;policyType&quot;:&quot;insurance&quot;,&quot;showRider&quot;:true,&quot;apply&quot;:{&quot;external&quot;:true,&quot;hideOld&quot;:true,&quot;destination&quot;:&quot;\/dental-insurance&quot;,&quot;copy&quot;:&quot;Apply Online&quot;}}},&quot;howItWorks&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;borderTop&quot;:true,&quot;innerHtml&quot;:&quot;&lt;p&gt;Mutual Dental Preferred&lt;sup&gt;SM&lt;\/sup&gt; might be the best solution if you plan to have extensive dental work in the future like crowns, root canals, fillings or dentures.&lt;\/p&gt;&quot;}},&quot;insurance&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;borderTop&quot;:false,&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;span class=\&quot;icon-checkmark\&quot;&gt;&lt;strong&gt; Yes&lt;\/strong&gt;&lt;\/span&gt;&lt;\/div&gt;&quot;}},&quot;planOptions&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;Individuals Only&lt;\/strong&gt;&lt;\/div&gt;&quot;}},&quot;deductible&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;div&gt;&lt;strong&gt;$0 &lt;\/strong&gt;&lt;div&gt;for preventative services&lt;\/div&gt;&lt;strong&gt;$50 &lt;\/strong&gt;&lt;div&gt;for basic &amp; major services&lt;\/div&gt;&lt;\/div&gt;&lt;\/div&gt;&quot;}},&quot;preventativeServices&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;100% &lt;\/strong&gt;&lt;div&gt;you pay nothing&lt;\/div&gt;&lt;\/div&gt;&quot;}},&quot;basicServices&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;80% &lt;\/strong&gt;&lt;div&gt;you pay the remaining 20%&lt;\/div&gt;&lt;\/div&gt;&quot;}},&quot;majorServices&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;50% &lt;\/strong&gt;&lt;div class=\&quot;u-textCenter\&quot;&gt;you pay the remaining 50%&lt;\/div&gt;&lt;\/div&gt;&quot;}},&quot;calendarYearBenefits&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;$1,500 &lt;\/strong&gt;&lt;\/div&gt;&quot;}},&quot;lifetimeMaximum&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;$3,000 &lt;\/strong&gt;&lt;\/div&gt;&quot;}}},&quot;DNT5&quot;:{&quot;name&quot;:{&quot;component&quot;:&quot;DentalTableHeaderComponent&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class='u-h4--gray'&gt;Mutual Dental Protection &lt;sup&gt;SM&lt;\/sup&gt;&lt;\/div&gt;&lt;span class='icon-shield'&gt;Insurance Policy&lt;\/span&gt;&quot;}},&quot;price&quot;:{&quot;component&quot;:&quot;DentalPriceComponent&quot;,&quot;data&quot;:{&quot;price&quot;:&quot;&quot;}},&quot;apply&quot;:{&quot;component&quot;:&quot;DentalPriceComponent&quot;,&quot;data&quot;:{&quot;plan&quot;:&quot;Mutual Dental Protection &lt;sup&gt;SM&lt;\/sup&gt;&lt;br \/&gt;&lt;span class='icon-shield'&gt;Insurance Policy&lt;\/span&gt;&quot;,&quot;planCode&quot;:&quot;DNT5&quot;,&quot;price&quot;:&quot;&quot;,&quot;policyType&quot;:&quot;insurance&quot;,&quot;showRider&quot;:true,&quot;apply&quot;:{&quot;external&quot;:true,&quot;hideOld&quot;:true,&quot;destination&quot;:&quot;\/dental-insurance&quot;,&quot;copy&quot;:&quot;Apply Online&quot;}}},&quot;howItWorks&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;borderTop&quot;:true,&quot;innerHtml&quot;:&quot;&lt;p&gt;Mutual Dental Protection&lt;sup&gt;SM&lt;\/sup&gt; might be best solution if you plan to see a dentist twice a year for cleanings and x-rays and do not expect to have extensive work but want the coverage in case you need it.&lt;\/p&gt;&quot;}},&quot;insurance&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;borderTop&quot;:false,&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;span class=\&quot;icon-checkmark\&quot;&gt;&lt;strong&gt; Yes&lt;\/strong&gt;&lt;\/span&gt;&lt;\/div&gt;&quot;}},&quot;planOptions&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;Individuals Only &lt;\/strong&gt;&lt;\/div&gt;&quot;}},&quot;deductible&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;$100 &lt;\/strong&gt;&lt;div&gt;for all services combined&lt;\/div&gt;&lt;\/div&gt;&quot;}},&quot;preventativeServices&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;100% &lt;\/strong&gt;&lt;div&gt;you pay nothing&lt;\/div&gt;&lt;\/div&gt;&quot;}},&quot;basicServices&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;50% &lt;\/strong&gt;&lt;div&gt;you pay the remaining 50%&lt;\/div&gt;&lt;\/div&gt;&quot;}},&quot;majorServices&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;50% &lt;\/strong&gt;&lt;div&gt;you pay the remaining 50%&lt;\/div&gt;&lt;\/div&gt;&quot;}},&quot;calendarYearBenefits&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;$1,000 &lt;\/strong&gt;&lt;\/div&gt;&quot;}},&quot;lifetimeMaximum&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;$2,000 &lt;\/strong&gt;&lt;\/div&gt;&quot;}}},&quot;Savings Plan&quot;:{&quot;name&quot;:{&quot;component&quot;:&quot;DentalTableHeaderComponent&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class='u-h4--gray'&gt;Mutual of Omaha Dental&lt;\/div&gt;&lt;span class='icon-savings-card'&gt;Savings Plan*&lt;\/span&gt;&quot;}},&quot;price&quot;:{&quot;component&quot;:&quot;DentalPriceComponent&quot;,&quot;data&quot;:{&quot;monthly&quot;:&quot;8.95&quot;,&quot;yearly&quot;:&quot;99.00&quot;,&quot;startingAt&quot;:&quot;Starting at&quot;}},&quot;apply&quot;:{&quot;component&quot;:&quot;DentalPriceComponent&quot;,&quot;data&quot;:{&quot;plan&quot;:&quot;Mutual of Omaha Dental&lt;br \/&gt;&lt;span class='icon-savings-card'&gt;Savings Plan*&lt;\/span&gt;&quot;,&quot;monthly&quot;:&quot;8.95&quot;,&quot;yearly&quot;:&quot;99.00&quot;,&quot;policyType&quot;:&quot;savings&quot;,&quot;visionDisclosure&quot;:&quot;Vision and hearing savings included&quot;,&quot;startingAt&quot;:&quot;Starting at&quot;,&quot;apply&quot;:{&quot;external&quot;:false,&quot;destination&quot;:&quot;\/dental-insurance\/enroll-savings&quot;,&quot;copy&quot;:&quot;Apply &amp; Save&quot;}}},&quot;howItWorks&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;borderTop&quot;:true,&quot;innerHtml&quot;:&quot;&lt;p&gt;Mutual of Omaha Dental Savings Plan might be the best solution if you want a more affordable plan that offers savings on common dental procedures and most cosmetic services without limits on use and no waiting.&lt;\/p&gt;&lt;p&gt;&lt;strong&gt;This is not insurance.&lt;\/strong&gt; To find out how much you can save, visit our &lt;a href='\/dental-insurance\/our-solutions\/savings'&gt;savings plan solutions page.&lt;\/a&gt;&lt;\/p&gt;&quot;}},&quot;insurance&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;borderTop&quot;:false,&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;span class=\&quot;icon-xmark\&quot;&gt;&lt;strong&gt; No&lt;\/strong&gt;&lt;\/span&gt;&lt;\/div&gt;&quot;}},&quot;planOptions&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;div&gt;&lt;strong&gt;Choose Your Membership&lt;\/strong&gt;&lt;\/div&gt;&lt;div&gt;Member Only&lt;\/div&gt;&lt;div&gt;Member + One&lt;\/div&gt;&lt;div&gt;Member + Family&lt;\/div&gt;&lt;\/div&gt;&quot;}},&quot;deductible&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;Not Applicable&lt;\/strong&gt;&lt;\/div&gt;&quot;}},&quot;preventativeServices&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;p&gt;&lt;strong&gt;Save 5% to 60%&lt;\/strong&gt; on cleanings, routine checkups, x-rays and more&lt;\/p&gt;&lt;\/div&gt;&quot;}},&quot;basicServices&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;p&gt;&lt;strong&gt;Save 5% to 60%&lt;\/strong&gt; on fillings, extractions and more&lt;\/p&gt;&lt;\/div&gt;&quot;}},&quot;majorServices&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;p&gt;&lt;strong&gt;Save 5% to 60%&lt;\/strong&gt; on crowns, dentures, root canals and other major services performed by a General Dentist&lt;\/p&gt;&lt;p&gt;&lt;strong&gt;Save 5% to 20%&lt;\/strong&gt; on major services performed by a Specialist&lt;\/p&gt;&lt;\/div&gt;&quot;}},&quot;calendarYearBenefits&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;No limits on use&lt;\/strong&gt;&lt;div class=\&quot;u-textCenter\&quot;&gt;&quot;}},&quot;lifetimeMaximum&quot;:{&quot;component&quot;:&quot;Html&quot;,&quot;data&quot;:{&quot;innerHtml&quot;:&quot;&lt;div class=\&quot;u-textCenter\&quot;&gt;&lt;strong&gt;No limits on use&lt;\/strong&gt;&lt;div class=\&quot;u-textCenter\&quot;&gt;&quot;}}}}},&quot;afterQuoteCallouts&quot;:{&quot;headline&quot;:&quot;Want to find a dentist?&quot;,&quot;ctas&quot;:{&quot;insurance&quot;:{&quot;#comment&quot;:&quot;assuming these follow the same exclusions as disallow entire experience&quot;,&quot;copy&quot;:&quot;Find dentists for dental insurance&quot;,&quot;url&quot;:&quot;https:\/\/www.dentistsforme.com\/mutualofomaha&quot;},&quot;savings&quot;:{&quot;#comment&quot;:&quot;assuming these follow the same exclusions as disallow dental savings&quot;,&quot;copy&quot;:&quot;Find dentists for savings plan&quot;,&quot;url&quot;:&quot;\/dental-insurance\/find-a-dentist\/savings&quot;}}}}" :trackers='{"crosskey":"543500011"}' :visitor='{"fromIp":"true","stateSelected":"false","state":"NE","stateName":"Nebraska","zipCode":"68175","locale":"en"}'>
-</dental-comp-wrapper></div> <div class="Container">
-<div class="NextSteps-wrapper">
-<h2>Ready for the next step?</h2>
-<p>Applying for a dental plan is easy. A licensed agent can help or use our online application to start right now.</p>
-<div class="Contact-wrapper">
-<a class="Button Button--outline u-sizeFull" href="/dental-insurance/contact"> Contact an Agent</a>
-<p>or call to apply <strong><a href="tel:1-866-480-7566">866-480-7566</a></strong></p>
+<div class="Container">
+<div class="Grid-cell Basics-wrapper">
+<h2 class="Basics-headline">Find the Right Option for You</h2>
+<p>Good dental care is important to your overall health. You know that. But do you know Medicare doesn't cover dental services? That means dental bills for things like routine cleanings, fillings, crowns, bridges, dentures, cosmetic services and root canals have the potential to take a bite out of your savings.<br/><br/>We offer both dental insurance plans and dental savings plan options to meet all your dental needs.</p>
 </div>
 </div>
-</div> <div class="Container">
-<div class="Grid-cell CrossSell-wrapper">
-<h2>Here's another product that may fit your needs</h2>
-<div class="Content-flex">
-<div class="Grid-cell Img-wrapper">
-<img alt="" class="Img-rounded" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/medsupp-crossover.svg" title="">
-</img></div>
-<div class="Copy-wrapper Grid-cell">
-<h3>Medicare Supplement Insurance</h3>
-<p><p>A Medicare supplement insurance policy works with Medicare Parts A and B to help minimize your share of health care costs.<p></p>
-<a class="Link" href="/medicare-supplement-insurance">Learn more about Medicare supplement insurance</a>
-</p></p></div>
+<div class="Container">
+<div class="Grid-cell OurSolutions-wrapper">
+<div class="OurSolutions-headline">
+<h2>Our Solutions</h2>
 </div>
+<div class="OurSolutions-container">
+<div class="Grid-cell OurSolutions-content">
+<div class="OurSolutionsContent-headlineWrapper">
+<div>
+<h3 class="OurSolutionsContent-headline Headline--teal">Insurance Plan</h3>
+</div>
+</div>
+<p>Our insurance is designed to help cover dental care that is essential to good health. Like your health insurance policy, dental insurance comes with an annual deductible, and  pays 100% for preventative services like two cleanings per year.<br/><br/>Mutual of Omaha provides coverage for basic services including fillings, and simple extractions, then it provides coverage for major services after a 12 month waiting period. We have two insurance solutions so you can find the best fit for your budget.</p>
+<div class="OurSolutionsContent-cta">
+<div>
+<a class="Link" href="/dental-insurance/our-solutions/insurance">See our dental insurance plan options </a>
+</div>
+<div>
+<a class="Link" href="https://www.dentistsforme.com/mutualofomaha/">Find dentists for dental insurance </a>
+</div>
+</div>
+</div>
+<div class="Grid-cell OurSolutions-content">
+<div class="OurSolutionsContent-headlineWrapper">
+<div>
+<h3 class="OurSolutionsContent-headline Headline--blue">Savings Plan</h3>
+</div>
+</div>
+<p>The Mutual of Omaha Dental Savings Plan gives you a reason to smile by granting you valuable access to a network of dentists and allowing you to manage your own dental expenses. Enjoy 5% to 60% savings on the cost of the dental care you need, plus deep savings on routine and even cosmetic dental care, including exams, unlimited cleanings, teeth whitening and veneers.<br/><br/>You can use the plan as often as you like for as little as $8.95 per month or $99 per year. To receive your savings, just select a participating dentist in your area and present your savings card during your visit. It's that simple to use this plan and save!</p><p>This is not insurance and is not intended to replace insurance.</p>
+<div class="OurSolutionsContent-cta">
+<div>
+<a class="Link" href="/dental-insurance/our-solutions/savings">See our dental savings plan option </a>
+</div>
+<div>
+<a class="Link" href="/dental-insurance/find-a-dentist/savings">Find dentists for savings plan </a>
+</div>
+</div>
+</div>
+</div>
+<div class="OurSolutions-cta">
+<h4>Not sure which product may be the best fit for you?<h4>
+<a class="Button" href="/dental-insurance/quote">Compare our Solutions</a>
+</h4></h4></div>
 </div>
 </div>
 <div class="Block-weAreHereForYou" id="WeAreHereForYou">
@@ -174,7 +197,7 @@
 <div class="Layout-wrapper">
 <h2 class="wahfuHeading">We are here for you</h2>
 <div class="Grid" id="Agent-Finder" style="overflow: visible;">
-<hearsay agent-type="agent" global-color="u-bgWhite" path="dental-insurance/quote" producer="Agent" session-zip-code="68175"></hearsay>
+<hearsay agent-type="agent" global-color="u-bgWhite" path="dental-insurance" producer="Agent" session-zip-code="68175"></hearsay>
 <div class="Grid">
 <div class="Grid-cell Layout-wrapper">
 <div class="Grid">
@@ -249,10 +272,8 @@
 <script defer="" src="/js/3.21a4ca6a0aed0806601d.chunk.js" type="text/javascript"></script>
 <script defer="" src="/js/2.1b2cc24d8a21e16edf46.chunk.js" type="text/javascript"></script>
 <script defer="" src="/js/package-you-and-your-family--entry-dynamic_view.df42e96d46b7fde34dbf.bundle.js" type="text/javascript"></script>
-<script defer="" src="/js/package-you-and-your-family--component-solutions_intro_block.b279aac278ff38599156.bundle.js" type="text/javascript"></script>
+<script defer="" src="/js/package-you-and-your-family--component-basic_content_block.1257a139190c016b0373.bundle.js" type="text/javascript"></script>
+<script defer="" src="/js/package-you-and-your-family--component-our_solutions_block.47f2e087f2d956f6ec7e.bundle.js" type="text/javascript"></script>
 <script defer="" src="/js/6.c19e19f7a2f7f4f3649b.chunk.js" type="text/javascript"></script>
-<script defer="" src="/js/package-you-and-your-family--component-dental_comparison_table_block.68d737865d22c9126702.bundle.js" type="text/javascript"></script>
-<script defer="" src="/js/package-you-and-your-family--component-next_steps_block.a7d0dc9653266af5b6ca.bundle.js" type="text/javascript"></script>
-<script defer="" src="/js/package-you-and-your-family--component-cross_sell_block.2fcb1addb8f7815cbd67.bundle.js" type="text/javascript"></script>
 <script defer="" src="/js/package-core--component-wearehereforyou.edea11a601afbb98a9ee.bundle.js" type="text/javascript"></script>
 </body>
