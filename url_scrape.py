@@ -661,22 +661,33 @@ class ComparisonTool(object):
 
         # open scraped file ... split on new line
         scraped_word_file = open('scrape-html-max/scrape.txt').read().split('\n')
+
+        
         # loop through keyword file and append to empty list
         for k in keyword_file:
             keywords.append(k)
+        print('\n\n\n\n', keywords, '\n\n\n\n')
 
         # loop through scraped file and append to empty list
         for s in scraped_word_file:
             scraped_words.append(s)
 
+        cleaned_file = open('cleaned-file/cleaned.txt', 'w')
+        for s in scraped_words:
+            cleaned_file.write(s)
+            cleaned_file.write('\n')
+        cleaned_file.close()
+
+
         # loop through scraped file array
-        for scrape_data in scraped_words:
-            for key_data in keywords:
+        for key_data in keywords:
+            for scrape_data in scraped_words:
                 #finditer will find every occurance of the word. The lookahead will require one of the set characters to be behind the word
-                results = re.finditer(rf"(?<=[ >]){key_data}(?=[ !?.,])", scrape_data, re.IGNORECASE)
+                results = re.finditer(rf"(?<=[ >]){key_data}(?=[ !?.,<])", scrape_data, re.IGNORECASE)
                 for r in results:
                     #This will grab all matches and capitalize them
                     matched_words.append(r[0].capitalize())
+
 
         if not matched_words:
             print('There were no matched words')
@@ -687,6 +698,7 @@ class ComparisonTool(object):
     def matched_word_counter(self, matched_words, urls):
         duplicate_dict={}
         for i in matched_words:
+            print('\n\n\n\n...... i in matched words', i)
             duplicate_dict[i]=matched_words.count(i)
         print('Printing duplicate dictionary......', duplicate_dict, '\n\n\n')
         self.create_final_report(duplicate_dict, urls)
@@ -731,8 +743,6 @@ class ComparisonTool(object):
         except:
             print('something went wrong.')
         return file_stats
-
-
 
 
 # Factory Function

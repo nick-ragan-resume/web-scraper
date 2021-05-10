@@ -1,6 +1,6 @@
 Page URL: 
 ---------
-https://mooitg.mutualofomaha.com/medicare-solutions/glossary                        
+https://www.mutualofomaha.com/medicare-solutions/medicare-basics                        
 
 
 
@@ -8,34 +8,15 @@ Matched Word
 --------------------------------------------------  
 
 {
-  "Medicare": 216,
-  "Medicare supplement insurance": 11,
-  "Additional benefits": 2,
-  "Appeal": 10,
-  "Assignment": 2,
-  "Audiologist": 2,
-  "Benefit period": 10,
-  "Catastrophic coverage": 2,
-  "Coinsurance": 10,
-  "Copayment": 4,
-  "Coverage gap": 6,
-  "Deductible": 12,
-  "Effective date": 2,
-  "Exception": 10,
-  "Formulary": 2,
-  "Grievance": 2,
-  "Initial coverage limit": 2,
-  "Medicaid": 8,
-  "Medigap policy": 18,
-  "Original medicare": 19,
-  "Pre-existing condition": 2,
-  "Premium": 18,
-  "Preventive services": 4,
-  "Primary care doctor": 2,
-  "Prior authorization": 2,
-  "Rehabilitation services": 4,
-  "Tiers": 2,
-  "Newly eligible": 1
+  "Coinsurance": 5,
+  "Deductible": 3,
+  "Part d": 5,
+  "Medicare": 76,
+  "Part c": 1,
+  "Medicare supplement insurance": 14,
+  "Original medicare": 5,
+  "Out-of-pocket costs": 1,
+  "Premium": 12
 }                        
 
 
@@ -48,7 +29,7 @@ These words are matches within the body copy of the web-page excluding
 anything in <header></header> and <footer></footer> tags.
 
 
- Also, depending upon how the web-page is developed, the number of times a word appears may be greater in the code than what is visible on the web-page. This will result in a larger total for the number of times some words appear! 
+Also, depending upon how the web-page is developed, the number of times a word appears may be greater in the code than what is visible on the web-page. This will result in a larger total for the number of times some words appear! 
 
  ***
 

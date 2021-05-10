@@ -1,0 +1,456 @@
+<body class="u-bgWhite Section-medicareSolutions Page-medicareSolutions-medicareBasics browser-webp--no">
+<div id="top"></div>
+<noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-NTQLMT" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+<div class="SkipLink"><a href="#mainContent">Skip to Main Content</a></div>
+<div class="SiteAlerts">
+<div class="Alert Alert--yellow Alert--unsupportedBrowser">
+<div class="Container">
+<div class="Alert-message">
+<div class="Message-icon">
+<svg height="20px" version="1.1" viewbox="0 0 20 20" width="20px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g fill="none" fill-rule="evenodd" id="mock-ups" stroke="none" stroke-width="1">
+<g id="alert-technical-banner" transform="translate(-613.000000, -9.000000)">
+<g id="Group-2" transform="translate(614.000000, 7.000000)">
+<g id="Group-7" transform="translate(0.000000, 3.000000)">
+<path d="M6.66666667e-05,9.0013 C6.66666667e-05,4.02963333 4.02906667,-3.33333333e-05 8.99873333,-3.33333333e-05 C13.9717333,-3.33333333e-05 18.0000667,4.02963333 18.0000667,9.0013 C18.0000667,13.9716333 13.9717333,18.0026333 8.99873333,18.0026333 C4.02906667,18.0026333 6.66666667e-05,13.9716333 6.66666667e-05,9.0013 Z" id="Stroke-1" stroke="#444444" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M9.00006667,13.9069 L9.00006667,7.82223333" id="Stroke-3" stroke="#444444" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M8.3334,4.59473333 C8.3334,4.2274 8.63206667,3.92906667 9.00006667,3.92906667 C9.36773333,3.92906667 9.66673333,4.2274 9.66673333,4.59473333 C9.66673333,4.96373333 9.36773333,5.2624 9.00006667,5.2624 C8.63206667,5.2624 8.3334,4.96373333 8.3334,4.59473333" fill="#444444" id="Fill-5"></path>
+</g>
+</g>
+</g>
+</g>
+</svg>
+</div>
+<p>Your web browser is not a supported version and may not be fully compatible with this website</p>
+</div>
+</div>
+</div>
+<div id="alertMessage-tool">
+<alertmessage-tool :alert-content="[{&quot;id&quot;:&quot;coronavirus2&quot;,&quot;idComment&quot;:&quot;String that is an unique id for the 'don't show' cookie&quot;,&quot;message&quot;:&quot;&quot;,&quot;messageComment&quot;:&quot;String without any html that is the text for the alert message&quot;,&quot;type&quot;:&quot;red&quot;,&quot;typeComment&quot;:&quot;There are currently three types (blue, red, and yellow) with their own icon and background color. Please use the appropriate color per alert level sensitivity.&quot;,&quot;link&quot;:{&quot;href&quot;:&quot;\/medicare-solutions\/coronavirus-info&quot;,&quot;text&quot;:&quot;Coronavirus (COVID-19) \u2013 Information for Medicare Customers&quot;},&quot;linkMessage&quot;:&quot;The link is an object, so we can set the text and href.&quot;}]" :session-data="null"></alertmessage-tool>
+</div>
+</div>
+<div class="">
+<nav aria-label="corporate-nav" class="CorporateNav">
+<div class="Container">
+<div class="CorporateNav-container">
+<div class="CorporateNav-location">
+<div id="locationLookup">
+<location-lookup :session-visitor='{"fromIp":"true","stateSelected":"false","state":"NE","stateName":"Nebraska","zipCode":"68175","locale":"en","county":"Douglas"}'></location-lookup>
+</div>
+</div>
+</div>
+</div>
+</nav>
+
+<aside aria-label="section-title" class="SectionTitle">
+<div class="Container">
+<span class="SectionTitle-text">
+        Medicare Solutions    </span>
+<span class="SectionTitle-underwriter">Medicare Supplement Insurance underwritten by <strong>United World Life Insurance Company</strong></span>
+</div>
+</aside>
+<div aria-label="section-nav" class="SectionNav" id="sectionNav" role="navigation">
+<div class="Container SectionNav--flex">
+<div class="SectionNav-label" data-openable="" href="#sectionNav">
+            Medicare Solutions        </div>
+<ul class="SectionNav-menu SectionNav-menu--flex">
+<li class="SectionNav-item" id="sectionsubmenu-1">
+<a class="SectionNav-itemLink" href="/medicare-solutions">
+                Medicare Solutions
+            </a>
+</li>
+<li class="SectionNav-item is-active" id="sectionsubmenu-2">
+<a class="SectionNav-itemLink" href="/medicare-solutions/medicare-basics">
+                Medicare 101
+            </a>
+</li>
+<li class="SectionNav-item" id="sectionsubmenu-3">
+<a class="SectionNav-itemLink" href="/medicare-solutions/recommendation">
+                Advice Center
+            </a>
+</li>
+<li class="SectionNav-item" id="sectionsubmenu-4">
+<a class="SectionNav-itemLink" href="/medicare-solutions/questions">
+                Medicare Questions
+            </a>
+</li>
+</ul>
+</div>
+</div>
+<style>
+    @media (max-width: 768px) {
+        .photo {
+            background-position: 66% top;
+            background-repeat: no-repeat;
+            background-image: url(//cdn.mutualofomaha.com/mutualofomaha/images/heroes/walking-down-a-fallen-tree-sm.jpg);
+            background-size: cover;
+        }
+    }
+
+    @media (min-width: 767px) {
+        .photo {
+            background: 43% top;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-image: url(//cdn.mutualofomaha.com/mutualofomaha/images/heroes/walking-down-a-fallen-tree.jpg);
+        }
+    }
+
+    </style>
+<div class="NotchedHero">
+<div class="NotchedHero-emptyBackground">
+<div class="NotchedHero-mobileHeader">
+<h1>Medicare 101: Medicare Basics</h1>
+</div>
+<div class="NotchedHero-Intro">
+<h1>Medicare 101: Medicare Basics</h1>
+<div class="Intro-Subtitle"><p>To choose the right coverage, you need to know the basics about Medicare. We’ve collected everything you need to know about Medicare, so you can pick the plan that best fits your needs.</p></div>
+</div>
+<div class="Image-bottom">
+<div class="photo"></div>
+</div>
+</div>
+</div>
+<!-- Error messaging will go here -->
+<!-- The mainContent id is a target for Skip to Main Content anchor for screen readers -->
+<div class="Main" id="mainContent" role="main">
+<div class="Container">
+<section class="Block-originalMedicare">
+<div class="Grid">
+<div class="Grid-cell Medicare-wrapper">
+<div class="Headline">
+<h2>Original Medicare</h2>
+</div>
+<div class="Text-center Subhead-padding"><h3>Parts A and B offered by the federal government</h3></div>
+<div class="Flex-wrapper">
+<div class="Flex-item">
+<div class="Flex-left">
+<div class="Text-center">
+<img alt="hospital" class="Img-rounded Icon-container" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/part-a-hospitals.svg"/>
+</div>
+<h3 class="Text-center">Hospitals</h3>
+<p class="Text-boldCenter">This is called Part A.</p>
+<div>
+<p>Part A covers inpatient hospital care. While you are in the hospital, it covers everything that is crucial for your treatment. Like your medications, X-rays, lab tests, operations, and meals. It can also pay for necessary follow-ups to inpatient care like physical therapy or skilled home nurse care. And, it covers hospice services for the terminally ill.</p><p>The federal government provides Part A, and most people don't pay a monthly premium. If you're admitted to a hospital, there's a deductible and some further cost sharing that you pay.</p>
+</div>
+</div>
+</div>
+<div class="Flex-item Addition-svg">
+<div>
+<img alt="addition symbol" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/plus-sign.svg"/>
+</div>
+</div>
+<div class="Flex-item">
+<div class="Flex-right">
+<div class="Text-center">
+<img alt="stethoscope" class="Img-rounded Icon-container" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/part-b-doctors.svg"/>
+</div>
+<h3 class="Text-center">Doctors</h3>
+<p class="Text-boldCenter">This is called Part B.</p>
+<div>
+<p>Part B covers doctor’s care when you’re sick or have a medical condition. It pays for outpatient hospital and clinic care, lab tests, and some nursing care at home if you’re homebound. Part B generally makes it easier to get preventative care, including things like your annual wellness exam, preventative screenings, and yearly flu shots.  It can cover the medical equipment you need for your home. And it can cover you if you have to go to the Emergency Room. It also covers most doctor services while you’re in the hospital.</p><p>The federal government provides Part B, and you’ll have to pay a monthly premium. For visits to the doctor, part B has a deductible and some cost sharing that you pay.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="Block-optionsBeyond">
+<div class="Grid">
+<div class="Grid-cell Beyond-wrapper">
+<div class="Headline">
+<h2>Your options beyond Parts A and B</h2>
+</div>
+<div class="Text-center Subhead-padding"><h3>These are your options offered by Private Insurance Companies</h3></div>
+<div class="Outer-flexWrapper">
+<div class="Outer-flexItem">
+<p class="Text-boldCenter Text-boldCenterPaddingBottom">An All-in-One option you can purchase to replace Part A and B</p>
+<div class="Text-center">
+<img alt="hospital, glasses, pill bottle, and stethoscope" class="Img-rounded Icon-container" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/part-c-medicare-advantage.svg"/>
+</div>
+<h3 class="Text-center">Medicare Advantage</h3>
+<p class="Text-boldCenter">This is called Part C.</p>
+<div>
+<p>Medicare Advantage combines the coverage of Part A and B – Original Medicare, plus extra benefits. Many plans include prescription drug coverage as well as dental and vision care. Some plans have no copays for most labs or tests. And some even have extra benefits like gym memberships and transportation.</p><p>Most plans offer $0 premiums, but you do have to pay your Part B premium. Most plans have copays for treatment. And you’ll continue to pay your Part B premium. Medicare Advantage plans have a yearly limit for out-of-pocket costs you have to pay. Once you reach that amount, you won’t pay more for any of your Medicare costs, your plan will cover it. Different plans have different maximums.</p><p>Medicare Advantage plans work all by themselves. They replace Medicare Parts A and B and because of this all-in-one approach, you don't pair them with Medicare Supplement policies.</p>
+</div>
+</div>
+<div class="Outer-flexItem">
+<div class="Text-boldCenter Text-boldCenterPaddingBottom Horizontal-padding Top-paddingMobile Text-marginBottomMobile">These Policies are often purchased separately to supplement Part A and B</div>
+<div class="Inner-flexWrapper">
+<div class="Inner-flexItem">
+<div class="Text-center">
+<img alt="pill bottle" class="Img-rounded Icon-container" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/part-d-rx.svg"/>
+</div>
+<h3 class="Text-center">Prescription Drug Plan</h3>
+<p class="Text-boldCenter">This is called Part D.</p>
+<div>
+<p>Part D covers your prescription drugs and is a great addition to pair with Medicare supplement insurance. You probably won’t need it if you get Medicare Advantage since most Medicare Advantage plans include it. Remember what prescriptions are covered depends on which plan you get.  But you most likely won’t need it if you choose Medicare Advantage instead. You can also pair it with Medicare supplement insurance for even more coverage. Just remember: which prescriptions are covered depends on which plan you get.</p><p>You have to get your Prescription Drug Plan through a private insurer, like Mutual of Omaha.  You’ll pay a monthly premium and a yearly deductible. You'll also pay a coinsurance (a percentage of the cost for your prescriptions) or a copay (a flat fee for some of your prescriptions’ cost).</p>
+</div>
+</div>
+<div class="Inner-flexItem">
+<div class="Text-center">
+<img alt="venn plan diagram" class="Img-rounded Icon-container" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/med-supp-plans-n-g-f.svg"/>
+</div>
+<h3 class="Text-center">Medicare Supplement Insurance</h3>
+<p class="Text-boldCenter">This is also called Medigap.</p>
+<div>
+<p>Medicare Supplement (also known as Medigap) covers things that Original Medicare doesn’t, like copays, deductibles, and coinsurance. It does all this with a steady, predictable, monthly bill you can budget for. And it can’t be cancelled. It will be renewed for as long as you pay your premium on time.</p><p>You can add a Prescription Drug Plan and a Dental plan to Medicare supplement insurance to get even more coverage.</p><p>You have to get Medicare supplement insurance through a private insurer, like Mutual of Omaha.  You’ll have to pay a monthly premium and depending on the plan you may also have copays.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="Block-coverageOptions">
+<div class="Grid">
+<div class="Grid-cell Headline-wrapper">
+<h2>Two Different Options for Comprehensive Medicare Coverage</h2>
+</div>
+<div class="Options">
+<div class="Grid-cell Option">
+<div class="Text-center">
+<h3>Medicare Advantage</h3>
+</div>
+<div class="Text-center Image-margin">
+<img alt="med advantage icon group" class="Img-rounded Image-width" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/part-c-medicare-advantage.svg"/>
+</div>
+<div class="Content-margin">
+<p>Sign up for an all-in-one plan that provides the coverage of Part A, Part B, and Part D. This plan also covers extra benefits like dental, hearing, and transportation.</p>
+</div>
+</div>
+<div class="Grid-cell Option">
+<div class="Text-center">
+<h3>Original Medicare + Medicare Supplement Insurance + Part D</h3>
+</div>
+<div class="Text-center Image-margin">
+<img alt="med supp venn diagram" class="Img-rounded Image-width" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/med-supp-circles.svg"/>
+</div>
+<div class="Content-margin">
+<p>Put the pieces together to build the coverage that’s right for your health and wallet. Enjoy the flexibility of choosing just the benefits you want.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="Block-planComparisonTable">
+<div class="Grid">
+<div class="Grid-cell PlanComparison">
+<div>
+<h3 class="Headline-text">How do these plans compare?</h3>
+</div>
+<table class="Table">
+<thead>
+<tr>
+<th>Medicare Advantage</th>
+<th>Original Medicare + Medicare Supplement Insurance + Part D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="Question" colspan="2">How do these plan types differ?</td>
+</tr>
+<tr>
+<td class="Answers">There are many ways a Medicare Advantage plan differs from Medicare Supplement. With Medicare Advantage, you will have an all-in-one plan with low or no monthly premiums, but you'll have higher out-of-pocket payments when you do use your health plan, though there are limits to how much you have to pay. Medicare Advantage plans are also affiliated with specific health provider networks, so you will be limited to doctors in these plans.</td>
+<td class="Answers">There are many ways a Medicare Supplement plan differs from a Medicare Advantage one. With Medicare Supplement, you will pay higher monthly premiums but will have fewer out of pocket costs when you do use your health plan. Also, you are permitted to see any doctor who accepts Medicare.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Do I Have My Choice of Doctors?</td>
+</tr>
+<tr>
+<td class="Answers">Doctors in your approved network.</td>
+<td class="Answers">Any doctor who accepts Medicare.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Will I Need A Referral To See A Specialist?</td>
+</tr>
+<tr>
+<td class="Answers">You may need a referral and be limited to a specialist in your network.</td>
+<td class="Answers">No. You can see specialists without referrals.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Is the Plan Offered Where I Live?</td>
+</tr>
+<tr>
+<td class="Answers">It depends. Since not every insurance company offers plans in each area, you’ll need to choose from a company that offers it where you live.  And in some cases, there may not be a plan available at all.</td>
+<td class="Answers">Yes - a plan is available in your area. Since not every insurance company offers plans in each state, you’ll need to choose from a company that offers it in your area. And plans are standardized differently in Massachusetts, Minnesota, and Wisconsin.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">I Live in a Rural Area, Will There Be a Doctor Close to Me I Can See?</td>
+</tr>
+<tr>
+<td class="Answers">It depends. Most plans center around a specific hospital, so there may not be a doctor in your network close to where you live.</td>
+<td class="Answers">Most likely. You can see any doctor that accepts Medicare, and there are doctors in most rural areas that do.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Will I be covered if I travel across the United States?</td>
+</tr>
+<tr>
+<td class="Answers">Yes, you will be covered for any urgent or emergency care while traveling, however, routine care outside of the plan's network is not covered.</td>
+<td class="Answers">Yes. Just like with Medicare, you can travel the country and see any doctor that accepts Medicare.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Will I be covered if I travel across the world?</td>
+</tr>
+<tr>
+<td class="Answers">For most plans, only emergency services are covered outside of where you live.</td>
+<td class="Answers">Plans F, G, and N cover it.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Are prescriptions covered?</td>
+</tr>
+<tr>
+<td class="Answers">Most Medicare Advantage plans include prescription drug coverage, but all plans have rules for which drugs are covered.</td>
+<td class="Answers">When you get a separate Prescription Drug Plan that complements Medicare Supplement Insurance, you're covered. But all plans have rules for which drugs are covered.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Is Dental Included?</td>
+</tr>
+<tr>
+<td class="Answers">Most plans include it.</td>
+<td class="Answers">No, but a separate Dental Plan pairs well with Medicare Supplement Insurance.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Is Vision Included?</td>
+</tr>
+<tr>
+<td class="Answers">Most plans include it.</td>
+<td class="Answers">No, but a separate Vision Plan pairs well with Medicare Supplement Insurance.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Are There Extra Benefits?</td>
+</tr>
+<tr>
+<td class="Answers">Yes. There are benefits like hearing, fitness memberships, and transportation.</td>
+<td class="Answers">Some insurance companies offer extra benefits.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">What is the Stability of the Benefits?</td>
+</tr>
+<tr>
+<td class="Answers">Benefits may change from year to year. Most plans only have slight changes though.</td>
+<td class="Answers">Your Medicare Supplement Insurance benefits will always stay the same.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Can my plan be canceled?</td>
+</tr>
+<tr>
+<td class="Answers">Plans can be canceled at the end of the calendar year. Most choose to renew though.</td>
+<td class="Answers">No. As long as you pay your premiums, your plan can't be canceled.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Will I need to pay copays or coinsurance?</td>
+</tr>
+<tr>
+<td class="Answers">Yes. <a href="/medicare-solutions/questions/whats-the-difference-between-premiums-deductible-copays-and-coinsurance">Learn more about copays and coinsurance</a>.</td>
+<td class="Answers">It depends on the plan. <a href="/medicare-solutions/questions/whats-the-difference-between-premiums-deductible-copays-and-coinsurance">Learn more about copays and coinsurance</a>.</td>
+</tr>
+<tr>
+<td class="Question" colspan="2">Will I need to pay a premium?</td>
+</tr>
+<tr>
+<td class="Answers">Yes, but most plans have a low or $0 monthly premium. You'll also need to pay your Part B premium.</td>
+<td class="Answers">Yes. You'll pay a monthly premium in addition to your Part B premium.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="Block-planCrossSell">
+<div class="Grid">
+<div class="Grid-cell CrossSell-alignment">
+<div class="Text-boldCenter">
+<div class="Headline-container">
+                                    Explore the Medicare Advantage Plans in your county
+                                </div>
+</div>
+<div>
+<a class="" href="https://www.seniorsresourceguide.com/directories/National/SHIP/" target="_blank">Learn more about Medicare Advantage Insurance</a>
+</div>
+</div>
+<div class="Grid-cell CrossSell-alignment">
+<div class="Text-boldCenter">
+<div class="Headline-container">
+                                    See the Medicare Supplement Plans Available in your state
+                                </div>
+</div>
+<div>
+<a class="" href="/medicare-supplement-insurance/quote" target="">Get A Medicare Supplement Quote</a>
+</div>
+</div>
+</div>
+</section>
+<section class="Block-additionalInfo">
+<div class="Grid">
+<div class="Grid-cell Headline-text">
+<h2>Additional information</h2>
+</div>
+</div>
+<div class="Flex-wrapper">
+<div class="Flex-item">
+<h3>How do I apply for Medicare?</h3>
+<p>For Medicare Part A and Part B, some people get them automatically while others have to sign up. Whether you have Social Security and how long you've worked and paid into Medicare play a big role in how and if you need to apply. If you are someone who is automatically enrolled, you'll receive your Medicare Card in the mail 3 months before your 65th birthday. <a href="/medicare-solutions/questions/how-do-i-enroll-in-medicare">Learn more about signing up for Medicare in our questions section</a>.</p><p>If you don't know which bucket you fall into, contact a <a href="/support/contact-me">Mutual of Omaha agent</a> for more information about what to expect and plan for.</p>
+</div>
+<div class="Flex-item">
+<h3>When can I apply for Medicare?</h3>
+<p>You can enroll in Medicare starting three months prior to the month of your 65th birthday and extending for three months after the month of your birthday. (If your birthday is on the first of the month, you can enroll beginning four months prior to the month of your 65th birthday but only two months after the month of your birthday). <a href="/medicare-solutions/questions/when-can-i-sign-up">Learn more about when you can apply in our Medicare questions section</a>.</p><p>You apply at your local Social Security Office, either <a href="https://www.ssa.gov/benefits/retirement/" rel="noopener noreferrer" target="_blank">online</a>, by phone, or in-person.</p>
+</div>
+<div class="Flex-item">
+<h3>How do I switch plans or add more coverage to my Medicare solution?</h3>
+<p>You can apply for a new Medicare supplement insurance plan at any time. However, you could be denied due to health conditions. If you want to switch between a Medicare Supplement plan and a Medicare Advantage plan, you need to switch during certain periods of time and depends on your current health conditions. Whether it's a Medicare Advantage plan or a Medicare supplement insurance policy you can apply during the Annual Enrollment Period from October 15 to December 7 of each year. You cannot be denied this coverage, and it will be effective the following January 1.</p><p><a href="/medicare-solutions/questions/can-i-switch-between-medicare-supplement-insurance-and-medicare-advantage">Learn more about switching in our Medicare questions section</a>.</p>
+</div>
+</div>
+</section>
+<section class="Block-moreQuestions">
+<div class="Grid">
+<div class="Grid-cell Contact-alignment">
+<h3>Have more questions?</h3>
+<div>
+<a class="Button Button--outline" href="/medicare-solutions/questions/what-is-medicare">Get Answers</a>
+</div>
+</div>
+</div>
+</section>
+<section class="Block-dualCTA">
+<div class="Text-center">
+<h2>Want help finding a plan just suited for you?</h2>
+</div>
+<div class="DualCTA">
+<div class="DualCTA-Parent">
+<div class="DualCTA-Container">
+<img alt="advice flag" class="DualCTA-Image" src="https://cdn.mutualofomaha.com/mutualofomaha/images/icons/advice-engine/icon-personalized.svg"/>
+<h3 class="Subhead">Medicare Advice Center</h3>
+<p><p>Want help finding a plan just suited for you?</p></p>
+<a class="Button Button--outline DualCTA-button" href="/medicare-solutions/recommendation">Start Now</a>
+</div>
+</div>
+<div class="DualCTA-Parent">
+<div class="DualCTA-Container">
+<img alt="chat bubbles" class="DualCTA-Image" src="https://cdn.mutualofomaha.com/mutualofomaha/images/illustrations/you-may-experience.svg"/>
+<h3 class="Subhead">Speak with an Agent</h3>
+<p>Our advisors are ready to answer any question you may have to help you pick your perfect plan.</p>
+<a class="Button Button--outline DualCTA-button" href="/support/contact-me">Contact an Agent</a>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="Block-backToTop">
+<div class="Grid Grid--alignCenter no-print">
+<div class="Grid-cell Block-wrapper">
+<a class="BackToTop" href="#top">Back to top</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script defer="" src="/js/0.9cabf34427b5365c08c5.chunk.js" type="text/javascript"></script>
+<script defer="" src="/js/1.83f30a33c31670f74827.chunk.js" type="text/javascript"></script>
+<script defer="" src="/js/3.21a4ca6a0aed0806601d.chunk.js" type="text/javascript"></script>
+<script defer="" src="/js/2.1b2cc24d8a21e16edf46.chunk.js" type="text/javascript"></script>
+<script defer="" src="/js/package-medicare-solutions--entry-med_solutions_medicare_basics.0cd636f17f73b33218a2.bundle.js" type="text/javascript"></script>
+</body>

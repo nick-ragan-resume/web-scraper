@@ -1,5 +1,6 @@
 Additional Benefits
-Advance Beneficiary Notice of Noncoverage (ABN)
+Advance Beneficiary Notice of Noncoverage 
+(ABN)
 Advance Directive 
 Age-Attained Pricing
 Annual High Deductible 
@@ -12,9 +13,10 @@ CMS
 Coinsurance
 Community Rated Pricing
 Copayment
-Coverage Determination (Part D)
+Coverage Determination 
 Coverage Gap
-Creditable Coverage (Medigap/Med Supp)
+Creditable Coverage 
+(Medigap/Med Supp)
 Creditable Prescription Drug Coverage
 Deductible
 DME
@@ -26,7 +28,8 @@ EOB
 Exception
 Excess Charge 
 Explanation of Benefit
-Extra Help (Part D)
+Extra Help 
+(Part D)
 Formulary
 Grievance
 Guaranteed Issue Rights
@@ -37,16 +40,19 @@ Hospital Policy Definition
 Household Premium Discount
 Initial Coverage Limit
 Issue-Age Pricing
-"Material Misrepresentation 
-Policy Language "
+Material Misrepresentation 
+Policy Language
 Medicaid
 Medical Underwriting 
 Medically Necessary 
 Medicare
-Medicare Advantage Plan (Part C)
-Medicare Drug Plan (Part D)
-Medicare Part A (Hospital Insurance)
-Medicare Part B (Medical Insurance)
+Medicare Advantage Plan 
+(Part C)
+Medicare Drug Plan 
+Medicare Part A 
+(Hospital Insurance)
+Medicare Part B 
+(Medical Insurance)
 Medicare Part C
 Medicare Plan
 Medicare Supplement Insurance
@@ -72,10 +78,12 @@ Secondary Payer
 Skilled Nursing Facility 
 Skilled Nursing Facility Care 
 Special Enrollment Periods 
-State Health Insurance Assistance Program (SHIP)
+State Health Insurance Assistance Program 
+(SHIP)
 State Insurance Department
 Step Therapy
-Supplemental Security Income (SSI)
+Supplemental Security Income 
+(SSI)
 Telemedicine 
 Tiers
 Yearly "Wellness" Visit 
